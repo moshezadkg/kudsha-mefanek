@@ -1336,24 +1336,28 @@
 
             <!-- Server Integration Section -->
             <div class="admin-section">
-                <h3>🌐 שמירה בשרת</h3>
-                <div style="background: #e8f4f8; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                    <p style="margin: 0; color: #1e3c72;"><strong>💡 איך זה עובד:</strong></p>
-                    <p style="margin: 0.5rem 0; font-size: 0.9rem;">השינויים נשמרים בקובץ JSON על השרת. זה מאפשר לך לעדכן את האתר ולשמור את השינויים לכל המבקרים.</p>
+                <h3>🔥 Firebase - שרת אמיתי חינם!</h3>
+                <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <p style="margin: 0; color: #1565c0;"><strong>🚀 מצב נוכחי:</strong> <span id="firebaseStatus">בודק...</span></p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;" id="firebaseInfo">Firebase מאפשר שמירה אמיתית לכל המבקרים - חינם לחלוטין!</p>
                 </div>
                 
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <button class="admin-button" onclick="saveToServer()">💾 שמור בשרת</button>
-                    <button class="admin-button" onclick="loadFromServer()">📥 טען מהשרת</button>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                    <button class="admin-button" onclick="saveToServer()">🔥 שמור ב-Firebase</button>
+                    <button class="admin-button" onclick="loadFromServer()">📥 טען מ-Firebase</button>
                     <button class="admin-button" onclick="testServerConnection()">🔗 בדוק חיבור</button>
+                    <button class="admin-button" onclick="showFirebaseSetup()">⚙️ הגדרת Firebase</button>
                 </div>
-                <div class="admin-success" id="serverSuccess">✅ נתונים נשמרו בשרת בהצלחה!</div>
+                <div class="admin-success" id="serverSuccess">✅ נתונים נשמרו ב-Firebase בהצלחה!</div>
                 
-                <div style="margin-top: 1rem; padding: 1rem; background: #fff3cd; border-radius: 8px;">
-                    <p style="margin: 0; color: #856404;"><strong>⚙️ הגדרת השרת:</strong></p>
-                    <p style="margin: 0.5rem 0; font-size: 0.9rem;">1. צור קובץ PHP פשוט על השרת שלך<br>
-                    2. הקובץ יקרא ויכתב לקובץ JSON<br>
-                    3. כל השינויים יישמרו באתר האמיתי</p>
+                <div style="margin-top: 1rem; padding: 1rem; background: #fff8e1; border-radius: 8px;">
+                    <p style="margin: 0; color: #f57c00;"><strong>💡 איך זה עובד:</strong></p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;">
+                        • Firebase = שרת של גוגל, חינם לפרויקטים קטנים<br>
+                        • כל שינוי נשמר לכל המבקרים באתר<br>
+                        • עובד בזמן אמת - שינויים מופיעים מיד<br>
+                        • <strong>הגדרה חד-פעמית של 5 דקות!</strong>
+                    </p>
                 </div>
             </div>
 
@@ -1474,6 +1478,10 @@
         </div>
     </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    
     <script>
         // Array of inspirational messages
         const inspirations = [
@@ -1941,6 +1949,44 @@
             alert('💾 גיבוי נוצר בהצלחה!');
         }
 
+        function showFirebaseSetup() {
+            const instructions = `
+🔥 הגדרת Firebase - 5 דקות לשרת אמיתי חינם!
+
+📋 שלב 1: צור פרויקט Firebase
+1. לך ל: https://console.firebase.google.com
+2. לחץ "Create a project" (צור פרויקט)
+3. שם הפרויקט: kudsha-mefanek
+4. לחץ Continue → Continue → Create project
+
+📋 שלב 2: הוסף אפליקציית Web
+1. בדף הבית של הפרויקט, לחץ על "</>" (Web)
+2. App nickname: קודשא מפנק
+3. לחץ "Register app"
+
+📋 שלב 3: העתק הגדרות
+1. תראה קוד עם firebaseConfig = { ... };
+2. העתק את כל הערכים (apiKey, authDomain וכו')
+3. החלף אותם ב-FIREBASE_CONFIG באתר HTML
+
+📋 שלב 4: הפעל Realtime Database
+1. בתפריט השמאלי: Realtime Database
+2. Create Database
+3. Start in test mode
+4. Done!
+
+🎉 זהו! עכשיו האתר שלך יעבוד עם שרת אמיתי!
+
+💡 אחרי ההגדרה:
+• כל שינוי יישמר לכל המבקרים
+• עדכונים בזמן אמת
+• חינם עד 1GB נתונים (יספיק לשנים!)
+
+צריך עזרה? כתוב לי!
+            `;
+            alert(instructions);
+        }
+
         function viewAnalytics() {
             const data = getAdminData();
             const stats = `
@@ -1952,9 +1998,69 @@
 
 📅 עדכון אחרון: ${data.lastUpdate || 'לא עודכן'}
 🔧 פעולות מנהל: ${data.adminActions || 0}
-🌐 מצב שרת: ${SERVER_CONFIG.enabled ? '🟢 פעיל' : '🟡 מקומי בלבד'}
+
+🔥 מצב Firebase: ${firebaseEnabled ? '🟢 פעיל - שרת אמיתי' : '🟡 לא פעיל - שמירה מקומית'}
+🌐 כתובת האתר: https://moshezadkg.github.io/kudsha-mefanek/
+
+${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' : '⚙️ הפעל Firebase לשמירה אמיתית'}
             `;
             alert(stats);
+        }
+
+        function resetData() {
+            if (confirm('⚠️ האם אתה בטוח שרוצה למחוק את כל הנתונים?')) {
+                window.localStorage.removeItem('kudshaAdminData');
+                
+                // Reset Firebase data if enabled
+                if (firebaseEnabled) {
+                    database.ref('siteData').remove().catch(error => console.log('Firebase reset failed:', error));
+                }
+                
+                alert('🔄 כל הנתונים נמחקו! רענן את הדף.');
+            }
+        }
+
+        function backupData() {
+            const data = getAdminData();
+            data.backup = new Date().toISOString();
+            data.backupType = firebaseEnabled ? 'Firebase + Local' : 'Local only';
+            saveAdminData(data);
+            alert('💾 גיבוי נוצר בהצלחה!\n\n' + (firebaseEnabled ? '🔥 נשמר גם ב-Firebase' : '💻 נשמר מקומית'));
+        }
+
+        function exportData() {
+            const data = getAdminData();
+            data.exportInfo = {
+                date: new Date().toISOString(),
+                firebaseEnabled: firebaseEnabled,
+                website: 'https://moshezadkg.github.io/kudsha-mefanek/'
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'kudsha-mefanek-data-' + new Date().toISOString().split('T')[0] + '.json';
+            link.click();
+            alert('📤 הנתונים יוצאו בהצלחה!');
+        }
+
+        // Update admin panel when opened
+        function openAdminPanel() {
+            document.getElementById('adminPanelOverlay').style.display = 'block';
+            
+            // Update Firebase status
+            updateFirebaseStatus();
+            
+            // Show welcome message
+            setTimeout(() => {
+                const welcomeMsg = firebaseEnabled ? 
+                    '🎉 ברוך הבא למערכת הניהול!\n🔥 Firebase פעיל - השינויים נשמרים לכל המבקרים!' :
+                    '🎉 ברוך הבא למערכת הניהול!\n⚙️ הפעל Firebase לשמירה אמיתית (לחץ "הגדרת Firebase")';
+                    
+                alert(welcomeMsg + '\n\n💡 טיפים:\n• Ctrl+S לשמירה מהירה\n• ESC לסגירת הפאנל');
+            }, 500);
         }
             const data = getAdminData();
             const dataStr = JSON.stringify(data, null, 2);
