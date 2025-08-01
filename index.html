@@ -2115,21 +2115,28 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
         }
 
         function loadAdminData() {
-            const data = getAdminData();
+            const savedData = getAdminData();
             
-            if (data.stats) {
-                document.getElementById('membersCount').value = data.stats.members || '';
-                document.getElementById('pinukimCount').value = data.stats.pinukim || '';
-                document.getElementById('inspirationsCount').value = data.stats.inspirations || '';
-                document.getElementById('productsCount').value = data.stats.products || '';
+            if (savedData.stats) {
+                const membersInput = document.getElementById('membersCount');
+                const pinukimInput = document.getElementById('pinukimCount');
+                const inspirationsInput = document.getElementById('inspirationsCount');
+                const productsInput = document.getElementById('productsCount');
+                
+                if (membersInput) membersInput.value = savedData.stats.members || '';
+                if (pinukimInput) pinukimInput.value = savedData.stats.pinukim || '';
+                if (inspirationsInput) inspirationsInput.value = savedData.stats.inspirations || '';
+                if (productsInput) productsInput.value = savedData.stats.products || '';
             }
             
-            if (data.mainTitle) {
-                document.getElementById('mainTitle').value = data.mainTitle;
+            if (savedData.mainTitle) {
+                const mainTitleInput = document.getElementById('mainTitle');
+                if (mainTitleInput) mainTitleInput.value = savedData.mainTitle;
             }
             
-            if (data.subTitle) {
-                document.getElementById('subTitle').value = data.subTitle;
+            if (savedData.subTitle) {
+                const subTitleInput = document.getElementById('subTitle');
+                if (subTitleInput) subTitleInput.value = savedData.subTitle;
             }
         }
 
