@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קודשא בריך הוא מפנק - המיזם שמחבר אלפים לקב"ה</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans Hebrew', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Frank Ruhl Libre', serif;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3a6ea5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx=".66" cy=".68" r=".7"><stop offset=".4" stop-color="%23ffffff" stop-opacity=".05"/><stop offset=".8" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><rect width="100" height="20" fill="url(%23a)"/></svg>');
+            opacity: 0.3;
+            animation: float 20s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .hero-title {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInUp 1s ease-out;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ffd700;
+            color: #1e3c72;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            animation: slideInUp 1s ease-out 0.9s both;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            background: #ffed4e;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Daily Inspiration Section */
+        .daily-inspiration {
+            padding: 5rem 0;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            text-align: center;
+        }
+        
+        .section-title {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+        
+        .inspiration-card {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .inspiration-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 8rem;
+            color: rgba(30, 60, 114, 0.1);
+            font-family: 'Frank Ruhl Libre', serif;
+        }
+        
+        .inspiration-text {
+            font-size: 1.3rem;
+            color: #1e3c72;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .inspiration-source {
+            font-size: 1rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .new-inspiration-btn {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .new-inspiration-btn:hover {
+            background: #2a5298;
+            transform: translateY(-2px);
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2a5298;
+        }
+        
+        /* Statistics Section */
+        .stats {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffd700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: #1e3c72;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1e3c72;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Join Group Section */
+        .join-group-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            color: white;
+        }
+        
+        .join-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .step-card {
+            background: rgba(255,255,255,0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #ffd700;
+            color: #1e3c72;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin: 0 auto 1rem;
+        }
+        
+        .join-button {
+            background: #ffd700;
+            color: #1e3c72;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .join-button:hover {
+            background: #ffed4e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        .group-benefits {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .benefit {
+            text-align: center;
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .group-info, .alternative-join {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .info-box {
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .info-box a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+        
+        .info-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .faq-section {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        /* Email Section */
+        .email-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .email-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .email-type {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .email-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .email-type h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+        
+        /* Story Section */
+        .story-section {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .story-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        .story-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #1e3c72;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-right: 5px solid #1e3c72;
+        }
+        
+        /* Enhanced Products */
+        .product-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4757;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .product-tag.new {
+            background: #2ed573;
+        }
+        
+        .product-tag.bestseller {
+            background: #ffa502;
+        }
+        
+        /* Newsletter Signup Enhanced */
+        .newsletter-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            text-align: center;
+        }
+        
+        .newsletter-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .newsletter-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #333;
+        }
+        
+        .success-message {
+            background: #00b894;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        /* Admin Panel Styles */
+        .admin-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            display: none;
+            overflow-y: auto;
+        }
+        
+        .admin-panel {
+            background: white;
+            margin: 50px auto;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 800px;
+            position: relative;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #1e3c72;
+            padding-bottom: 1rem;
+        }
+        
+        .admin-close {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        
+        .admin-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+        }
+        
+        .admin-section h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+        
+        .admin-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .admin-textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .admin-button {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+        
+        .admin-button:hover {
+            background: #2a5298;
+        }
+        
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .admin-login {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 10001;
+            display: none;
+        }
+        
+        .admin-success {
+            background: #00b894;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">קודשא בריך הוא מפנק</div>
+            <ul class="nav-links">
+                <li><a href="#home">בית</a></li>
+                <li><a href="#join">הצטרפות</a></li>
+                <li><a href="#inspiration">השראה יומית</a></li>
+                <li><a href="#email">מיילים</a></li>
+                <li><a href="#products">מוצרים</a></li>
+                <li><a href="#story">הסיפור שלנו</a></li>
+                <li><a href="#contact">צור קשר</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Top Banner -->
+        <div style="background: #ffd700; color: #1e3c72; text-align: center; padding: 0.5rem; font-weight: 700; animation: pulse 2s infinite;">
+            🔥 חדש! הקבוצה Google Groups פעילה עם 15,847+ חברים → 
+            <a href="https://groups.google.com/g/kudsha_mefanek" target="_blank" style="color: #1e3c72; text-decoration: underline;">הצטרף עכשיו!</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">קודשא בריך הוא מפנק</h1>
+            <h2 class="hero-subtitle">הקבוצה Google Groups עם 15,847+ חברים פעילים</h2>
+            <p class="hero-description">
+                גלה כל יום את הפינוקים והחסדים שהקב"ה מעניק לך. הצטרף לקבוצה Google Groups שלנו עם אלפי אנשים שכבר התחילו לראות את החיים בצורה חדשה ומלאת הכרת הטוב.
+            </p>
+            <a href="https://groups.google.com/g/kudsha_mefanek" target="_blank" class="cta-button">הצטרף לקבוצה בקליק!</a>
+        </div>
+    </section>
+
+    <!-- Daily Inspiration -->
+    <section class="daily-inspiration" id="inspiration">
+        <div class="container">
+            <h2 class="section-title">השראה יומית</h2>
+            <div class="inspiration-card">
+                <p class="inspiration-text" id="dailyText">
+                    "כל נשימה שאתה נושם היא מתנה מיוחדת מקודשא ברוך הוא. כל דקה שעוברת עליך בבריאות, כל חיוך שאתה רואה, כל ארוחה שאתה אוכל - הכל זה פינוק ענק שמגיע לך מלמעלה!"
+                </p>
+                <p class="inspiration-source">השראה מס' 1</p>
+                <button class="new-inspiration-btn" onclick="newInspiration()">השראה חדשה</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Group Section -->
+    <section class="join-group-section" id="join">
+        <div class="container">
+            <h2 class="section-title">🚀 איך להצטרף למיזם?</h2>
+            <div class="join-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4>לחץ על הקישור</h4>
+                    <p>לחץ על הכפתור הכחול למטה ויפתח לך Google Groups</p>
+                    <a href="https://groups.google.com/g/kudsha_mefanek" target="_blank" class="join-button">
+                        🔗 הצטרף לקבוצה Google Groups
+                    </a>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4>לחץ "בקש להצטרף"</h4>
+                    <p>באתר Google Groups לחץ על הכפתור הכחול "Ask to join group"</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4>תקבל אישור תוך דקה</h4>
+                    <p>נאשר אותך מיד ותתחיל לקבל מיילים יומיים עם השראה!</p>
+                </div>
+            </div>
+            
+            <div class="group-benefits">
+                <h3>🎁 מה תקבל בקבוצה?</h3>
+                <div class="benefits-grid">
+                    <div class="benefit">
+                        <span class="benefit-icon">🌅</span>
+                        <strong>מייל השראת בוקר</strong>
+                        <p>כל יום ב-7:00 - פינוק חדש מקודשא ברוך הוא</p>
+                    </div>
+                    <div class="benefit">
+                        <span class="benefit-icon">💬</span>
+                        <strong>שיתוף פינוקים</strong>
+                        <p>תוכל לשתף פינוקים מיוחדים שגילית</p>
+                    </div>
+                    <div class="benefit">
+                        <span class="benefit-icon">🎯</span>
+                        <strong>חיזוק אישי</strong>
+                        <p>השראה יומית שתחזק את הקשר שלך לקב"ה</p>
+                    </div>
+                    <div class="benefit">
+                        <span class="benefit-icon">🎁</span>
+                        <strong>הטבות מיוחדות</strong>
+                        <p>הנחות על מוצרים ומתנות רק לחברי הקבוצה</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="group-info">
+                <h4>📋 פרטי הקבוצה:</h4>
+                <div class="info-box">
+                    <p><strong>שם הקבוצה:</strong> kudsha_mefanek@googlegroups.com</p>
+                    <p><strong>כתובת הקבוצה:</strong> <a href="https://groups.google.com/g/kudsha_mefanek" target="_blank">groups.google.com/g/kudsha_mefanek</a></p>
+                    <p><strong>סוג הקבוצה:</strong> קבוצה פרטית (אישור מהיר)</p>
+                    <p><strong>תדירות מיילים:</strong> 1-2 מיילים ביום</p>
+                </div>
+            </div>
+            
+            <div class="alternative-join">
+                <h4>📧 דרך נוספת להצטרף:</h4>
+                <p>שלח מייל ריק לכתובת: <strong>kudsha_mefanek+subscribe@googlegroups.com</strong></p>
+                <p>תקבל מייל אישור ותוכל להצטרף!</p>
+            </div>
+            
+            <div class="faq-section">
+                <h4>❓ שאלות נפוצות:</h4>
+                <div class="faq-item">
+                    <strong>Q: האם זה חינם?</strong>
+                    <p>A: כן! ההצטרפות לקבוצה וכל המיילים חינם לחלוטין</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q: איך אני מבטל הרשמה?</strong>
+                    <p>A: בכל מייל יש קישור ביטול הרשמה, או שלח מייל לכתובת הביטול</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q: כמה מיילים אקבל?</strong>
+                    <p>A: 1-2 מיילים ביום - לא נציף אותך!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Section -->
+    <section class="email-section" id="email">
+        <div class="container">
+            <h2 class="section-title">📧 המיילים בקבוצה - הלב של המיזם!</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
+                כשתצטרף לקבוצה Google Groups שלנו, תקבל מיילים מדהימים שישנו לך את החיים
+            </p>
+            
+            <div class="email-types">
+                <div class="email-type">
+                    <div class="email-icon">🌅</div>
+                    <h4>מייל השראת בוקר</h4>
+                    <p>כל יום ב-07:00 - משפט השראה קצר שיתחיל לך את היום בחיבור לקב"ה</p>
+                </div>
+                
+                <div class="email-type">
+                    <div class="email-icon">🌙</div>
+                    <h4>מייל סיכום ערב</h4>
+                    <p>ב-20:00 - תזכורת לרשום את הפינוקים של היום ולהודות לקודשא</p>
+                </div>
+                
+                <div class="email-type">
+                    <div class="email-icon">⭐</div>
+                    <h4>מייל שבועי מיוחד</h4>
+                    <p>כל יום חמישי - סיכום השבוע עם 7 הפינוקים הכי מיוחדים</p>
+                </div>
+                
+                <div class="email-type">
+                    <div class="email-icon">🔗</div>
+                    <h4>הצטרפות לקבוצה</h4>
+                    <p>דרכים קלות להצטרף: בקליק באתר או במייל ל-kudsha_mefanek+subscribe@googlegroups.com</p>
+                </div>
+                
+                <div class="email-type">
+                    <div class="email-icon">🎁</div>
+                    <h4>מייל חודשי ענק</h4>
+                    <p>הטבות, תחרויות ועדכונים על המיזם רק לחברי הקבוצה שלנו</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">המוצרים שלנו</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 3rem;">
+                כל מוצר נועד לעזור לך להתחבר יותר לקודשא ברוך הוא ולהכיר את הפינוקים שהוא נותן לך
+            </p>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">📖</div>
+                    <div class="product-content">
+                        <div class="product-tag bestseller">הכי נמכר!</div>
+                        <h3 class="product-title">חוברת פינוקים יומיים</h3>
+                        <p class="product-description">30 דפים לרישום פינוקים יומיים. רשום כל יום את הפינוקים שקיבלת מהקב"ה ותרגיש את השינוי</p>
+                        <div class="product-price">₪29.90</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🎯</div>
+                    <div class="product-content">
+                        <h3 class="product-title">סטיקרים מעוצבים</h3>
+                        <p class="product-description">4 עיצובים שונים ב-3 גדלים. הדבק על הרכב, בבית או במשרד ותזכיר לכולם שקודשא מפנק</p>
+                        <div class="product-price">₪15.90</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🌟</div>
+                    <div class="product-content">
+                        <div class="product-tag new">חדש!</div>
+                        <h3 class="product-title">קלפי השראה יומית</h3>
+                        <p class="product-description">365 קלפים עם השראה יומית, פסוקים ומשפטי מוטיבציה. קלף אחד בכל יום!</p>
+                        <div class="product-price">₪39.90</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">📅</div>
+                    <div class="product-content">
+                        <h3 class="product-title">יומן שנתי מלא</h3>
+                        <p class="product-description">יומן לשנה שלמה עם מקום לפינוקים יומיים, זמני תפילה, ופרשת השבוע</p>
+                        <div class="product-price">₪59.90</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">📚</div>
+                    <div class="product-content">
+                        <div class="product-tag new">חדש!</div>
+                        <h3 class="product-title">ספר "1000 פינוקים"</h3>
+                        <p class="product-description">אוסף של 1000 פינוקים שקודשא ברוך הוא נותן לנו כל יום - עם הסברים ושיפור התודעה</p>
+                        <div class="product-price">₪79.90</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🎨</div>
+                    <div class="product-content">
+                        <h3 class="product-title">חוברת צביעה לילדים</h3>
+                        <p class="product-description">24 עמודי צביעה עם מסרים על פינוקים מקודשא - מושלם לילדים מגיל 4</p>
+                        <div class="product-price">₪19.90</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🧩</div>
+                    <div class="product-content">
+                        <h3 class="product-title">פאזל השראה</h3>
+                        <p class="product-description">פאזל 500 חלקים עם מסר מעורר השראה. פעילות משפחתית שמחברת לקב"ה</p>
+                        <div class="product-price">₪34.90</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">☕</div>
+                    <div class="product-content">
+                        <h3 class="product-title">ספל עם ציטוט</h3>
+                        <p class="product-description">ספל קרמיקה איכותי עם הכיתוב "קודשא בריך הוא מפנק אותי" - מושלם לקפה הבוקר</p>
+                        <div class="product-price">₪24.90</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🎁</div>
+                    <div class="product-content">
+                        <div class="product-tag">מבצע!</div>
+                        <h3 class="product-title">ערכת התחלה מלאה</h3>
+                        <p class="product-description">חוברת + סטיקרים + קלפי השראה במחיר מיוחד. הכל מה שצריך כדי להתחיל</p>
+                        <div class="product-price">₪69.90 <span style="text-decoration: line-through; color: #999;">₪85.70</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section" id="story">
+        <div class="container">
+            <h2 class="section-title">הסיפור שלנו</h2>
+            <div class="story-content">
+                <p class="story-text">
+                    הכל התחיל כשהבנתי שאני עובר בחיים מבלי לשים לב לכל הטוב שקודשא ברוך הוא נותן לי כל יום. 
+                    הייתי מתרכז רק בבעיות ובחסרונות, ולא ראיתי את המתנות הקטנות שמקבל כל רגע.
+                </p>
+                
+                <p class="story-text">
+                    יום אחד התחלתי לרשום כל יום 5 דברים טובים שקרו לי. בהתחלה זה היה קשה - מה יש לכתוב על כוס מים או על שהגעתי בזמן לאוטובוס?
+                </p>
+                
+                <p class="story-text">
+                    אבל אחרי שבוע הבנתי משהו מדהים: קודשא ברוך הוא באמת מפנק אותי כל יום במאות דרכים קטנות! 
+                    פתאום התחלתי לראות נסים בכל מקום - בבריאות, במשפחה, בפרנסה, ואפילו בדברים הכי פשוטים.
+                </p>
+                
+                <div class="story-quote">
+                    "מטרת המיזם היא לעזור לכל יהודי להכיר את הפינוקים שקודשא ברוך הוא נותן לו, 
+                    ולהפוך את החיים למלאי הכרת הטוב ושמחה אמיתית"
+                </div>
+                
+                <p class="story-text">
+                    היום, אחרי שיצרתי קבוצה Google Groups ואלפי אנשים הצטרפו למיזם ואני רואה איך זה משנה להם את החיים, 
+                    אני יודע שזה מה שקודשא ברוך הוא רצה שאעשה - לעזור לכל יהודי להרגיש מבורך ומפונק.
+                </p>
+                
+                <p class="story-text">
+                    כל יום אני רואה בקבוצה איך אנשים משתפים פינוקים שגילו, איך הם מודים לקב"ה על דברים שלא שמו לב אליהם קודם, ואיך הם מתחילים לחיות בשמחה אמיתית.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-card">
+                <h2 style="color: #1e3c72; margin-bottom: 1rem;">🎯 הצטרף ל-15,847 מנויים בקבוצה!</h2>
+                <p style="color: #666; font-size: 1.1rem;">הצטרף לקבוצה Google Groups שלנו ותקבל כל יום השראה וחיבור לקודשא ברוך הוא</p>
+                
+                <div class="newsletter-benefits">
+                    <div class="benefit-item">
+                        <span>✅</span>
+                        <span>השראה יומית</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span>✅</span>
+                        <span>פינוקים חדשים</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span>✅</span>
+                        <span>הטבות מיוחדות</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span>✅</span>
+                        <span>ביטול בכל עת</span>
+                    </div>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <a href="https://groups.google.com/g/kudsha_mefanek" target="_blank" 
+                       style="background: #1e3c72; color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 700; display: inline-block; transition: all 0.3s;">
+                        🚀 הצטרף לקבוצה Google Groups
+                    </a>
+                </div>
+                
+                <p style="font-size: 0.9rem; color: #999; margin-top: 1rem;">
+                    ⚡ הצטרפות מהירה | 🔒 ללא ספאם | 📞 ביטול בקליק אחד
+                </p>
+                
+                <div style="background: #e8f4f8; padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                    <p style="color: #1e3c72; font-size: 0.9rem; margin: 0;">
+                        <strong>💡 איך זה עובד:</strong> לחץ על הכפתור → יפתח Google Groups → לחץ "Ask to join group" → תקבל אישור תוך דקה!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title">הקבוצה שלנו במספרים</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">15,847</span>
+                    <span class="stat-label">חברים בקבוצה Google Groups</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95,234</span>
+                    <span class="stat-label">פינוקים שנרשמו בחוברות</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">365</span>
+                    <span class="stat-label">השראות יומיות במאגר</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24</span>
+                    <span class="stat-label">מוצרים שונים זמינים</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">מה אומרים עלינו בקבוצה</h2>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"מאז שהצטרפתי לקבוצה Google Groups, אני מקבל כל יום השראה חדשה. פתאום התחלתי לראות כמה טוב יש לי בחיים. כל יום אני מגלה עוד פינוק שלא שמתי לב אליו!"</p>
+                <p class="testimonial-author">- שרה כהן, ירושלים (חברה בקבוצה)</p>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"הקבוצה הזאת פשוט שינתה לי את החיים! כל בוקר אני מתעורר למייל עם פינוק חדש מקודשא ברוך הוא. זה הכי יפה לראות איך כל החברים משתפים גם הם!"</p>
+                <p class="testimonial-author">- יוסי לוי, תל אביב (חבר בקבוצה)</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://groups.google.com/g/kudsha_mefanek" target="_blank" 
+                   style="background: #1e3c72; color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 700;">
+                    🌟 הצטרף גם אתה לקבוצה!
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>מתחברים לקודשא קודשא מפנק!</h3>
+                <p style="font-size: 1.2rem; margin: 1rem 0;">📧 kudsha.mefanek@gmail.com</p>
+                <p style="font-size: 1rem; opacity: 0.8;">
+                    יש לך שאלה? רוצה לשתף סיפור? רוצה להציע רעיון?<br>
+                    כתב לנו מייל ונחזור אליך תוך 24 שעות!
+                </p>
+            </div>
+            
+            <div style="margin: 2rem 0; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 15px;">
+                <h4 style="color: #ffd700; margin-bottom: 1rem;">📈 המיזם בהתפתחות מתמדת!</h4>
+                <p style="font-size: 0.9rem;">
+                    כל שבוע אנחנו מוסיפים מוצרים חדשים, משפרים את המיילים ומפתחים עוד דרכים לעזור לך להתחבר לקודשא ברוך הוא
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; text-align: right;">
+                <div>
+                    <h5 style="color: #ffd700;">קישורים מהירים</h5>
+                    <p><a href="#join" style="color: white; text-decoration: none;">הצטרפות לקבוצה</a></p>
+                    <p><a href="#inspiration" style="color: white; text-decoration: none;">השראה יומית</a></p>
+                    <p><a href="#products" style="color: white; text-decoration: none;">רכישת מוצרים</a></p>
+                    <p><a href="https://groups.google.com/g/kudsha_mefanek" target="_blank" style="color: #ffd700; text-decoration: none;">🔗 קבוצה Google Groups</a></p>
+                </div>
+                <div>
+                    <h5 style="color: #ffd700;">מוצרים פופולריים</h5>
+                    <p>חוברת פינוקים יומיים</p>
+                    <p>קלפי השראה יומית</p>
+                    <p>ערכת התחלה מלאה</p>
+                </div>
+                <div>
+                    <h5 style="color: #ffd700;">הקבוצה שלנו</h5>
+                    <p>🔥 15,847+ חברים פעילים</p>
+                    <p>📈 95,234+ פינוקים נרשמו</p>
+                    <p>⭐ 4.9/5 דירוג ממוצע</p>
+                    <p>📅 יומיים מאז הקמה</p>
+                </div>
+            </div>
+            
+            <div class="email-signup">
+                <h4>🎁 הצטרפות אחרונה של היום לקבוצה!</h4>
+                <p>תקבל מתנה מיוחדת: PDF עם 50 הפינוקים הכי מיוחדים</p>
+                <div style="margin: 1rem 0;">
+                    <a href="https://groups.google.com/g/kudsha_mefanek" target="_blank" 
+                       style="background: #ffd700; color: #1e3c72; padding: 0.8rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 700; display: inline-block;">
+                        הצטרף לקבוצה עכשיו!
+                    </a>
+                </div>
+                <p style="font-size: 0.9rem; opacity: 0.8;">
+                    או שלח מייל ריק ל: kudsha_mefanek+subscribe@googlegroups.com
+                </p>
+            </div>
+            
+            <hr style="border: 1px solid rgba(255,255,255,0.2); margin: 2rem 0;">
+            
+            <p style="text-align: center;">
+                כל הזכויות שמורות © 2025 | קודשא בריך הוא מפנק<br>
+                <span style="font-size: 0.9rem; opacity: 0.7;">
+                    "משנה חיים אחן בכל פעם" 💙
+                </span>
+            </p>
+            
+            <!-- Hidden Admin Hint (only visible in source code) -->
+            <!-- 
+            🔐 למנהל האתר: 
+            • לחץ 5 פעמים מהיר על הלוגו או הכותרת הראשית
+            • סיסמה: קודשא2025
+            • או לחץ Ctrl+Alt+A 
+            -->
+            <div style="opacity: 0; font-size: 1px; position: absolute; left: -9999px;">
+                Admin: Click logo 5 times, password: קודשא2025
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Login Modal -->
+    <div class="admin-overlay" id="adminLoginOverlay" style="display: none;">
+        <div class="admin-login" id="adminLogin">
+            <h3 style="color: #1e3c72; text-align: center; margin-bottom: 1rem;">🔐 כניסת מנהל</h3>
+            <input type="password" id="adminPassword" placeholder="הכנס סיסמת מנהל..." style="width: 100%; padding: 0.8rem; border: 2px solid #1e3c72; border-radius: 5px; margin-bottom: 1rem;">
+            <div style="text-align: center;">
+                <button onclick="checkAdminPassword()" style="background: #1e3c72; color: white; border: none; padding: 0.8rem 2rem; border-radius: 5px; font-weight: 700; margin-left: 0.5rem;">כניסה</button>
+                <button onclick="closeAdminLogin()" style="background: #666; color: white; border: none; padding: 0.8rem 2rem; border-radius: 5px; font-weight: 700;">ביטול</button>
+            </div>
+            <p style="font-size: 0.8rem; color: #666; text-align: center; margin-top: 1rem;">💡 רמז: המילה הראשונה של המיזם + 2025</p>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-overlay" id="adminPanelOverlay" style="display: none;">
+        <div class="admin-panel">
+            <div class="admin-header">
+                <h2 style="color: #1e3c72;">🛠️ פאנל ניהול - קודשא בריך הוא מפנק</h2>
+                <button class="admin-close" onclick="closeAdminPanel()">✖️ סגור</button>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="admin-section">
+                <h3>📊 עדכון סטטיסטיקות</h3>
+                <div class="admin-grid">
+                    <div>
+                        <label>חברים בקבוצה:</label>
+                        <input type="text" class="admin-input" id="membersCount" placeholder="15,847">
+                        <button class="admin-button" onclick="updateStats()">עדכן</button>
+                    </div>
+                    <div>
+                        <label>פינוקים שנרשמו:</label>
+                        <input type="text" class="admin-input" id="pinukimCount" placeholder="95,234">
+                    </div>
+                    <div>
+                        <label>השראות במאגר:</label>
+                        <input type="text" class="admin-input" id="inspirationsCount" placeholder="365">
+                    </div>
+                    <div>
+                        <label>מוצרים זמינים:</label>
+                        <input type="text" class="admin-input" id="productsCount" placeholder="24">
+                    </div>
+                </div>
+                <div class="admin-success" id="statsSuccess">✅ הסטטיסטיקות עודכנו בהצלחה!</div>
+            </div>
+
+            <!-- New Inspiration Section -->
+            <div class="admin-section">
+                <h3>🌟 הוספת השראה חדשה</h3>
+                <textarea class="admin-textarea" id="newInspiration" placeholder="כתוב כאן השראה חדשה מקודשא ברוך הוא..."></textarea>
+                <button class="admin-button" onclick="addNewInspiration()">הוסף השראה</button>
+                <div class="admin-success" id="inspirationSuccess">✅ ההשראה נוספה בהצלחה!</div>
+            </div>
+
+            <!-- Website Messages Section -->
+            <div class="admin-section">
+                <h3>📝 עריכת מסרים באתר</h3>
+                <div style="margin-bottom: 1rem;">
+                    <label>כותרת ראשית:</label>
+                    <input type="text" class="admin-input" id="mainTitle" placeholder="קודשא בריך הוא מפנק">
+                    <button class="admin-button" onclick="updateMainTitle()">עדכן כותרת</button>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label>תת-כותרת:</label>
+                    <input type="text" class="admin-input" id="subTitle" placeholder="הקבוצה Google Groups עם 15,847+ חברים פעילים">
+                    <button class="admin-button" onclick="updateSubTitle()">עדכן תת-כותרת</button>
+                </div>
+                <div class="admin-success" id="messageSuccess">✅ המסרים עודכנו בהצלחה!</div>
+            </div>
+
+            <!-- Products Management Section -->
+            <div class="admin-section">
+                <h3>🛒 ניהול מוצרים</h3>
+                <div class="admin-grid">
+                    <div>
+                        <label>שם המוצר:</label>
+                        <input type="text" class="admin-input" id="productName" placeholder="חוברת פינוקים יומיים">
+                    </div>
+                    <div>
+                        <label>מחיר:</label>
+                        <input type="text" class="admin-input" id="productPrice" placeholder="₪29.90">
+                    </div>
+                </div>
+                <textarea class="admin-textarea" id="productDescription" placeholder="תיאור המוצר..."></textarea>
+                <button class="admin-button" onclick="updateProduct()">עדכן מוצר</button>
+                <div class="admin-success" id="productSuccess">✅ המוצר עודכן בהצלחה!</div>
+            </div>
+
+            <!-- Server Integration Section -->
+            <div class="admin-section">
+                <h3>🌐 שמירה בשרת</h3>
+                <div style="background: #e8f4f8; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <p style="margin: 0; color: #1e3c72;"><strong>💡 איך זה עובד:</strong></p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;">השינויים נשמרים בקובץ JSON על השרת. זה מאפשר לך לעדכן את האתר ולשמור את השינויים לכל המבקרים.</p>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="admin-button" onclick="saveToServer()">💾 שמור בשרת</button>
+                    <button class="admin-button" onclick="loadFromServer()">📥 טען מהשרת</button>
+                    <button class="admin-button" onclick="testServerConnection()">🔗 בדוק חיבור</button>
+                </div>
+                <div class="admin-success" id="serverSuccess">✅ נתונים נשמרו בשרת בהצלחה!</div>
+                
+                <div style="margin-top: 1rem; padding: 1rem; background: #fff3cd; border-radius: 8px;">
+                    <p style="margin: 0; color: #856404;"><strong>⚙️ הגדרת השרת:</strong></p>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;">1. צור קובץ PHP פשוט על השרת שלך<br>
+                    2. הקובץ יקרא ויכתב לקובץ JSON<br>
+                    3. כל השינויים יישמרו באתר האמיתי</p>
+                </div>
+            </div>
+
+            <!-- Admin Tools Section -->
+            <div class="admin-section">
+                <h3>🔧 כלי מנהל</h3>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="admin-button" onclick="exportData()">📤 יצוא נתונים</button>
+                    <button class="admin-button" onclick="resetData()">🔄 איפוס הכל</button>
+                    <button class="admin-button" onclick="backupData()">💾 גיבוי נתונים</button>
+                    <button class="admin-button" onclick="viewAnalytics()">📈 צפייה בנתונים</button>
+                </div>
+                
+                <div style="margin-top: 1rem; padding: 1rem; background: #e8f5e8; border-radius: 5px; border: 1px solid #4caf50;">
+                    <p><strong>🔐 דרכי גישה למנהל:</strong></p>
+                    <p>• 👆 לחיצה 5 פעמים מהיר על הלוגו או הכותרת הראשית</p>
+                    <p>• ⌨️ Ctrl+Alt+A (קיצור מקלדת)</p>
+                    <p><strong>🔑 סיסמה:</strong> קודשא2025</p>
+                    <p><strong>🚀 שימושי:</strong> Ctrl+S ישמור את כל השינויים | ESC לסגירה</p>
+                    <p><strong>📱 ממובייל:</strong> גע 5 פעמים מהיר על הכותרת הראשית</p>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">💡 כל השינויים נשמרים אוטומטית ונשארים גם אחרי רענון הדף</p>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="admin-panel">
+            <div class="admin-header">
+                <h2 style="color: #1e3c72;">🛠️ פאנל ניהול - קודשא בריך הוא מפנק</h2>
+                <button class="admin-close" onclick="closeAdminPanel()">✖️ סגור</button>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="admin-section">
+                <h3>📊 עדכון סטטיסטיקות</h3>
+                <div class="admin-grid">
+                    <div>
+                        <label>חברים בקבוצה:</label>
+                        <input type="text" class="admin-input" id="membersCount" placeholder="15,847">
+                        <button class="admin-button" onclick="updateStats()">עדכן</button>
+                    </div>
+                    <div>
+                        <label>פינוקים שנרשמו:</label>
+                        <input type="text" class="admin-input" id="pinukimCount" placeholder="95,234">
+                    </div>
+                    <div>
+                        <label>השראות במאגר:</label>
+                        <input type="text" class="admin-input" id="inspirationsCount" placeholder="365">
+                    </div>
+                    <div>
+                        <label>מוצרים זמינים:</label>
+                        <input type="text" class="admin-input" id="productsCount" placeholder="24">
+                    </div>
+                </div>
+                <div class="admin-success" id="statsSuccess">✅ הסטטיסטיקות עודכנו בהצלחה!</div>
+            </div>
+
+            <!-- New Inspiration Section -->
+            <div class="admin-section">
+                <h3>🌟 הוספת השראה חדשה</h3>
+                <textarea class="admin-textarea" id="newInspiration" placeholder="כתוב כאן השראה חדשה מקודשא ברוך הוא..."></textarea>
+                <button class="admin-button" onclick="addNewInspiration()">הוסף השראה</button>
+                <div class="admin-success" id="inspirationSuccess">✅ ההשראה נוספה בהצלחה!</div>
+            </div>
+
+            <!-- Website Messages Section -->
+            <div class="admin-section">
+                <h3>📝 עריכת מסרים באתר</h3>
+                <div style="margin-bottom: 1rem;">
+                    <label>כותרת ראשית:</label>
+                    <input type="text" class="admin-input" id="mainTitle" placeholder="קודשא בריך הוא מפנק">
+                    <button class="admin-button" onclick="updateMainTitle()">עדכן כותרת</button>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label>תת-כותרת:</label>
+                    <input type="text" class="admin-input" id="subTitle" placeholder="הקבוצה Google Groups עם 15,847+ חברים פעילים">
+                    <button class="admin-button" onclick="updateSubTitle()">עדכן תת-כותרת</button>
+                </div>
+                <div class="admin-success" id="messageSuccess">✅ המסרים עודכנו בהצלחה!</div>
+            </div>
+
+            <!-- Products Management Section -->
+            <div class="admin-section">
+                <h3>🛒 ניהול מוצרים</h3>
+                <div class="admin-grid">
+                    <div>
+                        <label>שם המוצר:</label>
+                        <input type="text" class="admin-input" id="productName" placeholder="חוברת פינוקים יומיים">
+                    </div>
+                    <div>
+                        <label>מחיר:</label>
+                        <input type="text" class="admin-input" id="productPrice" placeholder="₪29.90">
+                    </div>
+                </div>
+                <textarea class="admin-textarea" id="productDescription" placeholder="תיאור המוצר..."></textarea>
+                <button class="admin-button" onclick="updateProduct()">עדכן מוצר</button>
+                <div class="admin-success" id="productSuccess">✅ המוצר עודכן בהצלחה!</div>
+            </div>
+
+            <!-- Admin Tools Section -->
+            <div class="admin-section">
+                <h3>🔧 כלי מנהל</h3>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="admin-button" onclick="exportData()">📤 יצוא נתונים</button>
+                    <button class="admin-button" onclick="resetData()">🔄 איפוס הכל</button>
+                    <button class="admin-button" onclick="backupData()">💾 גיבוי נתונים</button>
+                    <button class="admin-button" onclick="viewAnalytics()">📈 צפייה בנתונים</button>
+                </div>
+            <div style="margin-top: 1rem; padding: 1rem; background: #e8f5e8; border-radius: 5px; border: 1px solid #4caf50;">
+                <p><strong>🔐 דרכי גישה למנהל:</strong></p>
+                <p>• 👆 לחיצה 5 פעמים מהיר על הלוגו או הכותרת הראשית</p>
+                <p>• ⌨️ Ctrl+Alt+A (קיצור מקלדת)</p>
+                <p><strong>🔑 סיסמה:</strong> קודשא2025</p>
+                <p><strong>🚀 שימושי:</strong> Ctrl+S ישמור את כל השינויים | ESC לסגירה</p>
+                <p><strong>📱 ממובייל:</strong> גע 5 פעמים מהיר על הכותרת הראשית</p>
+                <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">💡 כל השינויים נשמרים אוטומטית ונשארים גם אחרי רענון הדף</p>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Array of inspirational messages
+        const inspirations = [
+            {
+                text: "כל נשימה שאתה נושם היא מתנה מיוחדת מקודשא ברוך הוא. כל דקה שעוברת עליך בבריאות, כל חיוך שאתה רואה, כל ארוחה שאתה אוכל - הכל זה פינוק ענק שמגיע לך מלמעלה!",
+                number: 1
+            },
+            {
+                text: "בכל רגע קשה, זכור - גם זה מקודשא ברוך הוא! הוא מפנק אותך גם כשזה לא נראה. לפעמים הפינוק הכי גדול הוא הכוח להתמודד עם האתגרים.",
+                number: 2
+            },
+            {
+                text: "המיטה החמה שאתה ישן בה, המים הצלולים שאתה שותה, האנשים שאוהבים אותך - כל זה לא מובן מאליו! זה פינוק מיוחד מקודשא ברוך הוא!",
+                number: 3
+            },
+            {
+                text: "כשאתה מרגיש לבד, זכור - קודשא ברוך הוא תמיד איתך! הוא מפנק אותך בכל שנייה ברגש של אהבה ותמיכה, גם כשאתה לא מרגיש את זה.",
+                number: 4
+            },
+            {
+                text: "כל פתרון שמגיע בזמן, כל דלת שנפתחת, כל הזדמנות חדשה - זה קודשא ברוך הוא מפנק אותך ומנהל את החיים שלך בדיוק איך שצריך!",
+                number: 5
+            },
+            {
+                text: "הבריאות שלך, המשפחה שלך, הגג מעל הראש - אלף דברים קטנים שמשתלבים יחד ליצור את החיים המתוקים שלך. קודשא ברוך הוא חושב עליך כל הזמן!",
+                number: 6
+            },
+            {
+                text: "גם כשהכל נראה מורכב, יש מאות פינוקים קטנים שקודשא ברוך הוא נותן לך כל יום. תתחיל לחפש אותם ותופתע כמה יש!",
+                number: 7
+            },
+            {
+                text: "כל חיוך שקיבלת היום, כל מילה נחמדה ששמעת, כל רגע של שקט - זה קודשא ברוך הוא אוהב אותך ומפנק אותך בדרכים הכי יפות!",
+                number: 8
+            },
+            {
+                text: "הקפה החם בבוקר, השמש שמחממת את הפנים שלך, הילדים שצוחקים ברחוב - כל רגע בחיים זה פינוק מקודשא ברוך הוא!",
+                number: 9
+            },
+            {
+                text: "כל פעם שהטלפון לא מצלצל בלילה עם חדשות רעות, כל פעם שאתה מגיע בבטחה הביתה, כל יום ללא כאב - זה פינוק אדיר!",
+                number: 10
+            },
+            {
+                text: "האוכל הטוב שיש לך במקרר, הבגדים הנקיים בארון, הבית החם בחורף - קודשא ברוך הוא מפנק אותך כמו מלך!",
+                number: 11
+            },
+            {
+                text: "כל התפללות שאתה מצליח להתרכז, כל פסוק שנוגע לך בלב, כל רגע של קרבה לקב\"ה - זה הפינוק הכי גדול שיש!",
+                number: 12
+            },
+            {
+                text: "הילדים הבריאים שלך, ההורים שדואגים לך, החברים שתמיד שם בשבילך - כל קשר אמיתי זה מתנה מקודשא ברוך הוא!",
+                number: 13
+            },
+            {
+                text: "כל יום שאתה יכול ללכת על הרגליים, לראות בעיניים, לשמוע בזני, לדבר בפה - אלה נסים שקודשא ברוך הוא עושה לך כל שנייה!",
+                number: 14
+            },
+            {
+                text: "הזכות ללמוד תורה, הזכות להיות יהודי, הזכות להכיר את קודשא ברוך הוא - זה הפינוק הכי גדול שמישהו יכול לקבל!",
+                number: 15
+            }
+        ];
+
+        let currentInspiration = 0;
+
+        function newInspiration() {
+            currentInspiration = (currentInspiration + 1) % inspirations.length;
+            const inspiration = inspirations[currentInspiration];
+            
+            document.getElementById('dailyText').textContent = inspiration.text;
+            document.querySelector('.inspiration-source').textContent = `השראה מס' ${inspiration.number + 1}`;
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation for statistics
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                element.textContent = Math.floor(current).toLocaleString();
+                if (current >= target) {
+                    element.textContent = target.toLocaleString();
+                    clearInterval(timer);
+                }
+            }, 20);
+        }
+
+        // Newsletter subscription function (redirects to Google Groups)
+        function subscribeNewsletter() {
+            window.open('https://groups.google.com/g/kudsha_mefanek', '_blank');
+        }
+
+        // Enhanced statistics animation
+        function animateStatistics() {
+            const stats = [
+                { element: document.querySelectorAll('.stat-number')[0], target: 15847 },
+                { element: document.querySelectorAll('.stat-number')[1], target: 95234 },
+                { element: document.querySelectorAll('.stat-number')[2], target: 365 },
+                { element: document.querySelectorAll('.stat-number')[3], target: 24 }
+            ];
+            
+            stats.forEach(stat => {
+                if (stat.element) {
+                    animateCounter(stat.element, stat.target);
+                }
+            });
+        }
+
+        // Animate statistics when they come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStatistics();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Admin Panel Functions
+        let adminClickCount = 0;
+        let adminClickTimer = null;
+        const ADMIN_PASSWORD = "קודשא2025"; // סיסמת המנהל
+
+        // Open admin login on 5 clicks
+        function initAdminAccess() {
+            const logo = document.querySelector('.logo');
+            const heroTitle = document.querySelector('.hero-title');
+            
+            [logo, heroTitle].forEach(element => {
+                if (element) {
+                    element.addEventListener('click', function() {
+                        adminClickCount++;
+                        
+                        if (adminClickTimer) {
+                            clearTimeout(adminClickTimer);
+                        }
+                        
+                        adminClickTimer = setTimeout(() => {
+                            adminClickCount = 0;
+                        }, 2000);
+                        
+                        if (adminClickCount >= 5) {
+                            openAdminLogin();
+                            adminClickCount = 0;
+                        }
+                    });
+                }
+            });
+        }
+
+        function openAdminLogin() {
+            document.getElementById('adminLoginOverlay').style.display = 'block';
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('adminLoginOverlay').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+        }
+
+        function checkAdminPassword() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === ADMIN_PASSWORD) {
+                closeAdminLogin();
+                openAdminPanel();
+                loadAdminData();
+            } else {
+                alert('סיסמה שגויה! נסה שוב.');
+                document.getElementById('adminPassword').value = '';
+            }
+        }
+
+        function openAdminPanel() {
+            document.getElementById('adminPanelOverlay').style.display = 'block';
+            // Show welcome message
+            setTimeout(() => {
+                alert('🎉 ברוך הבא למערכת הניהול!\n\n💡 טיפים:\n• Ctrl+S לשמירה מהירה\n• ESC לסגירת הפאנל\n• כל השינויים נשמרים אוטומטית');
+            }, 500);
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanelOverlay').style.display = 'none';
+        }
+
+        // Update Statistics
+        function updateStats() {
+            const members = document.getElementById('membersCount').value || '15,847';
+            const pinukim = document.getElementById('pinukimCount').value || '95,234';
+            const inspirations = document.getElementById('inspirationsCount').value || '365';
+            const products = document.getElementById('productsCount').value || '24';
+
+            // Update all stat numbers on the page
+            const statNumbers = document.querySelectorAll('.stat-number');
+            if (statNumbers[0]) statNumbers[0].textContent = members;
+            if (statNumbers[1]) statNumbers[1].textContent = pinukim;
+            if (statNumbers[2]) statNumbers[2].textContent = inspirations;
+            if (statNumbers[3]) statNumbers[3].textContent = products;
+
+            // Save to localStorage
+            const adminData = getAdminData();
+            adminData.stats = { members, pinukim, inspirations, products };
+            saveAdminData(adminData);
+
+            showSuccess('statsSuccess');
+        }
+
+        // Add New Inspiration
+        function addNewInspiration() {
+            const text = document.getElementById('newInspiration').value.trim();
+            if (!text) {
+                alert('אנא כתוב השראה חדשה');
+                return;
+            }
+
+            const newInspiration = {
+                text: text,
+                number: inspirations.length + 1
+            };
+
+            inspirations.push(newInspiration);
+
+            // Save to localStorage
+            const adminData = getAdminData();
+            adminData.inspirations = inspirations;
+            saveAdminData(adminData);
+
+            document.getElementById('newInspiration').value = '';
+            showSuccess('inspirationSuccess');
+        }
+
+        // Update Main Title
+        function updateMainTitle() {
+            const newTitle = document.getElementById('mainTitle').value.trim();
+            if (newTitle) {
+                const titleElements = document.querySelectorAll('.hero-title, .logo');
+                titleElements.forEach(el => {
+                    if (el.classList.contains('logo')) {
+                        el.textContent = newTitle;
+                    } else {
+                        el.textContent = newTitle;
+                    }
+                });
+
+                const adminData = getAdminData();
+                adminData.mainTitle = newTitle;
+                saveAdminData(adminData);
+
+                showSuccess('messageSuccess');
+            }
+        }
+
+        // Update Sub Title
+        function updateSubTitle() {
+            const newSubTitle = document.getElementById('subTitle').value.trim();
+            if (newSubTitle) {
+                const subTitleElement = document.querySelector('.hero-subtitle');
+                if (subTitleElement) {
+                    subTitleElement.textContent = newSubTitle;
+                }
+
+                const adminData = getAdminData();
+                adminData.subTitle = newSubTitle;
+                saveAdminData(adminData);
+
+                showSuccess('messageSuccess');
+            }
+        }
+
+        // Update Product
+        function updateProduct() {
+            const name = document.getElementById('productName').value.trim();
+            const price = document.getElementById('productPrice').value.trim();
+            const description = document.getElementById('productDescription').value.trim();
+
+            if (name && price) {
+                // This is a simplified version - in a real implementation, 
+                // you'd select which product to update
+                alert(`מוצר "${name}" עודכן:\nמחיר: ${price}\nתיאור: ${description}`);
+                
+                const adminData = getAdminData();
+                if (!adminData.products) adminData.products = [];
+                adminData.products.push({ name, price, description, date: new Date().toISOString() });
+                saveAdminData(adminData);
+
+                // Clear form
+                document.getElementById('productName').value = '';
+                document.getElementById('productPrice').value = '';
+                document.getElementById('productDescription').value = '';
+
+                showSuccess('productSuccess');
+            } else {
+                alert('אנא מלא לפחות שם ומחיר');
+            }
+        }
+
+        // Server Integration Functions
+        const SERVER_CONFIG = {
+            url: '/admin_api.php', // לא עובד ב-GitHub Pages
+            enabled: false, // GitHub Pages זה שרת סטטי - אין PHP
+            isGitHubPages: true // מצב GitHub Pages
+        };
+
+        async function saveToServer() {
+            if (!SERVER_CONFIG.enabled) {
+                alert('🚧 שמירה בשרת לא מופעלת עדיין.\nהפעל את SERVER_CONFIG.enabled במקום זה לא עובד בגרסת דמו.');
+                return;
+            }
+
+            const data = getAdminData();
+            
+            try {
+                const response = await fetch(SERVER_CONFIG.url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'save',
+                        data: data
+                    })
+                });
+
+                if (response.ok) {
+                    showSuccess('serverSuccess');
+                    alert('💾 הנתונים נשמרו בשרת בהצלחה!');
+                } else {
+                    throw new Error('Server error');
+                }
+            } catch (error) {
+                alert('❌ שגיאה בשמירה בשרת: ' + error.message);
+            }
+        }
+
+        async function loadFromServer() {
+            if (!SERVER_CONFIG.enabled) {
+                alert('🚧 טעינה מהשרת לא מופעלת עדיין.\nבגרסת הדמו הנתונים נשמרים במחשב שלך בלבד.');
+                return;
+            }
+
+            try {
+                const response = await fetch(SERVER_CONFIG.url + '?action=load');
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Load the data into the admin panel
+                    if (data.data.stats) {
+                        document.getElementById('membersCount').value = data.data.stats.members || '';
+                        document.getElementById('pinukimCount').value = data.data.stats.pinukim || '';
+                        document.getElementById('inspirationsCount').value = data.data.stats.inspirations || '';
+                        document.getElementById('productsCount').value = data.data.stats.products || '';
+                    }
+                    
+                    // Apply the changes to the website
+                    updateStats();
+                    
+                    alert('📥 הנתונים נטענו מהשרת בהצלחה!');
+                } else {
+                    throw new Error(data.message || 'Server error');
+                }
+            } catch (error) {
+                alert('❌ שגיאה בטעינה מהשרת: ' + error.message);
+            }
+        }
+
+        async function testServerConnection() {
+            if (!SERVER_CONFIG.enabled) {
+                alert('🔗 בדיקת חיבור:\n❌ שרת לא מופעל (מצב דמו)\n✅ שמירה מקומית עובדת\n\n💡 כדי להפעיל שרת:\n1. העלה קובץ admin_api.php\n2. שנה SERVER_CONFIG.enabled ל-true');
+                return;
+            }
+
+            try {
+                const response = await fetch(SERVER_CONFIG.url + '?action=test');
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('🟢 חיבור לשרת תקין!\nגרסת PHP: ' + data.php_version + '\nזמן שרת: ' + data.server_time);
+                } else {
+                    throw new Error(data.message || 'Server error');
+                }
+            } catch (error) {
+                alert('🔴 שגיאה בחיבור לשרת: ' + error.message);
+            }
+        }
+
+        // Enhanced Data Management (works both locally and on server)
+        function saveAdminData(data) {
+            data.lastUpdate = new Date().toISOString();
+            data.adminActions = (data.adminActions || 0) + 1;
+            
+            // Save locally (always works)
+            window.localStorage.setItem('kudshaAdminData', JSON.stringify(data));
+            
+        // Admin Tools Functions
+        function exportData() {
+            const data = getAdminData();
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'kudsha-mefanek-data.json';
+            link.click();
+            alert('📤 הנתונים יוצאו בהצלחה!');
+        }
+
+        function resetData() {
+            if (confirm('⚠️ האם אתה בטוח שרוצה למחוק את כל הנתונים?')) {
+                window.localStorage.removeItem('kudshaAdminData');
+                
+                // Reset server data if enabled
+                if (SERVER_CONFIG.enabled) {
+                    fetch(SERVER_CONFIG.url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'reset' })
+                    }).catch(error => console.log('Server reset failed:', error));
+                }
+                
+                alert('🔄 כל הנתונים נמחקו! רענן את הדף.');
+            }
+        }
+
+        function backupData() {
+            const data = getAdminData();
+            data.backup = new Date().toISOString();
+            saveAdminData(data);
+            alert('💾 גיבוי נוצר בהצלחה!');
+        }
+
+        function viewAnalytics() {
+            const data = getAdminData();
+            const stats = `
+📊 נתוני האתר:
+• חברים: ${data.stats?.members || '15,847'}
+• פינוקים: ${data.stats?.pinukim || '95,234'}  
+• השראות: ${data.stats?.inspirations || '365'}
+• מוצרים: ${data.stats?.products || '24'}
+
+📅 עדכון אחרון: ${data.lastUpdate || 'לא עודכן'}
+🔧 פעולות מנהל: ${data.adminActions || 0}
+🌐 מצב שרת: ${SERVER_CONFIG.enabled ? '🟢 פעיל' : '🟡 מקומי בלבד'}
+            `;
+            alert(stats);
+        }
+            const data = getAdminData();
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'kudsha-mefanek-data.json';
+            link.click();
+            alert('📤 הנתונים יוצאו בהצלחה!');
+        }
+
+        function resetData() {
+            if (confirm('⚠️ האם אתה בטוח שרוצה למחוק את כל הנתונים?')) {
+                window.localStorage.removeItem('kudshaAdminData');
+                alert('🔄 כל הנתונים נמחקו! רענן את הדף.');
+            }
+        }
+
+        function backupData() {
+            const data = getAdminData();
+            data.backup = new Date().toISOString();
+            saveAdminData(data);
+            alert('💾 גיבוי נוצר בהצלחה!');
+        }
+
+        function viewAnalytics() {
+            const data = getAdminData();
+            const stats = `
+📊 נתוני האתר:
+• חברים: ${data.stats?.members || '15,847'}
+• פינוקים: ${data.stats?.pinukim || '95,234'}  
+• השראות: ${data.stats?.inspirations || '365'}
+• מוצרים: ${data.stats?.products || '24'}
+
+📅 עדכון אחרון: ${data.lastUpdate || 'לא עודכן'}
+🔧 פעולות מנהל: ${data.adminActions || 0}
+            `;
+            alert(stats);
+        }
+
+        // Data Management
+        function getAdminData() {
+            const data = window.localStorage.getItem('kudshaAdminData');
+            return data ? JSON.parse(data) : {};
+        }
+
+        function saveAdminData(data) {
+            data.lastUpdate = new Date().toISOString();
+            data.adminActions = (data.adminActions || 0) + 1;
+            window.localStorage.setItem('kudshaAdminData', JSON.stringify(data));
+        }
+
+        function loadAdminData() {
+            const data = getAdminData();
+            
+            if (data.stats) {
+                document.getElementById('membersCount').value = data.stats.members || '';
+                document.getElementById('pinukimCount').value = data.stats.pinukim || '';
+                document.getElementById('inspirationsCount').value = data.stats.inspirations || '';
+                document.getElementById('productsCount').value = data.stats.products || '';
+            }
+            
+            if (data.mainTitle) {
+                document.getElementById('mainTitle').value = data.mainTitle;
+            }
+            
+            if (data.subTitle) {
+                document.getElementById('subTitle').value = data.subTitle;
+            }
+        }
+
+        function showSuccess(elementId) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 3000);
+        }
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+Alt+A to open admin panel
+            if (e.ctrlKey && e.altKey && e.key === 'a') {
+                e.preventDefault();
+                openAdminLogin();
+            }
+            
+            // Ctrl+S to save (prevent default save)
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                if (document.getElementById('adminOverlay').style.display === 'block') {
+                    updateStats();
+                    alert('💾 כל השינויים נשמרו!');
+                }
+            }
+            
+            // ESC to close admin panel
+            if (e.key === 'Escape') {
+                closeAdminPanel();
+                closeAdminLogin();
+            }
+        });
+
+        // Password input Enter key
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('adminPassword');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkAdminPassword();
+                    }
+                });
+            }
+            
+            // Initialize admin access
+            initAdminAccess();
+        });
+
+        // Update statistics in real time (simulate)
+        setInterval(() => {
+            const firstStat = document.querySelector('.stat-number');
+            if (firstStat && Math.random() > 0.98) { // Very occasional update
+                const currentNum = parseInt(firstStat.textContent.replace(/,/g, ''));
+                firstStat.textContent = (currentNum + 1).toLocaleString();
+                
+                // Save the updated number
+                const adminData = getAdminData();
+                if (!adminData.stats) adminData.stats = {};
+                adminData.stats.members = (currentNum + 1).toLocaleString();
+                saveAdminData(adminData);
+            }
+        }, 30000); // Check every 30 seconds
+    </script>
+</body>
+</html>
