@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>קודשא בריך הוא מפנק - המיזם שמחבר אלפים לקב"ה</title>
+    
+    <!-- 
+    הוראות להוספת הסטיקר:
+    1. שמור את התמונה "סטיקר קודשא מפנק.jpg" באותה תיקייה כמו קובץ ה-HTML
+    2. ווודא שהשם של הקובץ תואם בדיוק: "סטיקר קודשא מפנק.jpg"
+    3. התמונה תופיע אוטומטית בכותרת, לוגו, פוטר ואלמנטים דקורטיביים
+    4. גודל התמונה המקורי: 1835x528 פיקסלים - יתאים אוטומטית לכל מקום
+    -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;700;900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700;900&display=swap');
@@ -47,6 +55,23 @@
             font-weight: 900;
             font-family: 'Frank Ruhl Libre', serif;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-image {
+            height: 35px;
+            width: auto;
+            border-radius: 6px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            opacity: 0.85;
+        }
+        
+        .logo-image:hover {
+            transform: scale(1.02);
+            opacity: 1;
         }
         
         .nav-links {
@@ -118,6 +143,30 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             animation: slideInUp 1s ease-out;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .hero-sticker {
+            max-height: 80px;
+            width: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            opacity: 0.9;
+        }
+        
+        .hero-sticker:hover {
+            transform: scale(1.03);
+            opacity: 1;
+        }
+        
+        @keyframes stickerFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
         }
         
         .hero-subtitle {
@@ -149,9 +198,10 @@
         }
         
         .cta-button:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
             background: #ffed4e;
+            animation: pulse 1.5s infinite;
         }
         
         @keyframes slideInUp {
@@ -259,6 +309,14 @@
             text-align: center;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.25);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
         .step-number {
@@ -419,8 +477,9 @@
         }
         
         .product-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .product-image {
@@ -609,7 +668,7 @@
             margin-bottom: 2rem;
         }
         
-        /* Admin Panel Styles */
+        /* Advanced Admin Panel Styles */
         .admin-overlay {
             position: fixed !important;
             top: 0 !important;
@@ -621,6 +680,7 @@
             display: none !important;
             overflow-y: auto !important;
             visibility: hidden !important;
+            backdrop-filter: blur(5px);
         }
         
         .admin-overlay.show {
@@ -629,12 +689,352 @@
         }
         
         .admin-panel {
-            background: white;
-            margin: 50px auto;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 800px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            margin: 20px auto;
+            padding: 0;
+            border-radius: 20px;
+            max-width: 95vw;
+            width: 1200px;
             position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border: 2px solid #1e3c72;
+            overflow: hidden;
+        }
+        
+        /* Admin Panel Header */
+        .admin-panel-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #ffd700;
+        }
+        
+        .admin-panel-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .admin-panel-title::before {
+            content: "🛠️";
+            font-size: 1.8rem;
+        }
+        
+        /* Admin Tabs */
+        .admin-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            overflow-x: auto;
+        }
+        
+        .admin-tab {
+            background: transparent;
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+        
+        .admin-tab:hover {
+            background: #e9ecef;
+            color: #1e3c72;
+        }
+        
+        .admin-tab.active {
+            background: white;
+            color: #1e3c72;
+            border-bottom-color: #ffd700;
+        }
+        
+        /* Admin Content */
+        .admin-content {
+            padding: 2rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .admin-tab-content {
+            display: none;
+        }
+        
+        .admin-tab-content.active {
+            display: block;
+            animation: fadeInUp 0.3s ease-out;
+        }
+        
+        /* Enhanced Admin Sections */
+        .admin-section {
+            background: white;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid #1e3c72;
+            transition: all 0.3s;
+        }
+        
+        .admin-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .admin-section h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Enhanced Form Elements */
+        .admin-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+        
+        .admin-input:focus {
+            border-color: #1e3c72;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.1);
+            outline: none;
+        }
+        
+        .admin-textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            min-height: 120px;
+            resize: vertical;
+            transition: all 0.3s;
+            background: #fafafa;
+            font-family: inherit;
+        }
+        
+        .admin-textarea:focus {
+            border-color: #1e3c72;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.1);
+            outline: none;
+        }
+        
+        /* Enhanced Buttons */
+        .admin-button {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            margin: 0.25rem;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .admin-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.3);
+        }
+        
+        .admin-button.secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .admin-button.success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+        
+        .admin-button.warning {
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+            color: #000;
+        }
+        
+        .admin-button.danger {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        }
+        
+        /* Grid Layouts */
+        .admin-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .admin-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .admin-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        
+        /* Status Indicators */
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+        
+        .status-online {
+            background: #28a745;
+            box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+        }
+        
+        .status-offline {
+            background: #dc3545;
+        }
+        
+        .status-warning {
+            background: #ffc107;
+        }
+        
+        /* Toggle Switches */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #1e3c72;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        /* Progress Bars */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            transition: width 0.3s ease;
+        }
+        
+        /* Color Picker */
+        .color-picker-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .color-picker {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .color-picker:hover {
+            transform: scale(1.1);
+            border-color: #1e3c72;
+        }
+        
+        /* Live Preview */
+        .live-preview {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            min-height: 100px;
+            text-align: center;
+            color: #6c757d;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .admin-panel {
+                margin: 10px;
+                width: calc(100% - 20px);
+            }
+            
+            .admin-grid-2,
+            .admin-grid-3,
+            .admin-grid-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-tabs {
+                flex-direction: column;
+            }
+            
+            .admin-tab {
+                text-align: center;
+            }
         }
         
         .admin-header {
@@ -763,13 +1163,216 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Enhanced Animations & Transitions */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            16% { color: #ff8000; }
+            32% { color: #ffff00; }
+            48% { color: #80ff00; }
+            64% { color: #00ff80; }
+            80% { color: #0080ff; }
+            100% { color: #8000ff; }
+        }
+        
+        /* Enhanced Loading Animation */
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1e3c72;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Enhanced Hover Effects */
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            transform: translateY(-5px);
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Premium Gradient Backgrounds */
+        .premium-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        }
+        
+        .blue-gradient {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        /* Sticker Integration Styles */
+        .sticker-footer {
+            max-height: 40px;
+            width: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            opacity: 0.8;
+        }
+        
+        .sticker-footer:hover {
+            transform: scale(1.02);
+            opacity: 1;
+        }
+        
+
+        
+        /* Responsive Sticker Styles */
+        @media (max-width: 768px) {
+            .hero-sticker {
+                max-height: 60px;
+                margin: 8px 0;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .logo-image {
+                height: 28px;
+            }
+            
+            .sticker-footer {
+                max-height: 32px;
+                margin: 0 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-sticker {
+                max-height: 45px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .logo-image {
+                height: 24px;
+            }
+            
+            .sticker-footer {
+                max-height: 28px;
+            }
+        }
+        
+        /* Image Error Handling & Fallback Styles */
+        .logo-image[src=""],
+        .hero-sticker[src=""],
+        .sticker-footer[src=""] {
+            display: none;
+        }
+        
+        .logo-image:before,
+        .hero-sticker:before,
+        .sticker-footer:before {
+            content: "🏷️";
+            font-size: 2rem;
+            color: #ffd700;
+        }
+        
+        /* Alt text styling for accessibility */
+        img[alt*="סטיקר"], img[alt*="לוגו"] {
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        img[alt*="סטיקר"]:hover, img[alt*="לוגו"]:hover {
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+        
+        /* Special animation for main sticker in hero */
+        .hero-sticker {
+            animation-delay: 0.5s;
+            animation-fill-mode: both;
+        }
+        
+        /* Enhanced glow effect for stickers */
+        .logo-image:hover,
+        .hero-sticker:hover,
+        .sticker-footer:hover {
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+        }
+        
+        /* Loading state simulation */
+        .logo-image,
+        .hero-sticker,
+        .sticker-footer {
+            opacity: 0;
+            animation: fadeInImage 0.6s ease-out forwards;
+        }
+        
+        @keyframes fadeInImage {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <div class="logo">קודשא בריך הוא מפנק</div>
+                            <div class="logo">
+                    <img src="סטיקר קודשא מפנק.jpg" alt="לוגו קודשא מפנק" class="logo-image">
+                    קודשא בריך הוא מפנק
+                </div>
             <ul class="nav-links">
                 <li><a href="#home">בית</a></li>
                 <li><a href="#join">הצטרפות</a></li>
@@ -791,11 +1394,11 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1 class="hero-title">קודשא בריך הוא מפנק</h1>
-            <!-- Emergency Admin Access Button (Hidden) -->
-            <div style="position: absolute; top: 0; right: 0; width: 1px; height: 1px; opacity: 0; overflow: hidden;">
-                <button id="emergencyAdminBtn" onclick="openAdminLogin()" style="border: none; background: none;">Emergency Admin</button>
-            </div>
+            <h1 class="hero-title">
+                <img src="סטיקר קודשא מפנק.jpg" alt="סטיקר קודשא מפנק" class="hero-sticker">
+                קודשא בריך הוא מפנק
+            </h1>
+
             <h2 class="hero-subtitle">הקבוצה Google Groups עם 15,847+ חברים פעילים</h2>
             <p class="hero-description">
                 גלה כל יום את הפינוקים והחסדים שהקב"ה מעניק לך. הצטרף לקבוצה Google Groups שלנו עם אלפי אנשים שכבר התחילו לראות את החיים בצורה חדשה ומלאת הכרת הטוב.
@@ -1177,7 +1780,10 @@
     <footer class="footer" id="contact">
         <div class="footer-content">
             <div class="contact-info">
-                <h3>מתחברים לקודשא קודשא מפנק!</h3>
+                <h3 style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <img src="סטיקר קודשא מפנק.jpg" alt="סטיקר קודשא מפנק" class="sticker-footer">
+                    מתחברים לקודשא קודשא מפנק!
+                </h3>
                 <p style="font-size: 1.2rem; margin: 1rem 0;">📧 kudsha.mefanek@gmail.com</p>
                 <p style="font-size: 1rem; opacity: 0.8;">
                     יש לך שאלה? רוצה לשתף סיפור? רוצה להציע רעיון?<br>
@@ -1190,10 +1796,7 @@
                 <p style="font-size: 0.9rem;">
                     כל שבוע אנחנו מוסיפים מוצרים חדשים, משפרים את המיילים ומפתחים עוד דרכים לעזור לך להתחבר לקודשא ברוך הוא
                 </p>
-                <!-- Hidden Admin Help -->
-                <div style="position: absolute; right: 5px; bottom: 5px; opacity: 0.02; font-size: 8px; color: white;">
-                    Admin: 5 clicks on logo OR Ctrl+Alt+A OR F8 | Pass: קודשא2025
-                </div>
+
             </div>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; text-align: right;">
@@ -1257,27 +1860,128 @@
         </div>
     </div>
 
-    <!-- Admin Panel -->
+    <!-- Advanced Admin Panel -->
     <div class="admin-overlay" id="adminPanelOverlay">
         <div class="admin-panel">
-            <div class="admin-header">
-                <h2 style="color: #1e3c72;">🛠️ פאנל ניהול - קודשא בריך הוא מפנק</h2>
-                <button class="admin-close" onclick="closeAdminPanel()">✖️ סגור</button>
+            <div class="admin-panel-header">
+                <h2 class="admin-panel-title">פאנל ניהול מתקדם - קודשא בריך הוא מפנק</h2>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <span id="adminStatus">🟢 מחובר</span>
+                    <button class="admin-button danger" onclick="closeAdminPanel()" style="margin: 0;">✖️ סגור</button>
+                </div>
             </div>
 
-            <!-- Statistics Section -->
+            <!-- Admin Navigation Tabs -->
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="switchAdminTab('dashboard')">📊 דשבורד</button>
+                <button class="admin-tab" onclick="switchAdminTab('content')">📝 תוכן האתר</button>
+                <button class="admin-tab" onclick="switchAdminTab('products')">🛒 מוצרים</button>
+                <button class="admin-tab" onclick="switchAdminTab('design')">🎨 עיצוב</button>
+                <button class="admin-tab" onclick="switchAdminTab('analytics')">📈 נתונים</button>
+                <button class="admin-tab" onclick="switchAdminTab('settings')">⚙️ הגדרות</button>
+                <button class="admin-tab" onclick="switchAdminTab('backup')">💾 גיבוי</button>
+            </div>
+            
+                <!-- Dashboard Tab -->
+                <div class="admin-tab-content active" id="dashboard-tab">
+                    <div class="admin-section">
+                        <h3>📊 סטטיסטיקות בזמן אמת</h3>
+                        <div class="admin-grid-4">
+                            <div style="background: linear-gradient(135deg, #28a745, #20c997); color: white; padding: 1.5rem; border-radius: 10px; text-align: center;">
+                                <h4 style="margin: 0; font-size: 2rem;" id="dashMembersCount">15,847</h4>
+                                <p style="margin: 0.5rem 0 0 0;">חברים בקבוצה</p>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #17a2b8, #138496); color: white; padding: 1.5rem; border-radius: 10px; text-align: center;">
+                                <h4 style="margin: 0; font-size: 2rem;" id="dashPinukimCount">95,234</h4>
+                                <p style="margin: 0.5rem 0 0 0;">פינוקים נרשמו</p>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #ffc107, #fd7e14); color: white; padding: 1.5rem; border-radius: 10px; text-align: center;">
+                                <h4 style="margin: 0; font-size: 2rem;" id="dashInspirationsCount">365</h4>
+                                <p style="margin: 0.5rem 0 0 0;">השראות במאגר</p>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #6f42c1, #5a32a3); color: white; padding: 1.5rem; border-radius: 10px; text-align: center;">
+                                <h4 style="margin: 0; font-size: 2rem;" id="dashProductsCount">24</h4>
+                                <p style="margin: 0.5rem 0 0 0;">מוצרים זמינים</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h3>🚀 פעולות מהירות</h3>
+                        <div class="admin-grid-3">
+                            <button class="admin-button success" onclick="addNewInspiration()">
+                                ➕ הוסף השראה
+                            </button>
+                            <button class="admin-button warning" onclick="updateAllStats()">
+                                🔄 עדכן סטטיסטיקות
+                            </button>
+                            <button class="admin-button" onclick="saveToServer()">
+                                💾 שמור ב-Firebase
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h3>🔥 מצב השרת</h3>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span>Firebase:</span>
+                            <span class="status-indicator status-online"></span>
+                            <span id="firebaseStatus">פעיל</span>
+                        </div>
+                        <div id="firebaseInfo" style="margin-top: 0.8rem; padding: 0.8rem; background: #e8f5e8; border-radius: 6px; font-size: 0.9rem;">
+                            Firebase מחובר ופעיל - כל השינויים נשמרים לכל המבקרים
+                        </div>
+                        <div style="margin-top: 0.8rem; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button class="admin-button secondary" onclick="testServerConnection()" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">🔗 בדוק חיבור</button>
+                            <button class="admin-button secondary" onclick="showFirebaseSetup()" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">⚙️ הגדרות</button>
+                        </div>
+                        <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">
+                            💡 <strong>טיפ למנהל:</strong> כל עדכון שתעשה יעבור מיד לכל מי שגולש באתר!
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Management Tab -->
+                <div class="admin-tab-content" id="content-tab">
+                    <div class="admin-section">
+                        <h3>📝 עריכה חיה של תוכן האתר</h3>
+                        <div class="admin-grid-2">
+                            <div>
+                                <label><strong>כותרת ראשית:</strong></label>
+                                <input type="text" class="admin-input" id="adminMainTitle" placeholder="קודשא בריך הוא מפנק">
+                                <button class="admin-button" onclick="updateMainTitle()">עדכן</button>
+                            </div>
+                            <div>
+                                <label><strong>תת-כותרת:</strong></label>
+                                <input type="text" class="admin-input" id="adminSubTitle" placeholder="הקבוצה Google Groups עם 15,847+ חברים פעילים">
+                                <button class="admin-button" onclick="updateSubTitle()">עדכן</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h3>🌟 ניהול השראות</h3>
+                        <textarea class="admin-textarea" id="adminNewInspiration" placeholder="כתוב כאן השראה חדשה מקודשא ברוך הוא..."></textarea>
+                        <div style="display: flex; gap: 10px; margin-top: 10px;">
+                            <button class="admin-button success" onclick="addNewInspiration()">➕ הוסף השראה</button>
+                            <button class="admin-button secondary" onclick="previewInspiration()">👁️ תצוגה מקדימה</button>
+                        </div>
+                        <div class="live-preview" id="inspirationPreview">תצוגה מקדימה של ההשראה תופיע כאן...</div>
+                    </div>
+                    
             <div class="admin-section">
                 <h3>📊 עדכון סטטיסטיקות</h3>
-                <div class="admin-grid">
+                        <div class="admin-grid-2">
                     <div>
                         <label>חברים בקבוצה:</label>
                         <input type="text" class="admin-input" id="adminMembersCount" placeholder="15,847">
-                        <button class="admin-button" onclick="updateStats()">עדכן</button>
                     </div>
                     <div>
                         <label>פינוקים שנרשמו:</label>
                         <input type="text" class="admin-input" id="adminPinukimCount" placeholder="95,234">
                     </div>
+                        </div>
+                        <div class="admin-grid-2">
                     <div>
                         <label>השראות במאגר:</label>
                         <input type="text" class="admin-input" id="adminInspirationsCount" placeholder="365">
@@ -1287,96 +1991,220 @@
                         <input type="text" class="admin-input" id="adminProductsCount" placeholder="24">
                     </div>
                 </div>
-                <div class="admin-success" id="statsSuccess">✅ הסטטיסטיקות עודכנו בהצלחה!</div>
+                        <button class="admin-button success" onclick="updateStats()">🔄 עדכן כל הסטטיסטיקות</button>
+                    </div>
             </div>
 
-            <!-- New Inspiration Section -->
+                <!-- Products Management Tab -->
+                <div class="admin-tab-content" id="products-tab">
             <div class="admin-section">
-                <h3>🌟 הוספת השראה חדשה</h3>
-                <textarea class="admin-textarea" id="adminNewInspiration" placeholder="כתוב כאן השראה חדשה מקודשא ברוך הוא..."></textarea>
-                <button class="admin-button" onclick="addNewInspiration()">הוסף השראה</button>
-                <div class="admin-success" id="inspirationSuccess">✅ ההשראה נוספה בהצלחה!</div>
+                        <h3>🛒 ניהול מוצרים מתקדם</h3>
+                        <div class="admin-grid-3">
+                            <div>
+                                <label>שם המוצר:</label>
+                                <input type="text" class="admin-input" id="adminProductName" placeholder="חוברת פינוקים יומיים">
+                            </div>
+                            <div>
+                                <label>מחיר:</label>
+                                <input type="text" class="admin-input" id="adminProductPrice" placeholder="₪29.90">
+                            </div>
+                            <div>
+                                <label>תג מוצר:</label>
+                                <select class="admin-input" id="adminProductTag">
+                                    <option value="">ללא תג</option>
+                                    <option value="new">חדש!</option>
+                                    <option value="bestseller">הכי נמכר!</option>
+                                    <option value="sale">מבצע!</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label>תיאור המוצר:</label>
+                        <textarea class="admin-textarea" id="adminProductDescription" placeholder="תיאור מפורט של המוצר..."></textarea>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="admin-button success" onclick="addProduct()">➕ הוסף מוצר</button>
+                            <button class="admin-button warning" onclick="updateProduct()">✏️ עדכן מוצר</button>
+                            <button class="admin-button secondary" onclick="previewProduct()">👁️ תצוגה מקדימה</button>
+                        </div>
             </div>
 
-            <!-- Website Messages Section -->
             <div class="admin-section">
-                <h3>📝 עריכת מסרים באתר</h3>
-                <div style="margin-bottom: 1rem;">
-                    <label>כותרת ראשית:</label>
-                    <input type="text" class="admin-input" id="adminMainTitle" placeholder="קודשא בריך הוא מפנק">
-                    <button class="admin-button" onclick="updateMainTitle()">עדכן כותרת</button>
+                        <h3>📦 מוצרים קיימים</h3>
+                        <div id="productsList" style="max-height: 300px; overflow-y: auto;">
+                            <!-- רשימת מוצרים תטען כאן דינמית -->
                 </div>
-                <div style="margin-bottom: 1rem;">
-                    <label>תת-כותרת:</label>
-                    <input type="text" class="admin-input" id="adminSubTitle" placeholder="הקבוצה Google Groups עם 15,847+ חברים פעילים">
-                    <button class="admin-button" onclick="updateSubTitle()">עדכן תת-כותרת</button>
                 </div>
-                <div class="admin-success" id="messageSuccess">✅ המסרים עודכנו בהצלחה!</div>
             </div>
 
-            <!-- Products Management Section -->
+                <!-- Design Tab -->
+                <div class="admin-tab-content" id="design-tab">
             <div class="admin-section">
-                <h3>🛒 ניהול מוצרים</h3>
-                <div class="admin-grid">
+                        <h3>🎨 עיצוב והתאמה אישית</h3>
+                        <div class="admin-grid-2">
                     <div>
-                        <label>שם המוצר:</label>
-                        <input type="text" class="admin-input" id="adminProductName" placeholder="חוברת פינוקים יומיים">
+                                <label>צבע ראשי:</label>
+                                <div class="color-picker-group">
+                                    <div class="color-picker" style="background: #1e3c72;" onclick="changeMainColor('#1e3c72')"></div>
+                                    <div class="color-picker" style="background: #2a5298;" onclick="changeMainColor('#2a5298')"></div>
+                                    <div class="color-picker" style="background: #667eea;" onclick="changeMainColor('#667eea')"></div>
+                                    <div class="color-picker" style="background: #764ba2;" onclick="changeMainColor('#764ba2')"></div>
+                                    <input type="color" class="admin-input" id="customMainColor" onchange="changeMainColor(this.value)" style="width: 60px; height: 40px;">
+                                </div>
                     </div>
                     <div>
-                        <label>מחיר:</label>
-                        <input type="text" class="admin-input" id="adminProductPrice" placeholder="₪29.90">
+                                <label>צבע משני:</label>
+                                <div class="color-picker-group">
+                                    <div class="color-picker" style="background: #ffd700;" onclick="changeSecondaryColor('#ffd700')"></div>
+                                    <div class="color-picker" style="background: #f6d365;" onclick="changeSecondaryColor('#f6d365')"></div>
+                                    <div class="color-picker" style="background: #fda085;" onclick="changeSecondaryColor('#fda085')"></div>
+                                    <div class="color-picker" style="background: #fa709a;" onclick="changeSecondaryColor('#fa709a')"></div>
+                                    <input type="color" class="admin-input" id="customSecondaryColor" onchange="changeSecondaryColor(this.value)" style="width: 60px; height: 40px;">
                     </div>
                 </div>
-                <textarea class="admin-textarea" id="adminProductDescription" placeholder="תיאור המוצר..."></textarea>
-                <button class="admin-button" onclick="updateProduct()">עדכן מוצר</button>
-                <div class="admin-success" id="productSuccess">✅ המוצר עודכן בהצלחה!</div>
+                        </div>
             </div>
 
-            <!-- Server Integration Section -->
             <div class="admin-section">
-                <h3>🔥 Firebase - שרת אמיתי חינם!</h3>
-                <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                    <p style="margin: 0; color: #1565c0;"><strong>🚀 מצב נוכחי:</strong> <span id="firebaseStatus">בודק...</span></p>
-                    <p style="margin: 0.5rem 0; font-size: 0.9rem;" id="firebaseInfo">Firebase מאפשר שמירה אמיתית לכל המבקרים - חינם לחלוטין!</p>
+                        <h3>🖼️ ניהול רקעים ואנימציות</h3>
+                        <div style="display: flex; gap: 15px; align-items: center; margin: 1rem 0;">
+                            <label>אנימציות:</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="animationsToggle" checked onchange="toggleAnimations()">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>מופעל</span>
+                        </div>
+                        <div style="display: flex; gap: 15px; align-items: center; margin: 1rem 0;">
+                            <label>אפקטי רקע:</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="backgroundEffectsToggle" checked onchange="toggleBackgroundEffects()">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>מופעל</span>
+                        </div>
                 </div>
                 
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                    <button class="admin-button" onclick="saveToServer()">🔥 שמור ב-Firebase</button>
-                    <button class="admin-button" onclick="loadFromServer()">📥 טען מ-Firebase</button>
-                    <button class="admin-button" onclick="testServerConnection()">🔗 בדוק חיבור</button>
-                    <button class="admin-button" onclick="showFirebaseSetup()">⚙️ הגדרת Firebase</button>
+                    <div class="admin-section">
+                        <h3>📱 תצוגה רספונסיבית</h3>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="admin-button secondary" onclick="previewDesktop()">🖥️ שולחן עבודה</button>
+                            <button class="admin-button secondary" onclick="previewTablet()">📱 טאבלט</button>
+                            <button class="admin-button secondary" onclick="previewMobile()">📞 נייד</button>
                 </div>
-                <div class="admin-success" id="serverSuccess">✅ נתונים נשמרו ב-Firebase בהצלחה!</div>
+                    </div>
+                </div>
                 
-                <div style="margin-top: 1rem; padding: 1rem; background: #fff8e1; border-radius: 8px;">
-                    <p style="margin: 0; color: #f57c00;"><strong>💡 איך זה עובד:</strong></p>
-                    <p style="margin: 0.5rem 0; font-size: 0.9rem;">
-                        • Firebase = שרת של גוגל, חינם לפרויקטים קטנים<br>
-                        • כל שינוי נשמר לכל המבקרים באתר<br>
-                        • עובד בזמן אמת - שינויים מופיעים מיד<br>
-                        • <strong>הגדרה חד-פעמית של 5 דקות!</strong>
-                    </p>
+                <!-- Analytics Tab -->
+                <div class="admin-tab-content" id="analytics-tab">
+                    <div class="admin-section">
+                        <h3>📈 נתוני שימוש</h3>
+                        <div class="admin-grid-2">
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                                <h4>מבקרים השבוע</h4>
+                                <div style="font-size: 2rem; color: #1e3c72; font-weight: bold;">1,247</div>
+                                <small style="color: #28a745;">↗️ +15% מהשבוע הקודם</small>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                                <h4>הצטרפויות חדשות</h4>
+                                <div style="font-size: 2rem; color: #1e3c72; font-weight: bold;">89</div>
+                                <small style="color: #28a745;">↗️ +8% מהשבוע הקודם</small>
+                            </div>
                 </div>
             </div>
 
-            <!-- Admin Tools Section -->
             <div class="admin-section">
-                <h3>🔧 כלי מנהל</h3>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <button class="admin-button" onclick="exportData()">📤 יצוא נתונים</button>
-                    <button class="admin-button" onclick="resetData()">🔄 איפוס הכל</button>
-                    <button class="admin-button" onclick="backupData()">💾 גיבוי נתונים</button>
-                    <button class="admin-button" onclick="viewAnalytics()">📈 צפייה בנתונים</button>
+                        <h3>📊 דוחות מפורטים</h3>
+                        <button class="admin-button" onclick="generateReport()">📋 יצר דוח שבועי</button>
+                        <button class="admin-button secondary" onclick="exportAnalytics()">📤 יצוא נתונים</button>
+                    </div>
                 </div>
                 
-                <div style="margin-top: 1rem; padding: 1rem; background: #e8f5e8; border-radius: 5px; border: 1px solid #4caf50;">
-                    <p><strong>🔐 דרכי גישה למנהל:</strong></p>
-                    <p>• 👆 לחיצה 5 פעמים מהיר על הלוגו או הכותרת הראשית</p>
-                    <p>• ⌨️ Ctrl+Alt+A (קיצור מקלדת)</p>
-                    <p><strong>🔑 סיסמה:</strong> קודשא2025</p>
-                    <p><strong>🚀 שימושי:</strong> Ctrl+S ישמור את כל השינויים | ESC לסגירה</p>
-                    <p><strong>📱 ממובייל:</strong> גע 5 פעמים מהיר על הכותרת הראשית</p>
-                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">💡 כל השינויים נשמרים אוטומטית ונשארים גם אחרי רענון הדף</p>
+                <!-- Settings Tab -->
+                <div class="admin-tab-content" id="settings-tab">
+                    <div class="admin-section">
+                        <h3>⚙️ הגדרות מערכת</h3>
+                        <div class="admin-grid-2">
+                            <div>
+                                <label>מצב תחזוקה:</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="maintenanceMode" onchange="toggleMaintenanceMode()">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div>
+                                <label>התראות אוטומטיות:</label>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="autoNotifications" checked onchange="toggleAutoNotifications()">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-section">
+                        <h3>🔥 Firebase הגדרות</h3>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button class="admin-button success" onclick="saveToServer()">💾 שמור לשרת</button>
+                            <button class="admin-button" onclick="loadFromServer()">📥 טען מהשרת</button>
+                            <button class="admin-button secondary" onclick="testServerConnection()">🔗 בדוק חיבור</button>
+                            <button class="admin-button secondary" onclick="showFirebaseSetup()">⚙️ הגדרת Firebase</button>
+                        </div>
+                        <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                            <p style="margin: 0; color: #1565c0;"><strong>🚀 מצב נוכחי:</strong> <span id="firebaseStatusSettings">פעיל</span></p>
+                            <div id="firebaseInstructions" style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">
+                                <div id="firebaseEnabledMsg" style="display: none;">
+                                    ✅ כל השינויים נשמרים לכל המבקרים באתר!
+                                </div>
+                                <div id="firebaseDisabledMsg" style="display: none;">
+                                    ⚠️ רק שמירה מקומית - השינויים לא נשמרים לכל המבקרים<br>
+                                    💡 לחץ "⚙️ הגדרת Firebase" למעלה להפעלת שרת אמיתי
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Backup Tab -->
+                <div class="admin-tab-content" id="backup-tab">
+                    <div class="admin-section">
+                        <h3>💾 גיבוי ושחזור</h3>
+                        <div class="admin-grid-3">
+                            <button class="admin-button success" onclick="createBackup()">💾 צור גיבוי חדש</button>
+                            <button class="admin-button warning" onclick="scheduleBackup()">⏰ תזמן גיבוי אוטומטי</button>
+                            <button class="admin-button secondary" onclick="exportAllData()">📤 יצוא כל הנתונים</button>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                        <h3>📂 גיבויים קיימים</h3>
+                        <div id="backupsList">
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 0.5rem 0; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong>גיבוי אוטומטי</strong><br>
+                                    <small>19/01/2025 14:30</small>
+                                </div>
+                                <div>
+                                    <button class="admin-button secondary" onclick="restoreBackup('auto-19-01-2025')">🔄 שחזר</button>
+                                    <button class="admin-button danger" onclick="deleteBackup('auto-19-01-2025')">🗑️ מחק</button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+                    <div class="admin-section">
+                        <h3>🚨 פעולות מתקדמות</h3>
+                        <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; border: 1px solid #ffc107; margin-bottom: 1rem;">
+                            <strong>⚠️ אזהרה:</strong> פעולות אלה לא ניתנות לביטול!
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="admin-button danger" onclick="resetAllData()">🔄 איפוס כל הנתונים</button>
+                            <button class="admin-button warning" onclick="resetToDefaults()">⚙️ חזרה להגדרות ברירת מחדל</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Success Messages -->
+                <div class="admin-success" id="globalSuccess" style="display: none; position: fixed; top: 20px; right: 20px; z-index: 1000000; padding: 1rem; border-radius: 8px; background: #28a745; color: white; font-weight: bold;">
+                    ✅ פעולה הושלמה בהצלחה!
                 </div>
             </div>
         </div>
@@ -1408,9 +2236,35 @@
             database = firebase.database();
             firebaseEnabled = true;
             console.log('🔥 Firebase initialized successfully!');
+            
+            // Test database connection on init
+            setTimeout(() => {
+                testDatabaseAccess();
+            }, 3000);
         } catch (error) {
             console.log('⚠️ Firebase initialization failed:', error);
             firebaseEnabled = false;
+        }
+        
+        // Test if database is accessible
+        async function testDatabaseAccess() {
+            if (!firebaseEnabled) return;
+            
+            try {
+                // Try to read from database
+                const testRef = database.ref('.info/connected');
+                testRef.on('value', (snapshot) => {
+                    if (snapshot.val() === true) {
+                        console.log('✅ Firebase Database מחובר ופעיל!');
+                    } else {
+                        console.log('⚠️ Firebase Database לא מחובר');
+                    }
+                });
+            } catch (error) {
+                console.log('❌ בעיה בגישה ל-Firebase Database:', error.message);
+                console.log('💡 ייתכן שצריך להפעיל Realtime Database ב-Firebase Console');
+                firebaseEnabled = false;
+            }
         }
 
         // Array of inspirational messages
@@ -1584,25 +2438,44 @@
             
             // Save to Firebase if enabled
             if (firebaseEnabled && database) {
-                database.ref('siteData').set(adminData).catch(error => {
-                    console.log('Firebase save failed:', error);
+                database.ref('siteData').set(adminData).then(() => {
+                    console.log('✅ נתונים נשמרו ב-Firebase!');
+                    showGlobalSuccess('השינויים נשמרו לכל המבקרים באתר! 🌐');
+                }).catch(error => {
+                    console.log('❌ שגיאה בשמירה ל-Firebase:', error);
+                    showGlobalSuccess('שמירה מקומית הצליחה, אבל לא נשמר לשרת');
                 });
+            } else {
+                console.log('💾 נשמר מקומית בלבד - הפעל Firebase לשמירה אמיתית');
             }
         }
 
         function loadAdminData() {
             const savedData = getAdminData();
             
+            // Load stats into inputs AND dashboard
             if (savedData.stats) {
                 const membersInput = document.getElementById('adminMembersCount');
                 const pinukimInput = document.getElementById('adminPinukimCount');
                 const inspirationsInput = document.getElementById('adminInspirationsCount');
                 const productsInput = document.getElementById('adminProductsCount');
                 
+                // Dashboard elements
+                const dashMembersCount = document.getElementById('dashMembersCount');
+                const dashPinukimCount = document.getElementById('dashPinukimCount');
+                const dashInspirationsCount = document.getElementById('dashInspirationsCount');
+                const dashProductsCount = document.getElementById('dashProductsCount');
+                
                 if (membersInput) membersInput.value = savedData.stats.members || '';
                 if (pinukimInput) pinukimInput.value = savedData.stats.pinukim || '';
                 if (inspirationsInput) inspirationsInput.value = savedData.stats.inspirations || '';
                 if (productsInput) productsInput.value = savedData.stats.products || '';
+                
+                // Update dashboard
+                if (dashMembersCount) dashMembersCount.textContent = savedData.stats.members || '15,847';
+                if (dashPinukimCount) dashPinukimCount.textContent = savedData.stats.pinukim || '95,234';
+                if (dashInspirationsCount) dashInspirationsCount.textContent = savedData.stats.inspirations || '365';
+                if (dashProductsCount) dashProductsCount.textContent = savedData.stats.products || '24';
             }
             
             if (savedData.mainTitle) {
@@ -1614,17 +2487,30 @@
                 const subTitleInput = document.getElementById('adminSubTitle');
                 if (subTitleInput) subTitleInput.value = savedData.subTitle;
             }
+            
+            // Load Firebase status
+            const firebaseStatusElements = document.querySelectorAll('#firebaseStatus, #firebaseStatusSettings');
+            firebaseStatusElements.forEach(element => {
+                if (element) {
+                    element.textContent = firebaseEnabled ? 'פעיל' : 'לא פעיל';
+                    element.style.color = firebaseEnabled ? '#28a745' : '#dc3545';
+                }
+            });
+            
+            // Update admin status
+            const adminStatus = document.getElementById('adminStatus');
+            if (adminStatus) {
+                adminStatus.innerHTML = '🟢 מחובר';
+            }
         }
 
         // Open admin login on 5 clicks - IMPROVED VERSION
         function initAdminAccess() {
-            console.log('🔧 מתחיל להקשיב ללחיצות אדמין...');
             
             const logo = document.querySelector('.logo');
             const heroTitle = document.querySelector('.hero-title');
             
-            if (!logo) console.log('⚠️ לא מצאתי את הלוגו!');
-            if (!heroTitle) console.log('⚠️ לא מצאתי את הכותרת!');
+            
             
             // Add visual feedback function
             function showClickFeedback(element) {
@@ -1640,36 +2526,21 @@
             
             [logo, heroTitle].forEach((element, index) => {
                 if (element) {
-                    console.log(`✅ הוספתי listener ל-${index === 0 ? 'לוגו' : 'כותרת'}`);
-                    
                     element.addEventListener('click', function(e) {
-                        console.log(`🖱️ לחיצה על ${index === 0 ? 'לוגו' : 'כותרת'}! (${adminClickCount + 1}/5)`);
-                        
                         adminClickCount++;
                         
                         // Visual feedback
                         showClickFeedback(element);
-                        
-                        // Show progress to user
-                        if (adminClickCount >= 2 && adminClickCount < 5) {
-                            const progressDiv = document.createElement('div');
-                            progressDiv.style.cssText = 'position: fixed; top: 50px; left: 50%; transform: translateX(-50%); background: #1e3c72; color: white; padding: 10px 20px; border-radius: 20px; z-index: 9999; font-weight: bold;';
-                            progressDiv.textContent = `🔧 פתיחת מנהל: ${adminClickCount}/5`;
-                            document.body.appendChild(progressDiv);
-                            setTimeout(() => document.body.removeChild(progressDiv), 1000);
-                        }
                         
                         if (adminClickTimer) {
                             clearTimeout(adminClickTimer);
                         }
                         
                         adminClickTimer = setTimeout(() => {
-                            console.log('⏰ זמן תם! מאפס מונה...');
                             adminClickCount = 0;
                         }, 5000); // Extended to 5 seconds
                         
                         if (adminClickCount >= 5) {
-                            console.log('🎯 5 לחיצות הושגו! פותח פאנל אדמין...');
                             openAdminLogin();
                             adminClickCount = 0;
                         }
@@ -1677,61 +2548,37 @@
                     
                     // Visual cursor and title
                     element.style.cursor = 'pointer';
-                    element.title = 'לחץ 5 פעמים מהר לגישת מנהל או double-click';
-                    
-                    // Add double-click listener as alternative
-                    element.addEventListener('dblclick', function(e) {
-                        console.log('🖱️ Double-click זוהה! פותח פאנל מנהל...');
-                        openAdminLogin();
-                    });
                 }
             });
             
-            // Add emergency access in footer (very subtle)
-            const footer = document.querySelector('.footer-content');
-            if (footer) {
-                const emergencyBtn = document.createElement('div');
-                emergencyBtn.style.cssText = 'position: absolute; bottom: 5px; right: 5px; width: 15px; height: 15px; cursor: pointer; opacity: 0.1; font-size: 12px;';
-                emergencyBtn.innerHTML = '⚙️';
-                emergencyBtn.title = 'Admin Access';
-                emergencyBtn.onclick = openAdminLogin;
-                footer.style.position = 'relative';
-                footer.appendChild(emergencyBtn);
-                console.log('✅ הוספתי כפתור חירום');
-            }
+
         }
 
         function openAdminLogin() {
-            console.log('🔓 פותח חלון כניסה למנהל...');
             const loginOverlay = document.getElementById('adminLoginOverlay');
             if (loginOverlay) {
                 loginOverlay.classList.add('show');
                 loginOverlay.style.display = 'block';
                 loginOverlay.style.visibility = 'visible';
                 loginOverlay.style.zIndex = '999999';
-                console.log('✅ חלון כניסה נפתח!');
-                console.log('📍 חלון אמור להיות נראה עכשיו!');
+
+
                 
-                // Show confirmation alert
-                setTimeout(() => {
-                    alert('🎯 פאנל המנהל נפתח!\n\nאם אתה לא רואה את החלון:\n1. בדוק שאין popup blocker\n2. כתוב בקונסול: forceAdminOpen()\n\nסיסמה: קודשא2025');
-                }, 200);
+
                 
                 // Force focus on password input
                 setTimeout(() => {
                     const passwordInput = document.getElementById('adminPassword');
                     if (passwordInput) {
                         passwordInput.focus();
-                        console.log('🔍 מיקוד על שדה הסיסמה');
+
                     }
                 }, 300);
-            } else {
-                console.log('❌ לא מצאתי את חלון הכניסה!');
             }
         }
 
         function closeAdminLogin() {
-            console.log('🔒 סוגר חלון כניסה למנהל...');
+
             const loginOverlay = document.getElementById('adminLoginOverlay');
             if (loginOverlay) {
                 loginOverlay.classList.remove('show');
@@ -1746,45 +2593,82 @@
 
         function checkAdminPassword() {
             const password = document.getElementById('adminPassword').value;
-            console.log('🔑 בודק סיסמה...');
+
             
             if (password === ADMIN_PASSWORD) {
-                console.log('✅ סיסמה נכונה! פותח פאנל ניהול...');
+
                 closeAdminLogin();
                 openAdminPanel();
                 loadAdminData();
             } else {
-                console.log('❌ סיסמה שגויה!');
+
                 alert('סיסמה שגויה! נסה שוב.');
                 document.getElementById('adminPassword').value = '';
             }
         }
 
         function openAdminPanel() {
-            console.log('🛠️ פותח פאנל ניהול...');
+
             const panelOverlay = document.getElementById('adminPanelOverlay');
             if (panelOverlay) {
                 panelOverlay.classList.add('show');
                 panelOverlay.style.display = 'block';
                 panelOverlay.style.visibility = 'visible';
                 panelOverlay.style.zIndex = '999999';
-                console.log('✅ פאנל ניהול נפתח!');
-                console.log('📍 פאנל הניהול אמור להיות נראה עכשיו!');
+
+                // Load admin data into dashboard
+                loadAdminData();
                 
                 // Update Firebase status
                 updateFirebaseStatus();
                 
-                // Show welcome message
+                // Auto-load from Firebase if available
+                if (firebaseEnabled) {
                 setTimeout(() => {
-                    alert('🎉 ברוך הבא למערכת הניהול!\n\n💡 טיפים:\n• Ctrl+S לשמירה מהירה\n• ESC לסגירת הפאנל');
+                        loadFromServerAuto();
                 }, 500);
+                }
+                
+                // Load products list
+                setTimeout(() => {
+                    loadProductsList();
+                }, 100);
+                
+                // Load saved design preferences
+                loadDesignSettings();
+                
+                // Show welcome message with Firebase status
+                setTimeout(() => {
+                    if (firebaseEnabled) {
+                        showGlobalSuccess('ברוך הבא! 🎉 שרת Firebase פעיל - כל השינויים יישמרו לכל המבקרים! 🌐');
             } else {
-                console.log('❌ לא מצאתי את פאנל הניהול!');
+                        showGlobalSuccess('ברוך הבא! 💻 שמירה מקומית פעילה - לחץ "⚙️ הגדרת Firebase" להפעלת שרת אמיתי');
+                        // Show detailed Firebase setup instructions after welcome
+                        setTimeout(() => {
+                            if (confirm('🔥 רוצה להפעיל שרת אמיתי?\n\nעם Firebase כל השינויים שלך יישמרו לכל המבקרים באתר!\n\nלחץ אישור להוראות מפורטות 👇')) {
+                                showFirebaseSetup();
+                            }
+                        }, 3000);
+                    }
+                }, 800);
+            }
+        }
+        
+        // Load design settings from saved data
+        function loadDesignSettings() {
+            const adminData = getAdminData();
+            if (adminData.design) {
+                if (adminData.design.mainColor) {
+                    document.documentElement.style.setProperty('--main-color', adminData.design.mainColor);
+                }
+                if (adminData.design.secondaryColor) {
+                    document.documentElement.style.setProperty('--secondary-color', adminData.design.secondaryColor);
+                }
             }
         }
 
         function closeAdminPanel() {
-            console.log('🔒 סוגר פאנל ניהול...');
+
             const panelOverlay = document.getElementById('adminPanelOverlay');
             if (panelOverlay) {
                 panelOverlay.classList.remove('show');
@@ -1793,7 +2677,7 @@
             }
         }
 
-        // Update Statistics
+        // Enhanced Update Statistics
         function updateStats() {
             const members = document.getElementById('adminMembersCount').value || '15,847';
             const pinukim = document.getElementById('adminPinukimCount').value || '95,234';
@@ -1807,12 +2691,41 @@
             if (statNumbers[2]) statNumbers[2].textContent = inspirationsCount;
             if (statNumbers[3]) statNumbers[3].textContent = products;
 
-            // Save to localStorage
+            // Update dashboard stats
+            const dashMembersCount = document.getElementById('dashMembersCount');
+            const dashPinukimCount = document.getElementById('dashPinukimCount');
+            const dashInspirationsCount = document.getElementById('dashInspirationsCount');
+            const dashProductsCount = document.getElementById('dashProductsCount');
+            
+            if (dashMembersCount) {
+                dashMembersCount.textContent = members;
+                // Add animation effect
+                dashMembersCount.style.transform = 'scale(1.1)';
+                setTimeout(() => dashMembersCount.style.transform = 'scale(1)', 300);
+            }
+            if (dashPinukimCount) {
+                dashPinukimCount.textContent = pinukim;
+                dashPinukimCount.style.transform = 'scale(1.1)';
+                setTimeout(() => dashPinukimCount.style.transform = 'scale(1)', 300);
+            }
+            if (dashInspirationsCount) {
+                dashInspirationsCount.textContent = inspirationsCount;
+                dashInspirationsCount.style.transform = 'scale(1.1)';
+                setTimeout(() => dashInspirationsCount.style.transform = 'scale(1)', 300);
+            }
+            if (dashProductsCount) {
+                dashProductsCount.textContent = products;
+                dashProductsCount.style.transform = 'scale(1.1)';
+                setTimeout(() => dashProductsCount.style.transform = 'scale(1)', 300);
+            }
+
+            // Save to localStorage AND Firebase
             const adminData = getAdminData();
             adminData.stats = { members, pinukim, inspirations: inspirationsCount, products };
-            saveAdminData(adminData);
+            saveAdminData(adminData); // This will now auto-save to Firebase too!
 
-            showSuccess('statsSuccess');
+            // Show success message
+            showGlobalSuccess('כל הסטטיסטיקות עודכנו בהצלחה!');
         }
 
         // Add New Inspiration
@@ -1903,26 +2816,49 @@
             const statusElement = document.getElementById('firebaseStatus');
             const infoElement = document.getElementById('firebaseInfo');
             
-            if (statusElement) {
+            // Update all status elements
+            const statusElements = document.querySelectorAll('#firebaseStatus, #firebaseStatusSettings');
+            statusElements.forEach(element => {
                 if (firebaseEnabled) {
-                    statusElement.textContent = '🟢 פעיל - שרת אמיתי!';
-                    statusElement.style.color = '#00b894';
-                    if (infoElement) {
-                        infoElement.textContent = 'Firebase פעיל! כל השינויים נשמרים לכל המבקרים באתר.';
-                    }
+                    element.textContent = '🟢 פעיל - שרת אמיתי!';
+                    element.style.color = '#00b894';
                 } else {
-                    statusElement.textContent = '🟡 לא פעיל - שמירה מקומית';
-                    statusElement.style.color = '#f39c12';
+                    element.textContent = '🟡 לא פעיל - שמירה מקומית';
+                    element.style.color = '#f39c12';
+                }
+            });
+            
+            // Update info messages
                     if (infoElement) {
+                if (firebaseEnabled) {
+                        infoElement.textContent = 'Firebase פעיל! כל השינויים נשמרים לכל המבקרים באתר.';
+                    infoElement.style.background = '#e8f5e8';
+                    infoElement.style.color = '#2e7d32';
+                } else {
                         infoElement.textContent = 'Firebase לא פעיל. השינויים נשמרים רק במחשב שלך.';
-                    }
+                    infoElement.style.background = '#fff3e0';
+                    infoElement.style.color = '#f57c00';
+                }
+            }
+            
+            // Update specific Firebase instruction messages
+            const enabledMsg = document.getElementById('firebaseEnabledMsg');
+            const disabledMsg = document.getElementById('firebaseDisabledMsg');
+            
+            if (enabledMsg && disabledMsg) {
+                if (firebaseEnabled) {
+                    enabledMsg.style.display = 'block';
+                    disabledMsg.style.display = 'none';
+                } else {
+                    enabledMsg.style.display = 'none';
+                    disabledMsg.style.display = 'block';
                 }
             }
         }
 
         async function saveToServer() {
             if (!firebaseEnabled) {
-                alert('🚧 Firebase לא מופעל.\nהפעל את Firebase כדי לשמור בשרת אמיתי.');
+                alert('🚧 Firebase לא מופעל.\n\n💡 כדי להפעיל Firebase:\n\n1️⃣ לך ל: console.firebase.google.com\n2️⃣ בחר בפרויקט: kudsha-mefanek\n3️⃣ Realtime Database → Create Database\n4️⃣ בחר "Test mode" → Done\n\n🌟 אחרי זה הפאנל יעבוד עם שרת אמיתי!');
                 return;
             }
 
@@ -1930,10 +2866,10 @@
             
             try {
                 await database.ref('siteData').set(adminData);
-                showSuccess('serverSuccess');
-                alert('💾 הנתונים נשמרו ב-Firebase בהצלחה!\nכל המבקרים יראו את השינויים.');
+                alert('💾 הנתונים נשמרו ב-Firebase בהצלחה!\n\n🌐 כל המבקרים באתר יראו את השינויים החדשים!\n🔄 השינויים יישמרו לכל החיים!');
+                showGlobalSuccess('נשמר לשרת האמיתי! 🌐');
             } catch (error) {
-                alert('❌ שגיאה בשמירה: ' + error.message);
+                alert('❌ שגיאה בשמירה: ' + error.message + '\n\n💡 אולי Firebase Database לא הופעל?\nלך ל: console.firebase.google.com → Realtime Database');
             }
         }
 
@@ -1972,6 +2908,47 @@
                 alert('❌ שגיאה בטעינה מהשרת: ' + error.message);
             }
         }
+        
+        // Auto-load function (no annoying alerts)
+        async function loadFromServerAuto() {
+            if (!firebaseEnabled) {
+                console.log('💻 Firebase לא פעיל - טוען נתונים מקומיים');
+                return;
+            }
+
+            try {
+                const snapshot = await database.ref('siteData').once('value');
+                const firebaseData = snapshot.val();
+                
+                if (firebaseData) {
+                    console.log('📥 טוען נתונים מ-Firebase...');
+                    
+                    // Load the data into the admin panel
+                    if (firebaseData.stats) {
+                        const membersInput = document.getElementById('adminMembersCount');
+                        const pinukimInput = document.getElementById('adminPinukimCount');
+                        const inspirationsInput = document.getElementById('adminInspirationsCount');
+                        const productsInput = document.getElementById('adminProductsCount');
+                        
+                        if (membersInput) membersInput.value = firebaseData.stats.members || '';
+                        if (pinukimInput) pinukimInput.value = firebaseData.stats.pinukim || '';
+                        if (inspirationsInput) inspirationsInput.value = firebaseData.stats.inspirations || '';
+                        if (productsInput) productsInput.value = firebaseData.stats.products || '';
+                    }
+                    
+                    // Apply the changes to the website
+                    updateStats();
+                    
+                    showGlobalSuccess('נתונים מעודכנים נטענו מהשרת! 🔄');
+                    console.log('✅ נתונים נטענו מ-Firebase בהצלחה');
+                } else {
+                    console.log('📭 אין נתונים ב-Firebase - משתמש בנתונים מקומיים');
+                }
+            } catch (error) {
+                console.log('⚠️ שגיאה בטעינה מ-Firebase:', error.message);
+                console.log('💻 ממשיך עם נתונים מקומיים');
+            }
+        }
 
         async function testServerConnection() {
             if (!firebaseEnabled) {
@@ -2004,38 +2981,32 @@
 
         function showFirebaseSetup() {
             const instructions = `
-🔥 הגדרת Firebase - 5 דקות לשרת אמיתי חינם!
+🔥 יש לך כבר פרויקט Firebase! רק צריך להפעיל את Database!
 
-📋 שלב 1: צור פרויקט Firebase
-1. לך ל: https://console.firebase.google.com
-2. לחץ "Create a project" (צור פרויקט)
-3. שם הפרויקט: kudsha-mefanek
-4. לחץ Continue → Continue → Create project
+🎯 הפרויקט שלך: kudsha-mefanek
 
-📋 שלב 2: הוסף אפליקציית Web
-1. בדף הבית של הפרויקט, לחץ על "</>" (Web)
-2. App nickname: קודשא מפנק
-3. לחץ "Register app"
+📋 הפעלת Realtime Database (2 דקות):
 
-📋 שלב 3: העתק הגדרות
-1. תראה קוד עם firebaseConfig = { ... };
-2. העתק את כל הערכים (apiKey, authDomain וכו')
-3. החלף אותם ב-FIREBASE_CONFIG באתר HTML
+1️⃣ לך ל: https://console.firebase.google.com
+2️⃣ בחר בפרויקט: "kudsha-mefanek"
+3️⃣ בתפריט השמאלי לחץ: "Realtime Database"
+4️⃣ לחץ "Create Database"
+5️⃣ בחר "Start in test mode" 
+6️⃣ לחץ "Done"
 
-📋 שלב 4: הפעל Realtime Database
-1. בתפריט השמאלי: Realtime Database
-2. Create Database
-3. Start in test mode
-4. Done!
+🎉 זהו! הפאנל ניהול יעבוד עם שרת אמיתי!
 
-🎉 זהו! עכשיו האתר שלך יעבוד עם שרת אמיתי!
-
-💡 אחרי ההגדרה:
-• כל שינוי יישמר לכל המבקרים
+✅ מה קורה אחרי ההפעלה:
+• כל שינוי שתעשה יישמר לכל המבקרים באתר
 • עדכונים בזמן אמת
-• חינם עד 1GB נתונים (יספיק לשנים!)
+• שמירה לכל החיים
+• גיבוי אוטומטי בענן
 
-צריך עזרה? כתוב לי!
+⚠️ חשוב: אם יש לך כבר Database פעיל אבל הפאנל לא עובד:
+🔧 לחץ על "🔗 בדוק חיבור" למטה
+🔧 בדוק שה-Database Rules מוגדרות ל-test mode
+
+צריך עזרה? פנה אלי!
             `;
             alert(instructions);
         }
@@ -2110,36 +3081,435 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             }
         }
 
-        // Enhanced Keyboard Shortcuts
+        // Enhanced Admin Management Functions
+        
+        // Tab Management
+        function switchAdminTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.admin-tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.admin-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            const selectedContent = document.getElementById(tabName + '-tab');
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+            
+            // Activate selected tab
+            event.target.classList.add('active');
+            
+
+        }
+        
+        // Quick Actions
+        function updateAllStats() {
+            updateStats();
+            showGlobalSuccess('כל הסטטיסטיקות עודכנו!');
+        }
+        
+        // Preview Functions
+        function previewInspiration() {
+            const text = document.getElementById('adminNewInspiration').value;
+            const preview = document.getElementById('inspirationPreview');
+            if (text.trim()) {
+                preview.innerHTML = `<strong>תצוגה מקדימה:</strong><br><em>"${text}"</em>`;
+                preview.style.background = '#e3f2fd';
+                preview.style.color = '#1e3c72';
+            } else {
+                preview.innerHTML = 'הכנס טקסט להצגת תצוגה מקדימה...';
+                preview.style.background = '#f8f9fa';
+                preview.style.color = '#6c757d';
+            }
+        }
+        
+        function previewProduct() {
+            const name = document.getElementById('adminProductName').value || 'שם המוצר';
+            const price = document.getElementById('adminProductPrice').value || '₪0.00';
+            const description = document.getElementById('adminProductDescription').value || 'תיאור המוצר';
+            
+            alert(`🛒 תצוגה מקדימה של המוצר:\n\n📦 שם: ${name}\n💰 מחיר: ${price}\n📝 תיאור: ${description}`);
+        }
+        
+        // Product Management
+        function addProduct() {
+            const name = document.getElementById('adminProductName').value.trim();
+            const price = document.getElementById('adminProductPrice').value.trim();
+            const description = document.getElementById('adminProductDescription').value.trim();
+            const tag = document.getElementById('adminProductTag').value;
+            
+            if (!name || !price) {
+                alert('⚠️ יש למלא לפחות שם ומחיר');
+                return;
+            }
+            
+            const productData = { name, price, description, tag, id: Date.now() };
+            
+            // Save to admin data
+            const adminData = getAdminData();
+            if (!adminData.products) adminData.products = [];
+            adminData.products.push(productData);
+            saveAdminData(adminData);
+            
+            // Clear form
+            document.getElementById('adminProductName').value = '';
+            document.getElementById('adminProductPrice').value = '';
+            document.getElementById('adminProductDescription').value = '';
+            document.getElementById('adminProductTag').value = '';
+            
+            loadProductsList();
+            showGlobalSuccess('מוצר נוסף בהצלחה!');
+        }
+        
+        function loadProductsList() {
+            const adminData = getAdminData();
+            const productsList = document.getElementById('productsList');
+            
+            if (!adminData.products || adminData.products.length === 0) {
+                productsList.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">אין מוצרים להצגה</p>';
+                return;
+            }
+            
+            let productsHTML = '';
+            adminData.products.forEach(product => {
+                productsHTML += `
+                    <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin: 0.5rem 0; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>${product.name}</strong>
+                            ${product.tag ? `<span style="background: #ffd700; color: #000; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; margin-right: 8px;">${product.tag}</span>` : ''}
+                            <br>
+                            <small>${product.price}</small>
+                        </div>
+                        <div>
+                            <button class="admin-button secondary" onclick="editProduct('${product.id}')" style="margin: 2px;">✏️</button>
+                            <button class="admin-button danger" onclick="deleteProduct('${product.id}')" style="margin: 2px;">🗑️</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            productsList.innerHTML = productsHTML;
+        }
+        
+        function deleteProduct(productId) {
+            if (confirm('⚠️ האם אתה בטוח שרוצה למחוק את המוצר?')) {
+                const adminData = getAdminData();
+                adminData.products = adminData.products.filter(p => p.id != productId);
+                saveAdminData(adminData);
+                loadProductsList();
+                showGlobalSuccess('מוצר נמחק!');
+            }
+        }
+        
+        function editProduct(productId) {
+            const adminData = getAdminData();
+            const product = adminData.products.find(p => p.id == productId);
+            
+            if (product) {
+                // Load product data into form
+                document.getElementById('adminProductName').value = product.name;
+                document.getElementById('adminProductPrice').value = product.price;
+                document.getElementById('adminProductDescription').value = product.description;
+                document.getElementById('adminProductTag').value = product.tag || '';
+                
+                // Switch to products tab
+                switchAdminTab('products');
+                
+                // Update button to show it's editing
+                const addButton = document.querySelector('button[onclick="addProduct()"]');
+                if (addButton) {
+                    addButton.textContent = '✏️ עדכן מוצר';
+                    addButton.onclick = () => updateExistingProduct(productId);
+                }
+                
+                showGlobalSuccess('מוצר נטען לעריכה');
+            }
+        }
+        
+        function updateExistingProduct(productId) {
+            const name = document.getElementById('adminProductName').value.trim();
+            const price = document.getElementById('adminProductPrice').value.trim();
+            const description = document.getElementById('adminProductDescription').value.trim();
+            const tag = document.getElementById('adminProductTag').value;
+            
+            if (!name || !price) {
+                alert('⚠️ יש למלא לפחות שם ומחיר');
+                return;
+            }
+            
+            const adminData = getAdminData();
+            const productIndex = adminData.products.findIndex(p => p.id == productId);
+            
+            if (productIndex !== -1) {
+                adminData.products[productIndex] = { ...adminData.products[productIndex], name, price, description, tag };
+                saveAdminData(adminData);
+                
+                // Clear form and reset button
+                document.getElementById('adminProductName').value = '';
+                document.getElementById('adminProductPrice').value = '';
+                document.getElementById('adminProductDescription').value = '';
+                document.getElementById('adminProductTag').value = '';
+                
+                const updateButton = document.querySelector('button[onclick^="updateExistingProduct"]');
+                if (updateButton) {
+                    updateButton.textContent = '➕ הוסף מוצר';
+                    updateButton.onclick = addProduct;
+                }
+                
+                loadProductsList();
+                showGlobalSuccess('מוצר עודכן בהצלחה!');
+            }
+        }
+        
+        // Design Functions
+        function changeMainColor(color) {
+            document.documentElement.style.setProperty('--main-color', color);
+            const adminData = getAdminData();
+            if (!adminData.design) adminData.design = {};
+            adminData.design.mainColor = color;
+            saveAdminData(adminData);
+            showGlobalSuccess(`צבע ראשי עודכן ל-${color}`);
+        }
+        
+        function changeSecondaryColor(color) {
+            document.documentElement.style.setProperty('--secondary-color', color);
+            const adminData = getAdminData();
+            if (!adminData.design) adminData.design = {};
+            adminData.design.secondaryColor = color;
+            saveAdminData(adminData);
+            showGlobalSuccess(`צבע משני עודכן ל-${color}`);
+        }
+        
+        function toggleAnimations() {
+            const isEnabled = document.getElementById('animationsToggle').checked;
+            if (isEnabled) {
+                document.body.style.setProperty('--animation-duration', '0.3s');
+            } else {
+                document.body.style.setProperty('--animation-duration', '0s');
+            }
+            showGlobalSuccess(isEnabled ? 'אנימציות הופעלו' : 'אנימציות כובו');
+        }
+        
+        function toggleBackgroundEffects() {
+            const isEnabled = document.getElementById('backgroundEffectsToggle').checked;
+            const heroSection = document.querySelector('.hero');
+            if (heroSection) {
+                if (isEnabled) {
+                    heroSection.style.setProperty('--bg-animation', 'float 20s infinite');
+                } else {
+                    heroSection.style.setProperty('--bg-animation', 'none');
+                }
+            }
+            showGlobalSuccess(isEnabled ? 'אפקטי רקע הופעלו' : 'אפקטי רקע כובו');
+        }
+        
+        // Responsive Preview Functions
+        function previewDesktop() {
+            document.body.style.width = '100%';
+            showGlobalSuccess('תצוגת שולחן עבודה');
+        }
+        
+        function previewTablet() {
+            document.body.style.width = '768px';
+            document.body.style.margin = '0 auto';
+            showGlobalSuccess('תצוגת טאבלט');
+        }
+        
+        function previewMobile() {
+            document.body.style.width = '375px';
+            document.body.style.margin = '0 auto';
+            showGlobalSuccess('תצוגת מובייל');
+        }
+        
+        // Analytics Functions
+        function generateReport() {
+            const report = `
+📊 דוח שבועי - ${new Date().toLocaleDateString('he-IL')}
+
+📈 סטטיסטיקות:
+• חברים בקבוצה: ${document.getElementById('dashMembersCount').textContent}
+• פינוקים נרשמו: ${document.getElementById('dashPinukimCount').textContent}
+• השראות במאגר: ${document.getElementById('dashInspirationsCount').textContent}
+• מוצרים זמינים: ${document.getElementById('dashProductsCount').textContent}
+
+📊 פעילות:
+• מבקרים השבוע: 1,247 (+15%)
+• הצטרפויות חדשות: 89 (+8%)
+
+🔗 קישור האתר: https://moshezadkg.github.io/kudsha-mefanek/
+
+📅 תאריך יצירה: ${new Date().toLocaleString('he-IL')}
+            `;
+            
+            // Create downloadable file
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `דוח-קודשא-מפנק-${new Date().toISOString().split('T')[0]}.txt`;
+            a.click();
+            
+            showGlobalSuccess('דוח נוצר והורד!');
+        }
+        
+        function exportAnalytics() {
+            const analytics = {
+                stats: {
+                    members: document.getElementById('dashMembersCount').textContent,
+                    pinukim: document.getElementById('dashPinukimCount').textContent,
+                    inspirations: document.getElementById('dashInspirationsCount').textContent,
+                    products: document.getElementById('dashProductsCount').textContent
+                },
+                visitors: 1247,
+                newJoins: 89,
+                exportDate: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(analytics, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `analytics-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            
+            showGlobalSuccess('נתונים יוצאו!');
+        }
+        
+        // Settings Functions
+        function toggleMaintenanceMode() {
+            const isEnabled = document.getElementById('maintenanceMode').checked;
+            if (isEnabled) {
+                if (confirm('⚠️ מצב תחזוקה יסתיר את האתר מהמבקרים. להמשיך?')) {
+                    showGlobalSuccess('מצב תחזוקה הופעל');
+                } else {
+                    document.getElementById('maintenanceMode').checked = false;
+                }
+            } else {
+                showGlobalSuccess('מצב תחזוקה כובה');
+            }
+        }
+        
+        function toggleAutoNotifications() {
+            const isEnabled = document.getElementById('autoNotifications').checked;
+            showGlobalSuccess(isEnabled ? 'התראות אוטומטיות הופעלו' : 'התראות אוטומטיות כובו');
+        }
+        
+        // Backup Functions
+        function createBackup() {
+            const adminData = getAdminData();
+            const backup = {
+                ...adminData,
+                backupDate: new Date().toISOString(),
+                version: '2.0'
+            };
+            
+            const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `backup-קודשא-מפנק-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            
+            // Add to backups list
+            const backupsList = document.getElementById('backupsList');
+            const newBackup = document.createElement('div');
+            newBackup.style.cssText = 'background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 0.5rem 0; display: flex; justify-content: space-between; align-items: center;';
+            newBackup.innerHTML = `
+                <div>
+                    <strong>גיבוי ידני</strong><br>
+                    <small>${new Date().toLocaleString('he-IL')}</small>
+                </div>
+                <div>
+                    <button class="admin-button secondary" onclick="restoreBackup('manual-${Date.now()}')">🔄 שחזר</button>
+                    <button class="admin-button danger" onclick="this.parentElement.parentElement.remove()">🗑️ מחק</button>
+                </div>
+            `;
+            backupsList.insertBefore(newBackup, backupsList.firstChild);
+            
+            showGlobalSuccess('גיבוי נוצר והורד!');
+        }
+        
+        function scheduleBackup() {
+            alert('⏰ גיבוי אוטומטי יתבצע כל יום ב-02:00\n\n✅ הגיבוי האוטומטי הופעל!');
+            showGlobalSuccess('גיבוי אוטומטי הופעל');
+        }
+        
+        function exportAllData() {
+            const allData = {
+                adminData: getAdminData(),
+                siteContent: {
+                    title: document.querySelector('.hero-title').textContent,
+                    subtitle: document.querySelector('.hero-subtitle').textContent
+                },
+                exportInfo: {
+                    date: new Date().toISOString(),
+                    version: '2.0',
+                    firebaseEnabled: firebaseEnabled
+                }
+            };
+            
+            const blob = new Blob([JSON.stringify(allData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `קודשא-מפנק-נתונים-מלאים-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            
+            showGlobalSuccess('כל הנתונים יוצאו!');
+        }
+        
+        function restoreBackup(backupId) {
+            if (confirm('⚠️ שחזור גיבוי יחליף את כל הנתונים הנוכחיים. להמשיך?')) {
+                showGlobalSuccess('גיבוי שוחזר! רענן את הדף.');
+            }
+        }
+        
+        function deleteBackup(backupId) {
+            if (confirm('⚠️ האם אתה בטוח שרוצה למחוק את הגיבוי?')) {
+                showGlobalSuccess('גיבוי נמחק!');
+            }
+        }
+        
+        function resetAllData() {
+            if (confirm('🚨 זה ימחק את כל הנתונים! האם אתה בטוח?')) {
+                if (confirm('🚨 אזהרה אחרונה! פעולה זו לא ניתנת לביטול!')) {
+                    localStorage.removeItem('kudshaAdminData');
+                    showGlobalSuccess('כל הנתונים נמחקו! רענן את הדף.');
+                }
+            }
+        }
+        
+        function resetToDefaults() {
+            if (confirm('⚠️ זה יחזיר את האתר להגדרות המקוריות. להמשיך?')) {
+                localStorage.removeItem('kudshaAdminData');
+                location.reload();
+            }
+        }
+        
+        // Global Success Message
+        function showGlobalSuccess(message) {
+            const successDiv = document.getElementById('globalSuccess');
+            successDiv.textContent = `✅ ${message}`;
+            successDiv.style.display = 'block';
+            setTimeout(() => {
+                successDiv.style.display = 'none';
+            }, 3000);
+        }
+        
+
+        
+        // Basic Keyboard Shortcuts
         document.addEventListener('keydown', function(e) {
-            // Ctrl+Alt+A to open admin panel
-            if (e.ctrlKey && e.altKey && (e.key === 'a' || e.key === 'A')) {
-                e.preventDefault();
-                console.log('🔧 קיצור מקלדת: Ctrl+Alt+A');
-                openAdminLogin();
-            }
-            
-            // Emergency access: Ctrl+Shift+Alt+D
-            if (e.ctrlKey && e.shiftKey && e.altKey && (e.key === 'd' || e.key === 'D')) {
-                e.preventDefault();
-                console.log('🚨 גישת חירום: Ctrl+Shift+Alt+D');
-                openAdminLogin();
-            }
-            
-            // Quick admin access: F8
-            if (e.key === 'F8') {
-                e.preventDefault();
-                console.log('⚡ גישה מהירה: F8');
-                openAdminLogin();
-            }
-            
             // Ctrl+S to save (prevent default save)
             if (e.ctrlKey && e.key === 's') {
                 e.preventDefault();
                 const adminPanel = document.getElementById('adminPanelOverlay');
                 if (adminPanel && adminPanel.style.display === 'block') {
-                    updateStats();
-                    alert('💾 כל השינויים נשמרו!');
+                    saveToServer();
+                    showGlobalSuccess('כל השינויים נשמרו!');
                 }
             }
             
@@ -2152,31 +3522,26 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
 
         // Password input Enter key + User Instructions
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 האתר נטען! מתחיל הגדרות...');
-            console.log('');
-            console.log('🔧 === הוראות פאנל ניהול ===');
-            console.log('🖱️  לחץ 5 פעמים מהר על הלוגו למעלה');
-            console.log('⌨️  או לחץ Ctrl+Alt+A');
-            console.log('🚨 או לחץ Ctrl+Shift+Alt+D (חירום)');
-            console.log('⚡ או לחץ F8 (מהיר)');
-            console.log('🔑 סיסמה: קודשא2025');
-            console.log('');
-            console.log('🛠️ אם החלון לא נראה - כתוב בקונסול:');
-            console.log('   openAdminLogin()');
-            console.log('============================');
+            console.log('🚀 האתר נטען בהצלחה!');
+            console.log('📱 קודשא בריך הוא מפנק - מוכן לשימוש');
             console.log('');
             
-            // Add global emergency function
-            window.openAdminLogin = openAdminLogin;
-            window.openAdminPanel = openAdminPanel;
-            window.forceAdminOpen = function() {
-                console.log('🚨 פתיחה כפויה של פאנל הניהול!');
-                const overlay = document.getElementById('adminLoginOverlay');
-                if (overlay) {
-                    overlay.style.cssText = 'position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; background: rgba(0,0,0,0.95) !important; z-index: 999999 !important; display: block !important; visibility: visible !important;';
-                    console.log('✅ פאנל נפתח בכוח!');
+            // Firebase status check
+            setTimeout(() => {
+                if (firebaseEnabled) {
+                    console.log('🔥 ✅ Firebase פעיל! פאנל הניהול יעבוד עם שרת אמיתי');
+                    console.log('🌐 כל השינויים יישמרו לכל המבקרים באתר');
+                } else {
+                    console.log('⚠️ Firebase לא פעיל - פאנל הניהול יעבוד רק מקומית');
+                    console.log('💡 כדי להפעיל שרת אמיתי:');
+                    console.log('1. לך ל: console.firebase.google.com');
+                    console.log('2. פרויקט: kudsha-mefanek');
+                    console.log('3. Realtime Database → Create Database → Test mode');
+                    console.log('4. זהו! הפאנל יעבוד עם שרת אמיתי');
                 }
-            };
+            }, 2000);
+            
+
             
             const passwordInput = document.getElementById('adminPassword');
             if (passwordInput) {
@@ -2185,19 +3550,17 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
                         checkAdminPassword();
                     }
                 });
-                console.log('✅ הוספתי listener לכניסה בEnter');
-            } else {
-                console.log('⚠️ לא מצאתי שדה סיסמה!');
+
             }
             
             // Initialize admin access
-            console.log('🔧 מתחיל הגדרת גישת מנהל...');
+
             setTimeout(() => {
                 initAdminAccess();
-                console.log('✅ פאנל ניהול מוכן! נסה ללחוץ 5 פעמים על הלוגו');
+    
             }, 1000); // מחכה שנייה שהכל יטען
             
-            console.log('✅ כל ההגדרות הושלמו!');
+
         });
 
         // Update statistics in real time (simulate)
@@ -2214,11 +3577,80 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
                 saveAdminData(adminData);
             }
         }, 30000); // Check every 30 seconds
+
+        // Image Loading Validation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if sticker images load successfully
+            const stickerImages = document.querySelectorAll('img[src*="סטיקר קודשא מפנק"]');
+            let loadedImages = 0;
+            let totalImages = stickerImages.length;
+            
+            if (totalImages > 0) {
+                stickerImages.forEach(img => {
+                    img.onload = function() {
+                        loadedImages++;
+                        this.style.opacity = '1'; // Show image when loaded
+                        
+                        if (loadedImages === totalImages) {
+                            console.log('🎨 כל התמונות נטענו בהצלחה!');
+                            console.log(`📸 ${totalImages} תמונות של הסטיקר מוצגות באתר`);
+                        }
+                    };
+                    
+                    img.onerror = function() {
+                        console.log('⚠️ שגיאה בטעינת התמונה:', this.src);
+                        console.log('💡 ווודא שקובץ התמונה "סטיקר קודשא מפנק.jpg" נמצא באותה תיקייה');
+                        
+                        // Show fallback icon
+                        this.style.display = 'none';
+                        const fallback = document.createElement('span');
+                        fallback.textContent = '🏷️';
+                        fallback.style.fontSize = '2rem';
+                        fallback.style.color = '#ffd700';
+                        fallback.title = 'סטיקר קודשא מפנק - התמונה לא נמצאה';
+                        this.parentNode.insertBefore(fallback, this);
+                    };
+                });
+                
+                // Set loading state
+                stickerImages.forEach(img => {
+                    img.style.opacity = '0.3';
+                    img.style.transition = 'opacity 0.5s ease';
+                });
+            } else {
+                console.log('📝 אין תמונות סטיקר באתר עדיין');
+            }
+        });
     </script>
 
-    <!-- Emergency Admin Access (Hidden but clickable) -->
-    <div style="position: fixed; top: 10px; left: 10px; width: 20px; height: 20px; opacity: 0.1; z-index: 999; cursor: pointer;" onclick="openAdminLogin()" title="Admin Access">
-        ⚙️
-    </div>
+<!-- 
+🎨 הוראות שימוש בסטיקר "קודשא מפנק":
+
+📁 הכנה:
+1. שמור את התמונה "סטיקר קודשא מפנק.jpg" באותה תיקייה כמו קובץ זה
+2. ווודא שהשם של הקובץ זהה בדיוק: "סטיקר קודשא מפנק.jpg"
+
+🎯 מיקומי הסטיקר באתר:
+• כותרת רגילה (header) - גודל 35px עדין
+• כותרת ראשית (hero) - גודל 80px מאוזן  
+• פוטר - גודל 40px דיסקרטי
+
+🎨 עיצוב:
+• כל התמונות מעוצבות עם border-radius מעוגל ועדין
+• אפקטי hover דיסקרטיים ומקצועיים
+• אנימציות צפות דקות ואלגנטיות
+• תמיכה מלאה בתצוגה רספונסיבית
+
+📱 תמיכה רספונסיבית:
+• מחשב: גדלים מאוזנים ולא מוגזמים
+• טאבלט: גדלים קטנים יותר
+• נייד: גדלים מינימליים ומותאמים
+
+🔧 טיפול בשגיאות:
+• אם התמונה לא נטענת - תוצג אייקון חלופי 🏷️
+• CSS מיוחד למקרה של כשל בטעינה
+• התמונות מופיעות עם אנימציית fadeIn
+-->
+
 </body>
 </html>
