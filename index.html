@@ -1181,6 +1181,10 @@
                 <p style="font-size: 0.9rem;">
                     כל שבוע אנחנו מוסיפים מוצרים חדשים, משפרים את המיילים ומפתחים עוד דרכים לעזור לך להתחבר לקודשא ברוך הוא
                 </p>
+                <!-- Hidden Admin Help -->
+                <div style="position: absolute; right: 5px; bottom: 5px; opacity: 0.02; font-size: 8px; color: white;">
+                    Admin: 5 clicks on logo OR Ctrl+Alt+A OR F8 | Pass: קודשא2025
+                </div>
             </div>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; text-align: right;">
@@ -1603,7 +1607,7 @@
             }
         }
 
-        // Open admin login on 5 clicks
+        // Open admin login on 5 clicks - IMPROVED VERSION
         function initAdminAccess() {
             console.log('🔧 מתחיל להקשיב ללחיצות אדמין...');
             
@@ -1612,6 +1616,18 @@
             
             if (!logo) console.log('⚠️ לא מצאתי את הלוגו!');
             if (!heroTitle) console.log('⚠️ לא מצאתי את הכותרת!');
+            
+            // Add visual feedback function
+            function showClickFeedback(element) {
+                if (element) {
+                    element.style.backgroundColor = '#ffd700';
+                    element.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        element.style.backgroundColor = '';
+                        element.style.transform = '';
+                    }, 200);
+                }
+            }
             
             [logo, heroTitle].forEach((element, index) => {
                 if (element) {
@@ -1622,6 +1638,18 @@
                         
                         adminClickCount++;
                         
+                        // Visual feedback
+                        showClickFeedback(element);
+                        
+                        // Show progress to user
+                        if (adminClickCount >= 2 && adminClickCount < 5) {
+                            const progressDiv = document.createElement('div');
+                            progressDiv.style.cssText = 'position: fixed; top: 50px; left: 50%; transform: translateX(-50%); background: #1e3c72; color: white; padding: 10px 20px; border-radius: 20px; z-index: 9999; font-weight: bold;';
+                            progressDiv.textContent = `🔧 פתיחת מנהל: ${adminClickCount}/5`;
+                            document.body.appendChild(progressDiv);
+                            setTimeout(() => document.body.removeChild(progressDiv), 1000);
+                        }
+                        
                         if (adminClickTimer) {
                             clearTimeout(adminClickTimer);
                         }
@@ -1629,7 +1657,7 @@
                         adminClickTimer = setTimeout(() => {
                             console.log('⏰ זמן תם! מאפס מונה...');
                             adminClickCount = 0;
-                        }, 3000); // 3 שניות
+                        }, 5000); // Extended to 5 seconds
                         
                         if (adminClickCount >= 5) {
                             console.log('🎯 5 לחיצות הושגו! פותח פאנל אדמין...');
@@ -1638,10 +1666,24 @@
                         }
                     });
                     
-                    // גם מוסיף visual feedback
+                    // Visual cursor and title
                     element.style.cursor = 'pointer';
+                    element.title = 'לחץ 5 פעמים מהר לגישת מנהל';
                 }
             });
+            
+            // Add emergency access in footer (very subtle)
+            const footer = document.querySelector('.footer-content');
+            if (footer) {
+                const emergencyBtn = document.createElement('div');
+                emergencyBtn.style.cssText = 'position: absolute; bottom: 5px; right: 5px; width: 15px; height: 15px; cursor: pointer; opacity: 0.1; font-size: 12px;';
+                emergencyBtn.innerHTML = '⚙️';
+                emergencyBtn.title = 'Admin Access';
+                emergencyBtn.onclick = openAdminLogin;
+                footer.style.position = 'relative';
+                footer.appendChild(emergencyBtn);
+                console.log('✅ הוספתי כפתור חירום');
+            }
         }
 
         function openAdminLogin() {
@@ -2031,19 +2073,26 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             }
         }
 
-        // Keyboard Shortcuts
+        // Enhanced Keyboard Shortcuts
         document.addEventListener('keydown', function(e) {
             // Ctrl+Alt+A to open admin panel
-            if (e.ctrlKey && e.altKey && e.key === 'a') {
+            if (e.ctrlKey && e.altKey && (e.key === 'a' || e.key === 'A')) {
                 e.preventDefault();
                 console.log('🔧 קיצור מקלדת: Ctrl+Alt+A');
                 openAdminLogin();
             }
             
             // Emergency access: Ctrl+Shift+Alt+D
-            if (e.ctrlKey && e.shiftKey && e.altKey && e.key === 'D') {
+            if (e.ctrlKey && e.shiftKey && e.altKey && (e.key === 'd' || e.key === 'D')) {
                 e.preventDefault();
                 console.log('🚨 גישת חירום: Ctrl+Shift+Alt+D');
+                openAdminLogin();
+            }
+            
+            // Quick admin access: F8
+            if (e.key === 'F8') {
+                e.preventDefault();
+                console.log('⚡ גישה מהירה: F8');
                 openAdminLogin();
             }
             
@@ -2064,9 +2113,17 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             }
         });
 
-        // Password input Enter key
+        // Password input Enter key + User Instructions
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 האתר נטען! מתחיל הגדרות...');
+            console.log('');
+            console.log('🔧 === הוראות פאנל ניהול ===');
+            console.log('🖱️  לחץ 5 פעמים מהר על הלוגו למעלה');
+            console.log('⌨️  או לחץ Ctrl+Alt+A');
+            console.log('🚨 או לחץ Ctrl+Shift+Alt+D (חירום)');
+            console.log('🔑 סיסמה: קודשא2025');
+            console.log('============================');
+            console.log('');
             
             const passwordInput = document.getElementById('adminPassword');
             if (passwordInput) {
@@ -2084,6 +2141,7 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             console.log('🔧 מתחיל הגדרת גישת מנהל...');
             setTimeout(() => {
                 initAdminAccess();
+                console.log('✅ פאנל ניהול מוכן! נסה ללחוץ 5 פעמים על הלוגו');
             }, 1000); // מחכה שנייה שהכל יטען
             
             console.log('✅ כל ההגדרות הושלמו!');
@@ -2104,5 +2162,10 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             }
         }, 30000); // Check every 30 seconds
     </script>
+
+    <!-- Emergency Admin Access (Hidden but clickable) -->
+    <div style="position: fixed; top: 10px; left: 10px; width: 20px; height: 20px; opacity: 0.1; z-index: 999; cursor: pointer;" onclick="openAdminLogin()" title="Admin Access">
+        ⚙️
+    </div>
 </body>
 </html>
