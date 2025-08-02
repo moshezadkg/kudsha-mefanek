@@ -612,14 +612,20 @@
         /* Admin Panel Styles */
         .admin-overlay {
             position: fixed !important;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 10000 !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: rgba(0,0,0,0.95) !important;
+            z-index: 999999 !important;
             display: none !important;
-            overflow-y: auto;
+            overflow-y: auto !important;
+            visibility: hidden !important;
+        }
+        
+        .admin-overlay.show {
+            display: block !important;
+            visibility: visible !important;
         }
         
         .admin-panel {
@@ -704,15 +710,18 @@
         }
         
         .admin-login {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            z-index: 10001;
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            background: white !important;
+            padding: 2rem !important;
+            border-radius: 15px !important;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5) !important;
+            z-index: 999999 !important;
+            min-width: 300px !important;
+            max-width: 90vw !important;
+            border: 3px solid #1e3c72 !important;
         }
         
         .admin-success {
@@ -1668,7 +1677,13 @@
                     
                     // Visual cursor and title
                     element.style.cursor = 'pointer';
-                    element.title = 'לחץ 5 פעמים מהר לגישת מנהל';
+                    element.title = 'לחץ 5 פעמים מהר לגישת מנהל או double-click';
+                    
+                    // Add double-click listener as alternative
+                    element.addEventListener('dblclick', function(e) {
+                        console.log('🖱️ Double-click זוהה! פותח פאנל מנהל...');
+                        openAdminLogin();
+                    });
                 }
             });
             
@@ -1690,9 +1705,26 @@
             console.log('🔓 פותח חלון כניסה למנהל...');
             const loginOverlay = document.getElementById('adminLoginOverlay');
             if (loginOverlay) {
+                loginOverlay.classList.add('show');
                 loginOverlay.style.display = 'block';
                 loginOverlay.style.visibility = 'visible';
+                loginOverlay.style.zIndex = '999999';
                 console.log('✅ חלון כניסה נפתח!');
+                console.log('📍 חלון אמור להיות נראה עכשיו!');
+                
+                // Show confirmation alert
+                setTimeout(() => {
+                    alert('🎯 פאנל המנהל נפתח!\n\nאם אתה לא רואה את החלון:\n1. בדוק שאין popup blocker\n2. כתוב בקונסול: forceAdminOpen()\n\nסיסמה: קודשא2025');
+                }, 200);
+                
+                // Force focus on password input
+                setTimeout(() => {
+                    const passwordInput = document.getElementById('adminPassword');
+                    if (passwordInput) {
+                        passwordInput.focus();
+                        console.log('🔍 מיקוד על שדה הסיסמה');
+                    }
+                }, 300);
             } else {
                 console.log('❌ לא מצאתי את חלון הכניסה!');
             }
@@ -1702,6 +1734,7 @@
             console.log('🔒 סוגר חלון כניסה למנהל...');
             const loginOverlay = document.getElementById('adminLoginOverlay');
             if (loginOverlay) {
+                loginOverlay.classList.remove('show');
                 loginOverlay.style.display = 'none';
                 loginOverlay.style.visibility = 'hidden';
             }
@@ -1731,9 +1764,12 @@
             console.log('🛠️ פותח פאנל ניהול...');
             const panelOverlay = document.getElementById('adminPanelOverlay');
             if (panelOverlay) {
+                panelOverlay.classList.add('show');
                 panelOverlay.style.display = 'block';
                 panelOverlay.style.visibility = 'visible';
+                panelOverlay.style.zIndex = '999999';
                 console.log('✅ פאנל ניהול נפתח!');
+                console.log('📍 פאנל הניהול אמור להיות נראה עכשיו!');
                 
                 // Update Firebase status
                 updateFirebaseStatus();
@@ -1751,6 +1787,7 @@
             console.log('🔒 סוגר פאנל ניהול...');
             const panelOverlay = document.getElementById('adminPanelOverlay');
             if (panelOverlay) {
+                panelOverlay.classList.remove('show');
                 panelOverlay.style.display = 'none';
                 panelOverlay.style.visibility = 'hidden';
             }
@@ -2121,9 +2158,25 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             console.log('🖱️  לחץ 5 פעמים מהר על הלוגו למעלה');
             console.log('⌨️  או לחץ Ctrl+Alt+A');
             console.log('🚨 או לחץ Ctrl+Shift+Alt+D (חירום)');
+            console.log('⚡ או לחץ F8 (מהיר)');
             console.log('🔑 סיסמה: קודשא2025');
+            console.log('');
+            console.log('🛠️ אם החלון לא נראה - כתוב בקונסול:');
+            console.log('   openAdminLogin()');
             console.log('============================');
             console.log('');
+            
+            // Add global emergency function
+            window.openAdminLogin = openAdminLogin;
+            window.openAdminPanel = openAdminPanel;
+            window.forceAdminOpen = function() {
+                console.log('🚨 פתיחה כפויה של פאנל הניהול!');
+                const overlay = document.getElementById('adminLoginOverlay');
+                if (overlay) {
+                    overlay.style.cssText = 'position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; background: rgba(0,0,0,0.95) !important; z-index: 999999 !important; display: block !important; visibility: visible !important;';
+                    console.log('✅ פאנל נפתח בכוח!');
+                }
+            };
             
             const passwordInput = document.getElementById('adminPassword');
             if (passwordInput) {
