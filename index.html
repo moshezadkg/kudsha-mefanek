@@ -46,6 +46,7 @@
             font-size: 1.8rem;
             font-weight: 900;
             font-family: 'Frank Ruhl Libre', serif;
+            cursor: pointer;
         }
         
         .nav-links {
@@ -116,6 +117,7 @@
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             animation: slideInUp 1s ease-out;
+            cursor: pointer;
         }
         
         .hero-subtitle {
@@ -230,150 +232,17 @@
             transform: translateY(-2px);
         }
         
-        /* Products Section */
-        .products {
+        /* Join Group Section */
+        .join-group-section {
             padding: 5rem 0;
-            background: white;
+            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            color: white;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
-        }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        
-        .product-image {
-            height: 200px;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-        
-        .product-content {
-            padding: 1.5rem;
-        }
-        
-        .product-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #1e3c72;
-            margin-bottom: 0.5rem;
-        }
-        
-        .product-description {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .product-price {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #2a5298;
-        }
-        
-        /* Statistics Section */
-        .stats {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            text-align: center;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .stat-item {
-            padding: 2rem;
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #ffd700;
-            display: block;
-        }
-        
-        .stat-label {
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            padding: 5rem 0;
-            background: #f8f9fa;
-        }
-        
-        .testimonial-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .testimonial-text {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-        
-        .testimonial-author {
-            font-weight: 700;
-            color: #1e3c72;
-        }
-        
-        /* Footer */
-        .footer {
-            background: #1e3c72;
-            color: white;
-            padding: 3rem 0 1rem;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .contact-info {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-        
-        /* Join Group Section */
-        .join-group-section {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
-            color: white;
         }
         
         .join-steps {
@@ -527,6 +396,85 @@
             color: #ffd700;
         }
         
+        /* Products */
+        .products {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2a5298;
+        }
+        
+        .product-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4757;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .product-tag.new {
+            background: #2ed573;
+        }
+        
+        .product-tag.bestseller {
+            background: #ffa502;
+        }
+        
         /* Story Section */
         .story-section {
             padding: 5rem 0;
@@ -556,28 +504,7 @@
             border-right: 5px solid #1e3c72;
         }
         
-        /* Enhanced Products */
-        .product-tag {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ff4757;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-        
-        .product-tag.new {
-            background: #2ed573;
-        }
-        
-        .product-tag.bestseller {
-            background: #ffa502;
-        }
-        
-        /* Newsletter Signup Enhanced */
+        /* Newsletter Section */
         .newsletter-section {
             padding: 4rem 0;
             background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
@@ -607,25 +534,91 @@
             color: #333;
         }
         
-        .success-message {
-            background: #00b894;
+        /* Statistics */
+        .stats {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            display: none;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffd700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: #1e3c72;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1e3c72;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
         }
         
         /* Admin Panel Styles */
         .admin-overlay {
-            position: fixed;
+            position: fixed !important;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.9);
-            z-index: 10000;
-            display: none !important; /* HIDDEN BY DEFAULT */
+            z-index: 10000 !important;
+            display: none !important;
             overflow-y: auto;
         }
         
@@ -720,7 +713,6 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             z-index: 10001;
-            display: none;
         }
         
         .admin-success {
@@ -791,7 +783,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1 class="hero-title">קודשא בריך הוא מפנק</h1>
-            <!-- Hidden Emergency Admin Access Button -->
+            <!-- Emergency Admin Access Button (Hidden) -->
             <div style="position: absolute; top: 0; right: 0; width: 1px; height: 1px; opacity: 0; overflow: hidden;">
                 <button id="emergencyAdminBtn" onclick="openAdminLogin()" style="border: none; background: none;">Emergency Admin</button>
             </div>
@@ -1236,24 +1228,11 @@
                     "משנה חיים אחן בכל פעם" 💙
                 </span>
             </p>
-            
-            <!-- Hidden Admin Hint (only visible in source code) -->
-            <!-- 
-            🔐 למנהל האתר: 
-            • לחץ 5 פעמים מהיר על הלוגו או הכותרת הראשית
-            • סיסמה: קודשא2025
-            • או לחץ Ctrl+Alt+A 
-            • במקרה חירום: Ctrl+Shift+Alt+D
-            • בדיקה: פתח Console (F12) ותראה הודעות
-            -->
-            <div style="opacity: 0; font-size: 1px; position: absolute; left: -9999px;">
-                Admin: Click logo 5 times, password: קודשא2025, or Ctrl+Alt+A, Emergency: Ctrl+Shift+Alt+D
-            </div>
         </div>
     </footer>
 
     <!-- Admin Login Modal -->
-    <div class="admin-overlay" id="adminLoginOverlay" style="display: none !important;">
+    <div class="admin-overlay" id="adminLoginOverlay">
         <div class="admin-login" id="adminLogin">
             <h3 style="color: #1e3c72; text-align: center; margin-bottom: 1rem;">🔐 כניסת מנהל</h3>
             <input type="password" id="adminPassword" placeholder="הכנס סיסמת מנהל..." style="width: 100%; padding: 0.8rem; border: 2px solid #1e3c72; border-radius: 5px; margin-bottom: 1rem;">
@@ -1266,7 +1245,7 @@
     </div>
 
     <!-- Admin Panel -->
-    <div class="admin-overlay" id="adminPanelOverlay" style="display: none !important;">
+    <div class="admin-overlay" id="adminPanelOverlay">
         <div class="admin-panel">
             <div class="admin-header">
                 <h2 style="color: #1e3c72;">🛠️ פאנל ניהול - קודשא בריך הוא מפנק</h2>
@@ -1389,106 +1368,38 @@
             </div>
         </div>
     </div>
-        <div class="admin-panel">
-            <div class="admin-header">
-                <h2 style="color: #1e3c72;">🛠️ פאנל ניהול - קודשא בריך הוא מפנק</h2>
-                <button class="admin-close" onclick="closeAdminPanel()">✖️ סגור</button>
-            </div>
-
-            <!-- Statistics Section -->
-            <div class="admin-section">
-                <h3>📊 עדכון סטטיסטיקות</h3>
-                <div class="admin-grid">
-                    <div>
-                        <label>חברים בקבוצה:</label>
-                        <input type="text" class="admin-input" id="membersCount" placeholder="15,847">
-                        <button class="admin-button" onclick="updateStats()">עדכן</button>
-                    </div>
-                    <div>
-                        <label>פינוקים שנרשמו:</label>
-                        <input type="text" class="admin-input" id="pinukimCount" placeholder="95,234">
-                    </div>
-                    <div>
-                        <label>השראות במאגר:</label>
-                        <input type="text" class="admin-input" id="inspirationsCount" placeholder="365">
-                    </div>
-                    <div>
-                        <label>מוצרים זמינים:</label>
-                        <input type="text" class="admin-input" id="productsCount" placeholder="24">
-                    </div>
-                </div>
-                <div class="admin-success" id="statsSuccess">✅ הסטטיסטיקות עודכנו בהצלחה!</div>
-            </div>
-
-            <!-- New Inspiration Section -->
-            <div class="admin-section">
-                <h3>🌟 הוספת השראה חדשה</h3>
-                <textarea class="admin-textarea" id="newInspiration" placeholder="כתוב כאן השראה חדשה מקודשא ברוך הוא..."></textarea>
-                <button class="admin-button" onclick="addNewInspiration()">הוסף השראה</button>
-                <div class="admin-success" id="inspirationSuccess">✅ ההשראה נוספה בהצלחה!</div>
-            </div>
-
-            <!-- Website Messages Section -->
-            <div class="admin-section">
-                <h3>📝 עריכת מסרים באתר</h3>
-                <div style="margin-bottom: 1rem;">
-                    <label>כותרת ראשית:</label>
-                    <input type="text" class="admin-input" id="mainTitle" placeholder="קודשא בריך הוא מפנק">
-                    <button class="admin-button" onclick="updateMainTitle()">עדכן כותרת</button>
-                </div>
-                <div style="margin-bottom: 1rem;">
-                    <label>תת-כותרת:</label>
-                    <input type="text" class="admin-input" id="subTitle" placeholder="הקבוצה Google Groups עם 15,847+ חברים פעילים">
-                    <button class="admin-button" onclick="updateSubTitle()">עדכן תת-כותרת</button>
-                </div>
-                <div class="admin-success" id="messageSuccess">✅ המסרים עודכנו בהצלחה!</div>
-            </div>
-
-            <!-- Products Management Section -->
-            <div class="admin-section">
-                <h3>🛒 ניהול מוצרים</h3>
-                <div class="admin-grid">
-                    <div>
-                        <label>שם המוצר:</label>
-                        <input type="text" class="admin-input" id="productName" placeholder="חוברת פינוקים יומיים">
-                    </div>
-                    <div>
-                        <label>מחיר:</label>
-                        <input type="text" class="admin-input" id="productPrice" placeholder="₪29.90">
-                    </div>
-                </div>
-                <textarea class="admin-textarea" id="productDescription" placeholder="תיאור המוצר..."></textarea>
-                <button class="admin-button" onclick="updateProduct()">עדכן מוצר</button>
-                <div class="admin-success" id="productSuccess">✅ המוצר עודכן בהצלחה!</div>
-            </div>
-
-            <!-- Admin Tools Section -->
-            <div class="admin-section">
-                <h3>🔧 כלי מנהל</h3>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <button class="admin-button" onclick="exportData()">📤 יצוא נתונים</button>
-                    <button class="admin-button" onclick="resetData()">🔄 איפוס הכל</button>
-                    <button class="admin-button" onclick="backupData()">💾 גיבוי נתונים</button>
-                    <button class="admin-button" onclick="viewAnalytics()">📈 צפייה בנתונים</button>
-                </div>
-            <div style="margin-top: 1rem; padding: 1rem; background: #e8f5e8; border-radius: 5px; border: 1px solid #4caf50;">
-                <p><strong>🔐 דרכי גישה למנהל:</strong></p>
-                <p>• 👆 לחיצה 5 פעמים מהיר על הלוגו או הכותרת הראשית</p>
-                <p>• ⌨️ Ctrl+Alt+A (קיצור מקלדת)</p>
-                <p><strong>🔑 סיסמה:</strong> קודשא2025</p>
-                <p><strong>🚀 שימושי:</strong> Ctrl+S ישמור את כל השינויים | ESC לסגירה</p>
-                <p><strong>📱 ממובייל:</strong> גע 5 פעמים מהיר על הכותרת הראשית</p>
-                <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">💡 כל השינויים נשמרים אוטומטית ונשארים גם אחרי רענון הדף</p>
-            </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
     
     <script>
+        // Firebase Configuration (Updated with your real config)
+        const FIREBASE_CONFIG = {
+            apiKey: "AIzaSyDKpDvUEeavYHyvVLAZsVdCRttAwkNJxek",
+            authDomain: "kudsha-mefanek.firebaseapp.com",
+            databaseURL: "https://kudsha-mefanek-default-rtdb.firebaseio.com",
+            projectId: "kudsha-mefanek",
+            storageBucket: "kudsha-mefanek.firebasestorage.app",
+            messagingSenderId: "527961940130",
+            appId: "1:527961940130:web:1aa1abe08a3465b675b7fb",
+            measurementId: "G-47Q5SW538P"
+        };
+
+        // Firebase Initialization
+        let firebaseEnabled = false;
+        let database = null;
+
+        try {
+            firebase.initializeApp(FIREBASE_CONFIG);
+            database = firebase.database();
+            firebaseEnabled = true;
+            console.log('🔥 Firebase initialized successfully!');
+        } catch (error) {
+            console.log('⚠️ Firebase initialization failed:', error);
+            firebaseEnabled = false;
+        }
+
         // Array of inspirational messages
         const inspirations = [
             {
@@ -1560,7 +1471,7 @@
             const inspiration = inspirations[currentInspiration];
             
             document.getElementById('dailyText').textContent = inspiration.text;
-            document.querySelector('.inspiration-source').textContent = `השראה מס' ${inspiration.number + 1}`;
+            document.querySelector('.inspiration-source').textContent = `השראה מס' ${inspiration.number}`;
         }
 
         // Smooth scrolling for navigation links
@@ -1609,11 +1520,6 @@
             }, 20);
         }
 
-        // Newsletter subscription function (redirects to Google Groups)
-        function subscribeNewsletter() {
-            window.open('https://groups.google.com/g/kudsha_mefanek', '_blank');
-        }
-
         // Enhanced statistics animation
         function animateStatistics() {
             const stats = [
@@ -1650,14 +1556,70 @@
         let adminClickTimer = null;
         const ADMIN_PASSWORD = "קודשא2025"; // סיסמת המנהל
 
+        // Data Management
+        function getAdminData() {
+            const adminData = window.localStorage.getItem('kudshaAdminData');
+            return adminData ? JSON.parse(adminData) : {};
+        }
+
+        function saveAdminData(adminData) {
+            adminData.lastUpdate = new Date().toISOString();
+            adminData.adminActions = (adminData.adminActions || 0) + 1;
+            
+            // Save locally (always works)
+            window.localStorage.setItem('kudshaAdminData', JSON.stringify(adminData));
+            
+            // Save to Firebase if enabled
+            if (firebaseEnabled && database) {
+                database.ref('siteData').set(adminData).catch(error => {
+                    console.log('Firebase save failed:', error);
+                });
+            }
+        }
+
+        function loadAdminData() {
+            const savedData = getAdminData();
+            
+            if (savedData.stats) {
+                const membersInput = document.getElementById('adminMembersCount');
+                const pinukimInput = document.getElementById('adminPinukimCount');
+                const inspirationsInput = document.getElementById('adminInspirationsCount');
+                const productsInput = document.getElementById('adminProductsCount');
+                
+                if (membersInput) membersInput.value = savedData.stats.members || '';
+                if (pinukimInput) pinukimInput.value = savedData.stats.pinukim || '';
+                if (inspirationsInput) inspirationsInput.value = savedData.stats.inspirations || '';
+                if (productsInput) productsInput.value = savedData.stats.products || '';
+            }
+            
+            if (savedData.mainTitle) {
+                const mainTitleInput = document.getElementById('adminMainTitle');
+                if (mainTitleInput) mainTitleInput.value = savedData.mainTitle;
+            }
+            
+            if (savedData.subTitle) {
+                const subTitleInput = document.getElementById('adminSubTitle');
+                if (subTitleInput) subTitleInput.value = savedData.subTitle;
+            }
+        }
+
         // Open admin login on 5 clicks
         function initAdminAccess() {
+            console.log('🔧 מתחיל להקשיב ללחיצות אדמין...');
+            
             const logo = document.querySelector('.logo');
             const heroTitle = document.querySelector('.hero-title');
             
-            [logo, heroTitle].forEach(element => {
+            if (!logo) console.log('⚠️ לא מצאתי את הלוגו!');
+            if (!heroTitle) console.log('⚠️ לא מצאתי את הכותרת!');
+            
+            [logo, heroTitle].forEach((element, index) => {
                 if (element) {
-                    element.addEventListener('click', function() {
+                    console.log(`✅ הוספתי listener ל-${index === 0 ? 'לוגו' : 'כותרת'}`);
+                    
+                    element.addEventListener('click', function(e) {
+                        console.log(`🖱️ לחיצה על ${index === 0 ? 'לוגו' : 'כותרת'}! (${adminClickCount + 1}/5)`);
+                        
                         adminClickCount++;
                         
                         if (adminClickTimer) {
@@ -1665,68 +1627,110 @@
                         }
                         
                         adminClickTimer = setTimeout(() => {
+                            console.log('⏰ זמן תם! מאפס מונה...');
                             adminClickCount = 0;
-                        }, 2000);
+                        }, 3000); // 3 שניות
                         
                         if (adminClickCount >= 5) {
+                            console.log('🎯 5 לחיצות הושגו! פותח פאנל אדמין...');
                             openAdminLogin();
                             adminClickCount = 0;
                         }
                     });
+                    
+                    // גם מוסיף visual feedback
+                    element.style.cursor = 'pointer';
                 }
             });
         }
 
         function openAdminLogin() {
-            document.getElementById('adminLoginOverlay').style.display = 'block';
+            console.log('🔓 פותח חלון כניסה למנהל...');
+            const loginOverlay = document.getElementById('adminLoginOverlay');
+            if (loginOverlay) {
+                loginOverlay.style.display = 'block';
+                loginOverlay.style.visibility = 'visible';
+                console.log('✅ חלון כניסה נפתח!');
+            } else {
+                console.log('❌ לא מצאתי את חלון הכניסה!');
+            }
         }
 
         function closeAdminLogin() {
-            document.getElementById('adminLoginOverlay').style.display = 'none';
-            document.getElementById('adminPassword').value = '';
+            console.log('🔒 סוגר חלון כניסה למנהל...');
+            const loginOverlay = document.getElementById('adminLoginOverlay');
+            if (loginOverlay) {
+                loginOverlay.style.display = 'none';
+                loginOverlay.style.visibility = 'hidden';
+            }
+            const passwordInput = document.getElementById('adminPassword');
+            if (passwordInput) {
+                passwordInput.value = '';
+            }
         }
 
         function checkAdminPassword() {
             const password = document.getElementById('adminPassword').value;
+            console.log('🔑 בודק סיסמה...');
+            
             if (password === ADMIN_PASSWORD) {
+                console.log('✅ סיסמה נכונה! פותח פאנל ניהול...');
                 closeAdminLogin();
                 openAdminPanel();
                 loadAdminData();
             } else {
+                console.log('❌ סיסמה שגויה!');
                 alert('סיסמה שגויה! נסה שוב.');
                 document.getElementById('adminPassword').value = '';
             }
         }
 
         function openAdminPanel() {
-            document.getElementById('adminPanelOverlay').style.display = 'block';
-            // Show welcome message
-            setTimeout(() => {
-                alert('🎉 ברוך הבא למערכת הניהול!\n\n💡 טיפים:\n• Ctrl+S לשמירה מהירה\n• ESC לסגירת הפאנל\n• כל השינויים נשמרים אוטומטית');
-            }, 500);
+            console.log('🛠️ פותח פאנל ניהול...');
+            const panelOverlay = document.getElementById('adminPanelOverlay');
+            if (panelOverlay) {
+                panelOverlay.style.display = 'block';
+                panelOverlay.style.visibility = 'visible';
+                console.log('✅ פאנל ניהול נפתח!');
+                
+                // Update Firebase status
+                updateFirebaseStatus();
+                
+                // Show welcome message
+                setTimeout(() => {
+                    alert('🎉 ברוך הבא למערכת הניהול!\n\n💡 טיפים:\n• Ctrl+S לשמירה מהירה\n• ESC לסגירת הפאנל');
+                }, 500);
+            } else {
+                console.log('❌ לא מצאתי את פאנל הניהול!');
+            }
         }
 
         function closeAdminPanel() {
-            document.getElementById('adminPanelOverlay').style.display = 'none';
+            console.log('🔒 סוגר פאנל ניהול...');
+            const panelOverlay = document.getElementById('adminPanelOverlay');
+            if (panelOverlay) {
+                panelOverlay.style.display = 'none';
+                panelOverlay.style.visibility = 'hidden';
+            }
         }
 
         // Update Statistics
         function updateStats() {
             const members = document.getElementById('adminMembersCount').value || '15,847';
             const pinukim = document.getElementById('adminPinukimCount').value || '95,234';
-            const inspirations = document.getElementById('adminInspirationsCount').value || '365';
+            const inspirationsCount = document.getElementById('adminInspirationsCount').value || '365';
             const products = document.getElementById('adminProductsCount').value || '24';
 
             // Update all stat numbers on the page
             const statNumbers = document.querySelectorAll('.stat-number');
             if (statNumbers[0]) statNumbers[0].textContent = members;
             if (statNumbers[1]) statNumbers[1].textContent = pinukim;
-            if (statNumbers[2]) statNumbers[2].textContent = inspirations;
+            if (statNumbers[2]) statNumbers[2].textContent = inspirationsCount;
             if (statNumbers[3]) statNumbers[3].textContent = products;
 
             // Save to localStorage
             const adminData = getAdminData();
-            adminData.stats = { members, pinukim, inspirations, products };
+            adminData.stats = { members, pinukim, inspirations: inspirationsCount, products };
             saveAdminData(adminData);
 
             showSuccess('statsSuccess');
@@ -1762,11 +1766,7 @@
             if (newTitle) {
                 const titleElements = document.querySelectorAll('.hero-title, .logo');
                 titleElements.forEach(el => {
-                    if (el.classList.contains('logo')) {
-                        el.textContent = newTitle;
-                    } else {
-                        el.textContent = newTitle;
-                    }
+                    el.textContent = newTitle;
                 });
 
                 const adminData = getAdminData();
@@ -1801,8 +1801,6 @@
             const description = document.getElementById('adminProductDescription').value.trim();
 
             if (name && price) {
-                // This is a simplified version - in a real implementation, 
-                // you'd select which product to update
                 alert(`מוצר "${name}" עודכן:\nמחיר: ${price}\nתיאור: ${description}`);
                 
                 const adminData = getAdminData();
@@ -1821,69 +1819,75 @@
             }
         }
 
-        // Server Integration Functions
-        const SERVER_CONFIG = {
-            url: '/admin_api.php', // לא עובד ב-GitHub Pages
-            enabled: false, // GitHub Pages זה שרת סטטי - אין PHP
-            isGitHubPages: true // מצב GitHub Pages
-        };
+        // Firebase Functions
+        function updateFirebaseStatus() {
+            const statusElement = document.getElementById('firebaseStatus');
+            const infoElement = document.getElementById('firebaseInfo');
+            
+            if (statusElement) {
+                if (firebaseEnabled) {
+                    statusElement.textContent = '🟢 פעיל - שרת אמיתי!';
+                    statusElement.style.color = '#00b894';
+                    if (infoElement) {
+                        infoElement.textContent = 'Firebase פעיל! כל השינויים נשמרים לכל המבקרים באתר.';
+                    }
+                } else {
+                    statusElement.textContent = '🟡 לא פעיל - שמירה מקומית';
+                    statusElement.style.color = '#f39c12';
+                    if (infoElement) {
+                        infoElement.textContent = 'Firebase לא פעיל. השינויים נשמרים רק במחשב שלך.';
+                    }
+                }
+            }
+        }
 
         async function saveToServer() {
-            if (!SERVER_CONFIG.enabled) {
-                alert('🚧 שמירה בשרת לא מופעלת עדיין.\nהפעל את SERVER_CONFIG.enabled במקום זה לא עובד בגרסת דמו.');
+            if (!firebaseEnabled) {
+                alert('🚧 Firebase לא מופעל.\nהפעל את Firebase כדי לשמור בשרת אמיתי.');
                 return;
             }
 
-            const data = getAdminData();
+            const adminData = getAdminData();
             
             try {
-                const response = await fetch(SERVER_CONFIG.url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        action: 'save',
-                        data: data
-                    })
-                });
-
-                if (response.ok) {
-                    showSuccess('serverSuccess');
-                    alert('💾 הנתונים נשמרו בשרת בהצלחה!');
-                } else {
-                    throw new Error('Server error');
-                }
+                await database.ref('siteData').set(adminData);
+                showSuccess('serverSuccess');
+                alert('💾 הנתונים נשמרו ב-Firebase בהצלחה!\nכל המבקרים יראו את השינויים.');
             } catch (error) {
-                alert('❌ שגיאה בשמירה בשרת: ' + error.message);
+                alert('❌ שגיאה בשמירה: ' + error.message);
             }
         }
 
         async function loadFromServer() {
-            if (!SERVER_CONFIG.enabled) {
-                alert('🚧 טעינה מהשרת לא מופעלת עדיין.\nבגרסת הדמו הנתונים נשמרים במחשב שלך בלבד.');
+            if (!firebaseEnabled) {
+                alert('🚧 Firebase לא מופעל.\nהפעל את Firebase כדי לטעון מהשרת.');
                 return;
             }
 
             try {
-                const response = await fetch(SERVER_CONFIG.url + '?action=load');
-                const data = await response.json();
+                const snapshot = await database.ref('siteData').once('value');
+                const firebaseData = snapshot.val();
                 
-                if (data.success) {
+                if (firebaseData) {
                     // Load the data into the admin panel
-                    if (data.data.stats) {
-                        document.getElementById('membersCount').value = data.data.stats.members || '';
-                        document.getElementById('pinukimCount').value = data.data.stats.pinukim || '';
-                        document.getElementById('inspirationsCount').value = data.data.stats.inspirations || '';
-                        document.getElementById('productsCount').value = data.data.stats.products || '';
+                    if (firebaseData.stats) {
+                        const membersInput = document.getElementById('adminMembersCount');
+                        const pinukimInput = document.getElementById('adminPinukimCount');
+                        const inspirationsInput = document.getElementById('adminInspirationsCount');
+                        const productsInput = document.getElementById('adminProductsCount');
+                        
+                        if (membersInput) membersInput.value = firebaseData.stats.members || '';
+                        if (pinukimInput) pinukimInput.value = firebaseData.stats.pinukim || '';
+                        if (inspirationsInput) inspirationsInput.value = firebaseData.stats.inspirations || '';
+                        if (productsInput) productsInput.value = firebaseData.stats.products || '';
                     }
                     
                     // Apply the changes to the website
                     updateStats();
                     
-                    alert('📥 הנתונים נטענו מהשרת בהצלחה!');
+                    alert('📥 הנתונים נטענו מ-Firebase בהצלחה!');
                 } else {
-                    throw new Error(data.message || 'Server error');
+                    alert('📭 אין נתונים שמורים ב-Firebase.');
                 }
             } catch (error) {
                 alert('❌ שגיאה בטעינה מהשרת: ' + error.message);
@@ -1891,68 +1895,32 @@
         }
 
         async function testServerConnection() {
-            if (!SERVER_CONFIG.enabled) {
-                alert('🔗 בדיקת חיבור:\n❌ שרת לא מופעל (מצב דמו)\n✅ שמירה מקומית עובדת\n\n💡 כדי להפעיל שרת:\n1. העלה קובץ admin_api.php\n2. שנה SERVER_CONFIG.enabled ל-true');
+            if (!firebaseEnabled) {
+                alert('🔗 בדיקת חיבור:\n❌ Firebase לא מופעל\n✅ שמירה מקומית עובדת\n\n💡 כדי להפעיל Firebase:\n1. וודא שהגדרת את Firebase נכון\n2. בדוק שה-API Key תקין');
                 return;
             }
 
             try {
-                const response = await fetch(SERVER_CONFIG.url + '?action=test');
-                const data = await response.json();
+                // Test connection by writing and reading a test value
+                const testRef = database.ref('connectionTest');
+                await testRef.set({
+                    timestamp: new Date().toISOString(),
+                    test: 'connection successful'
+                });
                 
-                if (data.success) {
-                    alert('🟢 חיבור לשרת תקין!\nגרסת PHP: ' + data.php_version + '\nזמן שרת: ' + data.server_time);
+                const snapshot = await testRef.once('value');
+                const testData = snapshot.val();
+                
+                if (testData) {
+                    alert('🟢 חיבור ל-Firebase תקין!\nהשרת עובד מעולה.');
+                    // Clean up test data
+                    await testRef.remove();
                 } else {
-                    throw new Error(data.message || 'Server error');
+                    throw new Error('Test data not found');
                 }
             } catch (error) {
-                alert('🔴 שגיאה בחיבור לשרת: ' + error.message);
+                alert('🔴 שגיאה בחיבור ל-Firebase: ' + error.message);
             }
-        }
-
-        // Enhanced Data Management (works both locally and on server)
-        function saveAdminData(data) {
-            data.lastUpdate = new Date().toISOString();
-            data.adminActions = (data.adminActions || 0) + 1;
-            
-            // Save locally (always works)
-            window.localStorage.setItem('kudshaAdminData', JSON.stringify(data));
-            
-        // Admin Tools Functions
-        function exportData() {
-            const data = getAdminData();
-            const dataStr = JSON.stringify(data, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'kudsha-mefanek-data.json';
-            link.click();
-            alert('📤 הנתונים יוצאו בהצלחה!');
-        }
-
-        function resetData() {
-            if (confirm('⚠️ האם אתה בטוח שרוצה למחוק את כל הנתונים?')) {
-                window.localStorage.removeItem('kudshaAdminData');
-                
-                // Reset server data if enabled
-                if (SERVER_CONFIG.enabled) {
-                    fetch(SERVER_CONFIG.url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ action: 'reset' })
-                    }).catch(error => console.log('Server reset failed:', error));
-                }
-                
-                alert('🔄 כל הנתונים נמחקו! רענן את הדף.');
-            }
-        }
-
-        function backupData() {
-            const data = getAdminData();
-            data.backup = new Date().toISOString();
-            saveAdminData(data);
-            alert('💾 גיבוי נוצר בהצלחה!');
         }
 
         function showFirebaseSetup() {
@@ -1993,24 +1961,23 @@
             alert(instructions);
         }
 
-        function viewAnalytics() {
-            const data = getAdminData();
-            const stats = `
-📊 נתוני האתר:
-• חברים: ${data.stats?.members || '15,847'}
-• פינוקים: ${data.stats?.pinukim || '95,234'}  
-• השראות: ${data.stats?.inspirations || '365'}
-• מוצרים: ${data.stats?.products || '24'}
-
-📅 עדכון אחרון: ${data.lastUpdate || 'לא עודכן'}
-🔧 פעולות מנהל: ${data.adminActions || 0}
-
-🔥 מצב Firebase: ${firebaseEnabled ? '🟢 פעיל - שרת אמיתי' : '🟡 לא פעיל - שמירה מקומית'}
-🌐 כתובת האתר: https://moshezadkg.github.io/kudsha-mefanek/
-
-${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' : '⚙️ הפעל Firebase לשמירה אמיתית'}
-            `;
-            alert(stats);
+        // Admin Tools Functions
+        function exportData() {
+            const adminData = getAdminData();
+            adminData.exportInfo = {
+                date: new Date().toISOString(),
+                firebaseEnabled: firebaseEnabled,
+                website: 'https://moshezadkg.github.io/kudsha-mefanek/'
+            };
+            
+            const dataStr = JSON.stringify(adminData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'kudsha-mefanek-data-' + new Date().toISOString().split('T')[0] + '.json';
+            link.click();
+            alert('📤 הנתונים יוצאו בהצלחה!');
         }
 
         function resetData() {
@@ -2027,131 +1994,41 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
         }
 
         function backupData() {
-            const data = getAdminData();
-            data.backup = new Date().toISOString();
-            data.backupType = firebaseEnabled ? 'Firebase + Local' : 'Local only';
-            saveAdminData(data);
+            const adminData = getAdminData();
+            adminData.backup = new Date().toISOString();
+            adminData.backupType = firebaseEnabled ? 'Firebase + Local' : 'Local only';
+            saveAdminData(adminData);
             alert('💾 גיבוי נוצר בהצלחה!\n\n' + (firebaseEnabled ? '🔥 נשמר גם ב-Firebase' : '💻 נשמר מקומית'));
         }
 
-        function exportData() {
-            const data = getAdminData();
-            data.exportInfo = {
-                date: new Date().toISOString(),
-                firebaseEnabled: firebaseEnabled,
-                website: 'https://moshezadkg.github.io/kudsha-mefanek/'
-            };
-            
-            const dataStr = JSON.stringify(data, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'kudsha-mefanek-data-' + new Date().toISOString().split('T')[0] + '.json';
-            link.click();
-            alert('📤 הנתונים יוצאו בהצלחה!');
-        }
-
-        // Update admin panel when opened
-        function openAdminPanel() {
-            document.getElementById('adminPanelOverlay').style.display = 'block';
-            
-            // Update Firebase status
-            updateFirebaseStatus();
-            
-            // Show welcome message
-            setTimeout(() => {
-                const welcomeMsg = firebaseEnabled ? 
-                    '🎉 ברוך הבא למערכת הניהול!\n🔥 Firebase פעיל - השינויים נשמרים לכל המבקרים!' :
-                    '🎉 ברוך הבא למערכת הניהול!\n⚙️ הפעל Firebase לשמירה אמיתית (לחץ "הגדרת Firebase")';
-                    
-                alert(welcomeMsg + '\n\n💡 טיפים:\n• Ctrl+S לשמירה מהירה\n• ESC לסגירת הפאנל');
-            }, 500);
-        }
-            const data = getAdminData();
-            const dataStr = JSON.stringify(data, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'kudsha-mefanek-data.json';
-            link.click();
-            alert('📤 הנתונים יוצאו בהצלחה!');
-        }
-
-        function resetData() {
-            if (confirm('⚠️ האם אתה בטוח שרוצה למחוק את כל הנתונים?')) {
-                window.localStorage.removeItem('kudshaAdminData');
-                alert('🔄 כל הנתונים נמחקו! רענן את הדף.');
-            }
-        }
-
-        function backupData() {
-            const data = getAdminData();
-            data.backup = new Date().toISOString();
-            saveAdminData(data);
-            alert('💾 גיבוי נוצר בהצלחה!');
-        }
-
         function viewAnalytics() {
-            const data = getAdminData();
+            const adminData = getAdminData();
             const stats = `
 📊 נתוני האתר:
-• חברים: ${data.stats?.members || '15,847'}
-• פינוקים: ${data.stats?.pinukim || '95,234'}  
-• השראות: ${data.stats?.inspirations || '365'}
-• מוצרים: ${data.stats?.products || '24'}
+• חברים: ${adminData.stats?.members || '15,847'}
+• פינוקים: ${adminData.stats?.pinukim || '95,234'}  
+• השראות: ${adminData.stats?.inspirations || '365'}
+• מוצרים: ${adminData.stats?.products || '24'}
 
-📅 עדכון אחרון: ${data.lastUpdate || 'לא עודכן'}
-🔧 פעולות מנהל: ${data.adminActions || 0}
+📅 עדכון אחרון: ${adminData.lastUpdate || 'לא עודכן'}
+🔧 פעולות מנהל: ${adminData.adminActions || 0}
+
+🔥 מצב Firebase: ${firebaseEnabled ? '🟢 פעיל - שרת אמיתי' : '🟡 לא פעיל - שמירה מקומית'}
+🌐 כתובת האתר: https://moshezadkg.github.io/kudsha-mefanek/
+
+${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' : '⚙️ הפעל Firebase לשמירה אמיתית'}
             `;
             alert(stats);
         }
 
-        // Data Management
-        function getAdminData() {
-            const data = window.localStorage.getItem('kudshaAdminData');
-            return data ? JSON.parse(data) : {};
-        }
-
-        function saveAdminData(data) {
-            data.lastUpdate = new Date().toISOString();
-            data.adminActions = (data.adminActions || 0) + 1;
-            window.localStorage.setItem('kudshaAdminData', JSON.stringify(data));
-        }
-
-        function loadAdminData() {
-            const savedData = getAdminData();
-            
-            if (savedData.stats) {
-                const membersInput = document.getElementById('membersCount');
-                const pinukimInput = document.getElementById('pinukimCount');
-                const inspirationsInput = document.getElementById('inspirationsCount');
-                const productsInput = document.getElementById('productsCount');
-                
-                if (membersInput) membersInput.value = savedData.stats.members || '';
-                if (pinukimInput) pinukimInput.value = savedData.stats.pinukim || '';
-                if (inspirationsInput) inspirationsInput.value = savedData.stats.inspirations || '';
-                if (productsInput) productsInput.value = savedData.stats.products || '';
-            }
-            
-            if (savedData.mainTitle) {
-                const mainTitleInput = document.getElementById('mainTitle');
-                if (mainTitleInput) mainTitleInput.value = savedData.mainTitle;
-            }
-            
-            if (savedData.subTitle) {
-                const subTitleInput = document.getElementById('subTitle');
-                if (subTitleInput) subTitleInput.value = savedData.subTitle;
-            }
-        }
-
         function showSuccess(elementId) {
             const element = document.getElementById(elementId);
-            element.style.display = 'block';
-            setTimeout(() => {
-                element.style.display = 'none';
-            }, 3000);
+            if (element) {
+                element.style.display = 'block';
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, 3000);
+            }
         }
 
         // Keyboard Shortcuts
@@ -2159,13 +2036,22 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             // Ctrl+Alt+A to open admin panel
             if (e.ctrlKey && e.altKey && e.key === 'a') {
                 e.preventDefault();
+                console.log('🔧 קיצור מקלדת: Ctrl+Alt+A');
+                openAdminLogin();
+            }
+            
+            // Emergency access: Ctrl+Shift+Alt+D
+            if (e.ctrlKey && e.shiftKey && e.altKey && e.key === 'D') {
+                e.preventDefault();
+                console.log('🚨 גישת חירום: Ctrl+Shift+Alt+D');
                 openAdminLogin();
             }
             
             // Ctrl+S to save (prevent default save)
             if (e.ctrlKey && e.key === 's') {
                 e.preventDefault();
-                if (document.getElementById('adminOverlay').style.display === 'block') {
+                const adminPanel = document.getElementById('adminPanelOverlay');
+                if (adminPanel && adminPanel.style.display === 'block') {
                     updateStats();
                     alert('💾 כל השינויים נשמרו!');
                 }
@@ -2180,6 +2066,8 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
 
         // Password input Enter key
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 האתר נטען! מתחיל הגדרות...');
+            
             const passwordInput = document.getElementById('adminPassword');
             if (passwordInput) {
                 passwordInput.addEventListener('keypress', function(e) {
@@ -2187,10 +2075,18 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
                         checkAdminPassword();
                     }
                 });
+                console.log('✅ הוספתי listener לכניסה בEnter');
+            } else {
+                console.log('⚠️ לא מצאתי שדה סיסמה!');
             }
             
             // Initialize admin access
-            initAdminAccess();
+            console.log('🔧 מתחיל הגדרת גישת מנהל...');
+            setTimeout(() => {
+                initAdminAccess();
+            }, 1000); // מחכה שנייה שהכל יטען
+            
+            console.log('✅ כל ההגדרות הושלמו!');
         });
 
         // Update statistics in real time (simulate)
