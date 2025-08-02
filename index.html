@@ -1909,15 +1909,22 @@
                     <div class="admin-section">
                         <h3>🚀 פעולות מהירות</h3>
                         <div class="admin-grid-3">
-                            <button class="admin-button success" onclick="addNewInspiration()">
-                                ➕ הוסף השראה
-                            </button>
-                            <button class="admin-button warning" onclick="updateAllStats()">
-                                🔄 עדכן סטטיסטיקות
+                            <button class="admin-button success" onclick="updateAllStats()">
+                                🔄 עדכן כל הסטטיסטיקות
                             </button>
                             <button class="admin-button" onclick="saveToServer()">
                                 💾 שמור ב-Firebase
                             </button>
+                            <button class="admin-button secondary" onclick="loadFromServer()">
+                                📥 טען מ-Firebase
+                            </button>
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                            <button class="admin-button warning" onclick="syncAllData()">🔄 סנכרן כל הנתונים</button>
+                            <button class="admin-button" onclick="refreshWebsite()">🔄 רענן אתר</button>
+                            <button class="admin-button secondary" onclick="showSiteStats()">📊 סטטיסטיקות מפורטות</button>
+                            <button class="admin-button" onclick="exportAllSiteData()">📤 גבה הכל</button>
+                            <button class="admin-button secondary" onclick="showWelcomeGuide()">❓ מדריך שימוש</button>
                         </div>
                     </div>
                     
@@ -1949,24 +1956,53 @@
                             <div>
                                 <label><strong>כותרת ראשית:</strong></label>
                                 <input type="text" class="admin-input" id="adminMainTitle" placeholder="קודשא בריך הוא מפנק">
-                                <button class="admin-button" onclick="updateMainTitle()">עדכן</button>
+                                <button class="admin-button success" onclick="updateMainTitle()">💾 עדכן כותרת</button>
                             </div>
                             <div>
                                 <label><strong>תת-כותרת:</strong></label>
                                 <input type="text" class="admin-input" id="adminSubTitle" placeholder="הקבוצה Google Groups עם 15,847+ חברים פעילים">
-                                <button class="admin-button" onclick="updateSubTitle()">עדכן</button>
+                                <button class="admin-button success" onclick="updateSubTitle()">💾 עדכן תת-כותרת</button>
                             </div>
+                        </div>
+                        
+                        <div style="margin-top: 1rem;">
+                            <label><strong>תיאור האתר (טקסט תחת הכותרת):</strong></label>
+                            <textarea class="admin-textarea" id="adminHeroDescription" placeholder="כל יום אנחנו מקבלים השראות יומיות..."></textarea>
+                            <button class="admin-button success" onclick="updateHeroDescription()">💾 עדכן תיאור</button>
+                        </div>
+                        
+                        <div style="margin-top: 1rem;">
+                            <label><strong>כתובת מייל ליצירת קשר:</strong></label>
+                            <input type="email" class="admin-input" id="adminContactEmail" placeholder="kudsha.mefanek@gmail.com">
+                            <button class="admin-button success" onclick="updateContactEmail()">💾 עדכן מייל</button>
                         </div>
                     </div>
                     
                     <div class="admin-section">
-                        <h3>🌟 ניהול השראות</h3>
+                        <h3>🌟 ניהול השראות יומיות מתקדם</h3>
+                        <div style="display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;">
+                            <button class="admin-button" onclick="showAllInspirations()">📋 כל ההשראות (${inspirations.length})</button>
+                            <button class="admin-button secondary" onclick="randomInspiration()">🎲 השראה אקראית</button>
+                            <button class="admin-button warning" onclick="clearInspirationForm()">🧹 נקה טופס</button>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                            <input type="number" class="admin-input" id="inspirationNumber" placeholder="מספר השראה" style="width: 150px;">
+                            <button class="admin-button secondary" onclick="loadInspirationByNumber()">📖 טען השראה</button>
+                        </div>
+                        
                         <textarea class="admin-textarea" id="adminNewInspiration" placeholder="כתוב כאן השראה חדשה מקודשא ברוך הוא..."></textarea>
-                        <div style="display: flex; gap: 10px; margin-top: 10px;">
-                            <button class="admin-button success" onclick="addNewInspiration()">➕ הוסף השראה</button>
+                        <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                            <button class="admin-button success" onclick="addNewInspiration()">➕ הוסף השראה חדשה</button>
+                            <button class="admin-button warning" onclick="updateCurrentInspiration()">✏️ עדכן השראה נוכחית</button>
+                            <button class="admin-button danger" onclick="deleteCurrentInspiration()">🗑️ מחק השראה נוכחית</button>
                             <button class="admin-button secondary" onclick="previewInspiration()">👁️ תצוגה מקדימה</button>
                         </div>
                         <div class="live-preview" id="inspirationPreview">תצוגה מקדימה של ההשראה תופיע כאן...</div>
+                        
+                        <div id="inspirationsList" style="margin-top: 1rem; max-height: 400px; overflow-y: auto; display: none; background: #f9f9f9; padding: 1rem; border-radius: 8px;">
+                            <!-- רשימת השראות תוצג כאן -->
+                        </div>
                     </div>
                     
             <div class="admin-section">
@@ -2020,18 +2056,27 @@
                         </div>
                         <label>תיאור המוצר:</label>
                         <textarea class="admin-textarea" id="adminProductDescription" placeholder="תיאור מפורט של המוצר..."></textarea>
-                        <div style="display: flex; gap: 10px;">
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                             <button class="admin-button success" onclick="addProduct()">➕ הוסף מוצר</button>
-                            <button class="admin-button warning" onclick="updateProduct()">✏️ עדכן מוצר</button>
                             <button class="admin-button secondary" onclick="previewProduct()">👁️ תצוגה מקדימה</button>
+                            <button class="admin-button warning" onclick="clearProductForm(); resetProductButton();">🧹 נקה טופס</button>
                         </div>
             </div>
 
             <div class="admin-section">
                         <h3>📦 מוצרים קיימים</h3>
-                        <div id="productsList" style="max-height: 300px; overflow-y: auto;">
+                        <div style="display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;">
+                            <button class="admin-button" onclick="exportProducts()">📤 יצוא מוצרים</button>
+                            <button class="admin-button secondary" onclick="importProducts()">📥 יבוא מוצרים</button>
+                            <button class="admin-button warning" onclick="duplicateProduct()">📋 שכפל מוצר נבחר</button>
+                            <button class="admin-button danger" onclick="deleteAllProducts()">🗑️ מחק הכל</button>
+                        </div>
+                        <div id="productsList" style="max-height: 400px; overflow-y: auto;">
                             <!-- רשימת מוצרים תטען כאן דינמית -->
-                </div>
+                        </div>
+                        <div style="margin-top: 1rem; padding: 0.8rem; background: #e3f2fd; border-radius: 6px; font-size: 0.9rem;">
+                            💡 <strong>טיפ:</strong> לחץ על מוצר כדי לערוך אותו, או השתמש בכפתורים למעלה לפעולות מתקדמות
+                        </div>
                 </div>
             </div>
 
@@ -2478,6 +2523,7 @@
                 if (dashProductsCount) dashProductsCount.textContent = savedData.stats.products || '24';
             }
             
+            // Load content data
             if (savedData.mainTitle) {
                 const mainTitleInput = document.getElementById('adminMainTitle');
                 if (mainTitleInput) mainTitleInput.value = savedData.mainTitle;
@@ -2486,6 +2532,23 @@
             if (savedData.subTitle) {
                 const subTitleInput = document.getElementById('adminSubTitle');
                 if (subTitleInput) subTitleInput.value = savedData.subTitle;
+            }
+            
+            if (savedData.heroDescription) {
+                const heroDescInput = document.getElementById('adminHeroDescription');
+                if (heroDescInput) heroDescInput.value = savedData.heroDescription;
+            }
+            
+            if (savedData.contactEmail) {
+                const contactEmailInput = document.getElementById('adminContactEmail');
+                if (contactEmailInput) contactEmailInput.value = savedData.contactEmail;
+            }
+            
+            // Load saved inspirations
+            if (savedData.inspirations && Array.isArray(savedData.inspirations)) {
+                // Update global inspirations array
+                inspirations.length = 0; // Clear existing
+                inspirations.push(...savedData.inspirations);
             }
             
             // Load Firebase status
@@ -2502,6 +2565,8 @@
             if (adminStatus) {
                 adminStatus.innerHTML = '🟢 מחובר';
             }
+            
+            console.log('✅ נתוני האדמין נטענו בהצלחה');
         }
 
         // Open admin login on 5 clicks - IMPROVED VERSION
@@ -2634,14 +2699,22 @@
                     loadProductsList();
                 }, 100);
                 
+                // Load current content into admin fields
+                setTimeout(() => {
+                    loadCurrentSiteContent();
+                }, 200);
+                
                 // Load saved design preferences
                 loadDesignSettings();
                 
-                // Show welcome message with Firebase status
+                                // Show welcome message with Firebase status
                 setTimeout(() => {
                     if (firebaseEnabled) {
                         showGlobalSuccess('ברוך הבא! 🎉 שרת Firebase פעיל - כל השינויים יישמרו לכל המבקרים! 🌐');
-            } else {
+                        setTimeout(() => {
+                            showWelcomeGuide();
+                        }, 2000);
+                    } else {
                         showGlobalSuccess('ברוך הבא! 💻 שמירה מקומית פעילה - לחץ "⚙️ הגדרת Firebase" להפעלת שרת אמיתי');
                         // Show detailed Firebase setup instructions after welcome
                         setTimeout(() => {
@@ -2749,7 +2822,197 @@
             saveAdminData(adminData);
 
             document.getElementById('adminNewInspiration').value = '';
-            showSuccess('inspirationSuccess');
+            showGlobalSuccess('השראה חדשה נוספה בהצלחה! ✨');
+        }
+        
+        // Show all inspirations
+        function showAllInspirations() {
+            const listDiv = document.getElementById('inspirationsList');
+            
+            if (listDiv.style.display === 'none') {
+                let html = '<h4>📋 כל ההשראות (' + inspirations.length + '):</h4>';
+                inspirations.forEach((inspiration, index) => {
+                    html += `
+                        <div style="background: white; margin: 0.5rem 0; padding: 0.8rem; border-radius: 6px; border-left: 4px solid #1e3c72;">
+                            <strong>השראה ${inspiration.number}:</strong>
+                            <p style="margin: 0.5rem 0; line-height: 1.4;">"${inspiration.text}"</p>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="admin-button secondary" onclick="editInspiration(${index})" style="font-size: 0.8rem; padding: 0.3rem 0.6rem;">✏️ ערוך</button>
+                                <button class="admin-button danger" onclick="deleteInspiration(${index})" style="font-size: 0.8rem; padding: 0.3rem 0.6rem;">🗑️ מחק</button>
+                                <button class="admin-button" onclick="setCurrentInspiration(${index})" style="font-size: 0.8rem; padding: 0.3rem 0.6rem;">👆 הגדר כנוכחית</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                listDiv.innerHTML = html;
+                listDiv.style.display = 'block';
+            } else {
+                listDiv.style.display = 'none';
+            }
+        }
+        
+        // Edit inspiration
+        function editInspiration(index) {
+            const inspiration = inspirations[index];
+            document.getElementById('adminNewInspiration').value = inspiration.text;
+            document.getElementById('inspirationNumber').value = inspiration.number;
+            showGlobalSuccess('השראה נטענה לעריכה 📝');
+        }
+        
+        // Delete inspiration
+        function deleteInspiration(index) {
+            const inspiration = inspirations[index];
+            if (confirm(`⚠️ האם אתה בטוח שרוצה למחוק את השראה ${inspiration.number}?\n\n"${inspiration.text.substring(0, 50)}..."`)) {
+                inspirations.splice(index, 1);
+                
+                // Update numbers
+                inspirations.forEach((insp, i) => {
+                    insp.number = i + 1;
+                });
+                
+                const adminData = getAdminData();
+                adminData.inspirations = inspirations;
+                saveAdminData(adminData);
+                
+                showAllInspirations(); // Refresh list
+                showGlobalSuccess('השראה נמחקה 🗑️');
+            }
+        }
+        
+        // Set current inspiration
+        function setCurrentInspiration(index) {
+            currentInspiration = index;
+            const inspiration = inspirations[index];
+            document.getElementById('dailyText').textContent = inspiration.text;
+            document.querySelector('.inspiration-source').textContent = `השראה מס' ${inspiration.number}`;
+            showGlobalSuccess('השראה עודכנה באתר! 🌟');
+        }
+        
+        // Random inspiration
+        function randomInspiration() {
+            const randomIndex = Math.floor(Math.random() * inspirations.length);
+            setCurrentInspiration(randomIndex);
+        }
+        
+        // Clear inspiration form
+        function clearInspirationForm() {
+            document.getElementById('adminNewInspiration').value = '';
+            document.getElementById('inspirationNumber').value = '';
+            showGlobalSuccess('טופס נוקה 🧹');
+        }
+        
+        // Load inspiration by number
+        function loadInspirationByNumber() {
+            const number = parseInt(document.getElementById('inspirationNumber').value);
+            if (!number || number < 1 || number > inspirations.length) {
+                alert(`אנא הכנס מספר בין 1 ל-${inspirations.length}`);
+                return;
+            }
+            
+            const inspiration = inspirations.find(insp => insp.number === number);
+            if (inspiration) {
+                document.getElementById('adminNewInspiration').value = inspiration.text;
+                showGlobalSuccess(`השראה ${number} נטענה לעריכה 📖`);
+            }
+        }
+        
+        // Update current inspiration
+        function updateCurrentInspiration() {
+            const text = document.getElementById('adminNewInspiration').value.trim();
+            const number = parseInt(document.getElementById('inspirationNumber').value);
+            
+            if (!text) {
+                alert('אנא כתוב טקסט להשראה');
+                return;
+            }
+            
+            if (!number || number < 1) {
+                alert('אנא הכנס מספר השראה תקין');
+                return;
+            }
+            
+            const inspirationIndex = inspirations.findIndex(insp => insp.number === number);
+            if (inspirationIndex === -1) {
+                alert('השראה עם מספר זה לא קיימת');
+                return;
+            }
+            
+            inspirations[inspirationIndex].text = text;
+            
+            const adminData = getAdminData();
+            adminData.inspirations = inspirations;
+            saveAdminData(adminData);
+            
+            clearInspirationForm();
+            showGlobalSuccess(`השראה ${number} עודכנה בהצלחה! ✏️`);
+        }
+        
+        // Delete current inspiration
+        function deleteCurrentInspiration() {
+            const number = parseInt(document.getElementById('inspirationNumber').value);
+            
+            if (!number || number < 1) {
+                alert('אנא הכנס מספר השראה למחיקה');
+                return;
+            }
+            
+            const inspirationIndex = inspirations.findIndex(insp => insp.number === number);
+            if (inspirationIndex === -1) {
+                alert('השראה עם מספר זה לא קיימת');
+                return;
+            }
+            
+            deleteInspiration(inspirationIndex);
+            clearInspirationForm();
+        }
+        
+        // Update hero description
+        function updateHeroDescription() {
+            const newDescription = document.getElementById('adminHeroDescription').value.trim();
+            if (newDescription) {
+                const descElement = document.querySelector('.hero-description');
+                if (descElement) {
+                    descElement.textContent = newDescription;
+                    
+                    const adminData = getAdminData();
+                    adminData.heroDescription = newDescription;
+                    saveAdminData(adminData);
+                    
+                    showGlobalSuccess('תיאור האתר עודכן! 📝');
+                } else {
+                    alert('לא נמצא אלמנט תיאור באתר');
+                }
+            }
+        }
+        
+        // Update contact email
+        function updateContactEmail() {
+            const newEmail = document.getElementById('adminContactEmail').value.trim();
+            if (newEmail) {
+                const emailElements = document.querySelectorAll('[href^="mailto:"], [href*="@"]');
+                emailElements.forEach(el => {
+                    if (el.tagName === 'A') {
+                        el.href = 'mailto:' + newEmail;
+                    }
+                    if (el.textContent.includes('@')) {
+                        el.textContent = newEmail;
+                    }
+                });
+                
+                // Also update any text that contains email
+                const textElements = document.querySelectorAll('p, span, div');
+                textElements.forEach(el => {
+                    if (el.textContent.includes('kudsha.mefanek@gmail.com')) {
+                        el.textContent = el.textContent.replace('kudsha.mefanek@gmail.com', newEmail);
+                    }
+                });
+                
+                const adminData = getAdminData();
+                adminData.contactEmail = newEmail;
+                saveAdminData(adminData);
+                
+                showGlobalSuccess('כתובת המייל עודכנה! 📧');
+            }
         }
 
         // Update Main Title
@@ -3154,14 +3417,12 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             adminData.products.push(productData);
             saveAdminData(adminData);
             
-            // Clear form
-            document.getElementById('adminProductName').value = '';
-            document.getElementById('adminProductPrice').value = '';
-            document.getElementById('adminProductDescription').value = '';
-            document.getElementById('adminProductTag').value = '';
+            // Clear form and reset button
+            clearProductForm();
+            resetProductButton();
             
             loadProductsList();
-            showGlobalSuccess('מוצר נוסף בהצלחה!');
+            showGlobalSuccess(`מוצר "${name}" נוסף בהצלחה! 🛒`);
         }
         
         function loadProductsList() {
@@ -3169,23 +3430,34 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             const productsList = document.getElementById('productsList');
             
             if (!adminData.products || adminData.products.length === 0) {
-                productsList.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">אין מוצרים להצגה</p>';
+                productsList.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">אין מוצרים להצגה<br><small>הוסף מוצר ראשון כדי להתחיל</small></p>';
                 return;
             }
             
             let productsHTML = '';
-            adminData.products.forEach(product => {
+            adminData.products.forEach((product, index) => {
+                const tagColor = product.tag === 'new' ? '#4caf50' : 
+                               product.tag === 'bestseller' ? '#ff9800' : 
+                               product.tag === 'sale' ? '#f44336' : '#ffd700';
+                               
                 productsHTML += `
-                    <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin: 0.5rem 0; display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <strong>${product.name}</strong>
-                            ${product.tag ? `<span style="background: #ffd700; color: #000; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; margin-right: 8px;">${product.tag}</span>` : ''}
-                            <br>
-                            <small>${product.price}</small>
-                        </div>
-                        <div>
-                            <button class="admin-button secondary" onclick="editProduct('${product.id}')" style="margin: 2px;">✏️</button>
-                            <button class="admin-button danger" onclick="deleteProduct('${product.id}')" style="margin: 2px;">🗑️</button>
+                    <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin: 0.5rem 0; cursor: pointer; transition: all 0.2s;" 
+                         onclick="selectProduct('${product.id}')" id="product-${product.id}">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div style="flex: 1;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem;">
+                                    <strong style="font-size: 1.1rem;">${product.name}</strong>
+                                    ${product.tag ? `<span style="background: ${tagColor}; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">${product.tag}</span>` : ''}
+                                </div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 1.2rem; margin: 0.3rem 0;">${product.price}</div>
+                                ${product.description ? `<p style="color: #666; font-size: 0.9rem; margin: 0.5rem 0; line-height: 1.4;">${product.description.substring(0, 100)}${product.description.length > 100 ? '...' : ''}</p>` : ''}
+                                <small style="color: #999;">מוצר #${index + 1} | נוצר: ${product.date ? new Date(product.date).toLocaleDateString('he-IL') : 'לא ידוע'}</small>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 4px;">
+                                <button class="admin-button secondary" onclick="event.stopPropagation(); editProduct('${product.id}')" style="font-size: 0.8rem; padding: 0.3rem 0.6rem;">✏️ ערוך</button>
+                                <button class="admin-button warning" onclick="event.stopPropagation(); duplicateSpecificProduct('${product.id}')" style="font-size: 0.8rem; padding: 0.3rem 0.6rem;">📋 שכפל</button>
+                                <button class="admin-button danger" onclick="event.stopPropagation(); deleteProduct('${product.id}')" style="font-size: 0.8rem; padding: 0.3rem 0.6rem;">🗑️ מחק</button>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -3194,13 +3466,138 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             productsList.innerHTML = productsHTML;
         }
         
+        // Select product for operations
+        let selectedProductId = null;
+        function selectProduct(productId) {
+            // Remove previous selection
+            document.querySelectorAll('[id^="product-"]').forEach(el => {
+                el.style.borderColor = '#ddd';
+                el.style.backgroundColor = 'white';
+            });
+            
+            // Select new product
+            const productEl = document.getElementById('product-' + productId);
+            if (productEl) {
+                productEl.style.borderColor = '#1e3c72';
+                productEl.style.backgroundColor = '#f0f7ff';
+                selectedProductId = productId;
+                showGlobalSuccess('מוצר נבחר 👆');
+            }
+        }
+        
+        // Export products
+        function exportProducts() {
+            const adminData = getAdminData();
+            if (!adminData.products || adminData.products.length === 0) {
+                alert('אין מוצרים לייצוא');
+                return;
+            }
+            
+            const dataStr = JSON.stringify(adminData.products, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `קודשא-מפנק-מוצרים-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            showGlobalSuccess('מוצרים יוצאו בהצלחה! 📤');
+        }
+        
+        // Import products
+        function importProducts() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const importedProducts = JSON.parse(e.target.result);
+                            if (Array.isArray(importedProducts)) {
+                                const adminData = getAdminData();
+                                if (!adminData.products) adminData.products = [];
+                                
+                                // Add unique IDs to imported products
+                                importedProducts.forEach(product => {
+                                    product.id = Date.now() + Math.random();
+                                    product.date = new Date().toISOString();
+                                });
+                                
+                                adminData.products = adminData.products.concat(importedProducts);
+                                saveAdminData(adminData);
+                                loadProductsList();
+                                showGlobalSuccess(`${importedProducts.length} מוצרים יובאו בהצלחה! 📥`);
+                            } else {
+                                alert('פורמט קובץ לא תקין');
+                            }
+                        } catch (error) {
+                            alert('שגיאה בקריאת הקובץ: ' + error.message);
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
+        }
+        
+        // Duplicate product
+        function duplicateProduct() {
+            if (!selectedProductId) {
+                alert('אנא בחר מוצר לשכפול');
+                return;
+            }
+            duplicateSpecificProduct(selectedProductId);
+        }
+        
+        function duplicateSpecificProduct(productId) {
+            const adminData = getAdminData();
+            const product = adminData.products.find(p => p.id == productId);
+            
+            if (product) {
+                const duplicatedProduct = {
+                    ...product,
+                    id: Date.now() + Math.random(),
+                    name: product.name + ' (עותק)',
+                    date: new Date().toISOString()
+                };
+                
+                adminData.products.push(duplicatedProduct);
+                saveAdminData(adminData);
+                loadProductsList();
+                showGlobalSuccess('מוצר שוכפל בהצלחה! 📋');
+            }
+        }
+        
+        // Delete all products
+        function deleteAllProducts() {
+            const adminData = getAdminData();
+            if (!adminData.products || adminData.products.length === 0) {
+                alert('אין מוצרים למחיקה');
+                return;
+            }
+            
+            if (confirm(`⚠️ האם אתה בטוח שרוצה למחוק את כל ${adminData.products.length} המוצרים?\n\nפעולה זו לא ניתנת לביטול!`)) {
+                if (confirm('🚨 אישור אחרון! זה ימחק את כל המוצרים לצמיתות!')) {
+                    adminData.products = [];
+                    saveAdminData(adminData);
+                    loadProductsList();
+                    selectedProductId = null;
+                    showGlobalSuccess('כל המוצרים נמחקו 🗑️');
+                }
+            }
+        }
+        
         function deleteProduct(productId) {
-            if (confirm('⚠️ האם אתה בטוח שרוצה למחוק את המוצר?')) {
-                const adminData = getAdminData();
+            const adminData = getAdminData();
+            const product = adminData.products.find(p => p.id == productId);
+            
+            if (product && confirm(`⚠️ האם אתה בטוח שרוצה למחוק את המוצר "${product.name}"?`)) {
                 adminData.products = adminData.products.filter(p => p.id != productId);
                 saveAdminData(adminData);
                 loadProductsList();
-                showGlobalSuccess('מוצר נמחק!');
+                showGlobalSuccess('מוצר נמחק בהצלחה!');
             }
         }
         
@@ -3212,20 +3609,22 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
                 // Load product data into form
                 document.getElementById('adminProductName').value = product.name;
                 document.getElementById('adminProductPrice').value = product.price;
-                document.getElementById('adminProductDescription').value = product.description;
+                document.getElementById('adminProductDescription').value = product.description || '';
                 document.getElementById('adminProductTag').value = product.tag || '';
                 
                 // Switch to products tab
                 switchAdminTab('products');
                 
-                // Update button to show it's editing
-                const addButton = document.querySelector('button[onclick="addProduct()"]');
-                if (addButton) {
-                    addButton.textContent = '✏️ עדכן מוצר';
-                    addButton.onclick = () => updateExistingProduct(productId);
-                }
+                // Set edit mode
+                setEditMode(productId);
                 
-                showGlobalSuccess('מוצר נטען לעריכה');
+                // Scroll to form
+                setTimeout(() => {
+                    document.getElementById('adminProductName').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    document.getElementById('adminProductName').focus();
+                }, 300);
+                
+                showGlobalSuccess(`מוצר "${product.name}" נטען לעריכה 📝`);
             }
         }
         
@@ -3244,23 +3643,46 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             const productIndex = adminData.products.findIndex(p => p.id == productId);
             
             if (productIndex !== -1) {
-                adminData.products[productIndex] = { ...adminData.products[productIndex], name, price, description, tag };
+                // Update product with new data
+                adminData.products[productIndex] = { 
+                    ...adminData.products[productIndex], 
+                    name, price, description, tag,
+                    lastUpdated: new Date().toISOString()
+                };
                 saveAdminData(adminData);
                 
                 // Clear form and reset button
-                document.getElementById('adminProductName').value = '';
-                document.getElementById('adminProductPrice').value = '';
-                document.getElementById('adminProductDescription').value = '';
-                document.getElementById('adminProductTag').value = '';
-                
-                const updateButton = document.querySelector('button[onclick^="updateExistingProduct"]');
-                if (updateButton) {
-                    updateButton.textContent = '➕ הוסף מוצר';
-                    updateButton.onclick = addProduct;
-                }
+                clearProductForm();
+                resetProductButton();
                 
                 loadProductsList();
-                showGlobalSuccess('מוצר עודכן בהצלחה!');
+                showGlobalSuccess(`מוצר "${name}" עודכן בהצלחה! ✏️`);
+            }
+        }
+        
+        // Helper functions for product management
+        function clearProductForm() {
+            document.getElementById('adminProductName').value = '';
+            document.getElementById('adminProductPrice').value = '';
+            document.getElementById('adminProductDescription').value = '';
+            document.getElementById('adminProductTag').value = '';
+        }
+        
+        function resetProductButton() {
+            const addButton = document.querySelector('button[onclick="addProduct()"], button[onclick^="updateExistingProduct"]');
+            if (addButton) {
+                addButton.textContent = '➕ הוסף מוצר';
+                addButton.className = 'admin-button success';
+                addButton.onclick = addProduct;
+            }
+        }
+        
+        function setEditMode(productId) {
+            const addButton = document.querySelector('button[onclick="addProduct()"]');
+            if (addButton) {
+                addButton.textContent = '✏️ עדכן מוצר';
+                addButton.className = 'admin-button warning';
+                addButton.onclick = () => updateExistingProduct(productId);
             }
         }
         
@@ -3497,6 +3919,180 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             setTimeout(() => {
                 successDiv.style.display = 'none';
             }, 3000);
+        }
+        
+        // Advanced site management functions
+        function syncAllData() {
+            if (confirm('🔄 לסנכרן את כל הנתונים עם השרת?\n\nזה יעדכן את כל התוכן באתר מהנתונים השמורים')) {
+                // Sync all data from saved admin data
+                const adminData = getAdminData();
+                
+                // Update stats
+                if (adminData.stats) {
+                    updateStats();
+                }
+                
+                // Update content
+                if (adminData.mainTitle) {
+                    updateMainTitle();
+                }
+                if (adminData.subTitle) {
+                    updateSubTitle();
+                }
+                if (adminData.heroDescription) {
+                    updateHeroDescription();
+                }
+                if (adminData.contactEmail) {
+                    updateContactEmail();
+                }
+                
+                // Load products
+                loadProductsList();
+                
+                // Save to Firebase
+                if (firebaseEnabled) {
+                    saveToServer();
+                }
+                
+                showGlobalSuccess('כל הנתונים סונכרנו בהצלחה! 🔄');
+            }
+        }
+        
+        function refreshWebsite() {
+            if (confirm('🔄 לרענן את האתר?\n\nזה יטען מחדש את כל העמוד')) {
+                location.reload();
+            }
+        }
+        
+        function showSiteStats() {
+            const adminData = getAdminData();
+            const stats = `
+📊 סטטיסטיקות מפורטות של האתר:
+
+👥 תוכן:
+• כותרת ראשית: ${adminData.mainTitle || 'לא עודכנה'}
+• תת-כותרת: ${adminData.subTitle || 'לא עודכנה'}
+• תיאור אתר: ${adminData.heroDescription ? 'עודכן' : 'לא עודכן'}
+• כתובת מייל: ${adminData.contactEmail || 'לא עודכנה'}
+
+📊 נתונים:
+• חברים: ${adminData.stats?.members || '15,847'}
+• פינוקים: ${adminData.stats?.pinukim || '95,234'}
+• השראות: ${adminData.stats?.inspirations || '365'}
+• מוצרים: ${adminData.stats?.products || '24'}
+
+🛒 מוצרים:
+• מוצרים שמורים: ${adminData.products ? adminData.products.length : 0}
+• השראות שמורות: ${adminData.inspirations ? adminData.inspirations.length : inspirations.length}
+
+🔥 מערכת:
+• Firebase: ${firebaseEnabled ? '🟢 פעיל' : '🟡 לא פעיל'}
+• עדכון אחרון: ${adminData.lastUpdate ? new Date(adminData.lastUpdate).toLocaleString('he-IL') : 'לא ידוע'}
+• פעולות מנהל: ${adminData.adminActions || 0}
+
+🌐 מידע טכני:
+• גודל נתונים: ${JSON.stringify(adminData).length} תווים
+• תאריך דוח: ${new Date().toLocaleString('he-IL')}
+            `;
+            
+            alert(stats);
+        }
+        
+        function exportAllSiteData() {
+            const adminData = getAdminData();
+            const siteData = {
+                ...adminData,
+                currentInspirations: inspirations,
+                exportInfo: {
+                    date: new Date().toISOString(),
+                    version: '1.0',
+                    firebaseEnabled: firebaseEnabled,
+                    totalProducts: adminData.products ? adminData.products.length : 0,
+                    totalInspirations: inspirations.length
+                }
+            };
+            
+            const dataStr = JSON.stringify(siteData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `קודשא-מפנק-גיבוי-מלא-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            showGlobalSuccess('גיבוי מלא של האתר נוצר! 📤');
+        }
+        
+        // Load current site content into admin fields
+        function loadCurrentSiteContent() {
+            // Load current titles
+            const currentMainTitle = document.querySelector('.hero-title')?.textContent || document.querySelector('.logo')?.textContent || '';
+            const currentSubTitle = document.querySelector('.hero-subtitle')?.textContent || '';
+            const currentHeroDesc = document.querySelector('.hero-description')?.textContent || '';
+            
+            // Load into admin fields if not already filled
+            const mainTitleInput = document.getElementById('adminMainTitle');
+            const subTitleInput = document.getElementById('adminSubTitle');
+            const heroDescInput = document.getElementById('adminHeroDescription');
+            const contactEmailInput = document.getElementById('adminContactEmail');
+            
+            if (mainTitleInput && !mainTitleInput.value && currentMainTitle) {
+                mainTitleInput.value = currentMainTitle.trim();
+            }
+            
+            if (subTitleInput && !subTitleInput.value && currentSubTitle) {
+                subTitleInput.value = currentSubTitle.trim();
+            }
+            
+            if (heroDescInput && !heroDescInput.value && currentHeroDesc) {
+                heroDescInput.value = currentHeroDesc.trim();
+            }
+            
+            // Try to find current email
+            const emailElement = document.querySelector('[href^="mailto:"]');
+            if (contactEmailInput && !contactEmailInput.value && emailElement) {
+                const email = emailElement.href.replace('mailto:', '');
+                contactEmailInput.value = email;
+            }
+            
+            console.log('📝 תוכן האתר הנוכחי נטען לפאנל הניהול');
+        }
+        
+        // Welcome guide for new users
+        function showWelcomeGuide() {
+            const guide = `
+🎉 ברוך הבא לפאנל הניהול המתקדם של "קודשא בריך הוא מפנק"!
+
+📋 איך להשתמש בפאנל:
+
+🏠 Dashboard - מבט כללי על האתר
+📝 ניהול תוכן - עריכת כותרות, השראות ופרטי קשר
+🛒 ניהול מוצרים - הוספה, עריכה ומחיקה של מוצרים
+🎨 עיצוב - שינוי צבעים ומראה האתר
+📊 ניתוח - סטטיסטיקות ודוחות
+⚙️ הגדרות - Firebase וגיבויים
+💾 גיבוי - שמירה ושחזור נתונים
+
+⚡ קיצורי דרך:
+• Ctrl+S - שמירה מהירה
+• ESC - סגירת הפאנל
+• לחיצה כפולה על מוצר - עריכה מהירה
+
+🔥 טיפים חשובים:
+• כל שינוי נשמר אוטומטיט ב-Firebase
+• השתמש ב"סנכרן נתונים" אם משהו לא מתעדכן
+• גבה את הנתונים מידי פעם
+• כל הפעולות רגיעות וחזרות
+
+🌟 תתחיל עם עריכת התוכן - זה הכי קל!
+            `;
+            
+            if (confirm(guide + '\n\nרוצה לראות מדריך זה שוב? לחץ "אישור" כדי לשמור אותו בזיכרון')) {
+                // Save guide preference
+                const adminData = getAdminData();
+                adminData.showGuideOnStartup = true;
+                saveAdminData(adminData);
+            }
         }
         
 
