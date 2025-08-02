@@ -625,7 +625,7 @@
             height: 100%;
             background: rgba(0,0,0,0.9);
             z-index: 10000;
-            display: none;
+            display: none !important; /* HIDDEN BY DEFAULT */
             overflow-y: auto;
         }
         
@@ -791,6 +791,10 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1 class="hero-title">קודשא בריך הוא מפנק</h1>
+            <!-- Hidden Emergency Admin Access Button -->
+            <div style="position: absolute; top: 0; right: 0; width: 1px; height: 1px; opacity: 0; overflow: hidden;">
+                <button id="emergencyAdminBtn" onclick="openAdminLogin()" style="border: none; background: none;">Emergency Admin</button>
+            </div>
             <h2 class="hero-subtitle">הקבוצה Google Groups עם 15,847+ חברים פעילים</h2>
             <p class="hero-description">
                 גלה כל יום את הפינוקים והחסדים שהקב"ה מעניק לך. הצטרף לקבוצה Google Groups שלנו עם אלפי אנשים שכבר התחילו לראות את החיים בצורה חדשה ומלאת הכרת הטוב.
@@ -1239,15 +1243,17 @@
             • לחץ 5 פעמים מהיר על הלוגו או הכותרת הראשית
             • סיסמה: קודשא2025
             • או לחץ Ctrl+Alt+A 
+            • במקרה חירום: Ctrl+Shift+Alt+D
+            • בדיקה: פתח Console (F12) ותראה הודעות
             -->
             <div style="opacity: 0; font-size: 1px; position: absolute; left: -9999px;">
-                Admin: Click logo 5 times, password: קודשא2025
+                Admin: Click logo 5 times, password: קודשא2025, or Ctrl+Alt+A, Emergency: Ctrl+Shift+Alt+D
             </div>
         </div>
     </footer>
 
     <!-- Admin Login Modal -->
-    <div class="admin-overlay" id="adminLoginOverlay" style="display: none;">
+    <div class="admin-overlay" id="adminLoginOverlay" style="display: none !important;">
         <div class="admin-login" id="adminLogin">
             <h3 style="color: #1e3c72; text-align: center; margin-bottom: 1rem;">🔐 כניסת מנהל</h3>
             <input type="password" id="adminPassword" placeholder="הכנס סיסמת מנהל..." style="width: 100%; padding: 0.8rem; border: 2px solid #1e3c72; border-radius: 5px; margin-bottom: 1rem;">
@@ -1260,7 +1266,7 @@
     </div>
 
     <!-- Admin Panel -->
-    <div class="admin-overlay" id="adminPanelOverlay" style="display: none;">
+    <div class="admin-overlay" id="adminPanelOverlay" style="display: none !important;">
         <div class="admin-panel">
             <div class="admin-header">
                 <h2 style="color: #1e3c72;">🛠️ פאנל ניהול - קודשא בריך הוא מפנק</h2>
@@ -1273,20 +1279,20 @@
                 <div class="admin-grid">
                     <div>
                         <label>חברים בקבוצה:</label>
-                        <input type="text" class="admin-input" id="membersCount" placeholder="15,847">
+                        <input type="text" class="admin-input" id="adminMembersCount" placeholder="15,847">
                         <button class="admin-button" onclick="updateStats()">עדכן</button>
                     </div>
                     <div>
                         <label>פינוקים שנרשמו:</label>
-                        <input type="text" class="admin-input" id="pinukimCount" placeholder="95,234">
+                        <input type="text" class="admin-input" id="adminPinukimCount" placeholder="95,234">
                     </div>
                     <div>
                         <label>השראות במאגר:</label>
-                        <input type="text" class="admin-input" id="inspirationsCount" placeholder="365">
+                        <input type="text" class="admin-input" id="adminInspirationsCount" placeholder="365">
                     </div>
                     <div>
                         <label>מוצרים זמינים:</label>
-                        <input type="text" class="admin-input" id="productsCount" placeholder="24">
+                        <input type="text" class="admin-input" id="adminProductsCount" placeholder="24">
                     </div>
                 </div>
                 <div class="admin-success" id="statsSuccess">✅ הסטטיסטיקות עודכנו בהצלחה!</div>
@@ -1295,7 +1301,7 @@
             <!-- New Inspiration Section -->
             <div class="admin-section">
                 <h3>🌟 הוספת השראה חדשה</h3>
-                <textarea class="admin-textarea" id="newInspiration" placeholder="כתוב כאן השראה חדשה מקודשא ברוך הוא..."></textarea>
+                <textarea class="admin-textarea" id="adminNewInspiration" placeholder="כתוב כאן השראה חדשה מקודשא ברוך הוא..."></textarea>
                 <button class="admin-button" onclick="addNewInspiration()">הוסף השראה</button>
                 <div class="admin-success" id="inspirationSuccess">✅ ההשראה נוספה בהצלחה!</div>
             </div>
@@ -1305,12 +1311,12 @@
                 <h3>📝 עריכת מסרים באתר</h3>
                 <div style="margin-bottom: 1rem;">
                     <label>כותרת ראשית:</label>
-                    <input type="text" class="admin-input" id="mainTitle" placeholder="קודשא בריך הוא מפנק">
+                    <input type="text" class="admin-input" id="adminMainTitle" placeholder="קודשא בריך הוא מפנק">
                     <button class="admin-button" onclick="updateMainTitle()">עדכן כותרת</button>
                 </div>
                 <div style="margin-bottom: 1rem;">
                     <label>תת-כותרת:</label>
-                    <input type="text" class="admin-input" id="subTitle" placeholder="הקבוצה Google Groups עם 15,847+ חברים פעילים">
+                    <input type="text" class="admin-input" id="adminSubTitle" placeholder="הקבוצה Google Groups עם 15,847+ חברים פעילים">
                     <button class="admin-button" onclick="updateSubTitle()">עדכן תת-כותרת</button>
                 </div>
                 <div class="admin-success" id="messageSuccess">✅ המסרים עודכנו בהצלחה!</div>
@@ -1322,14 +1328,14 @@
                 <div class="admin-grid">
                     <div>
                         <label>שם המוצר:</label>
-                        <input type="text" class="admin-input" id="productName" placeholder="חוברת פינוקים יומיים">
+                        <input type="text" class="admin-input" id="adminProductName" placeholder="חוברת פינוקים יומיים">
                     </div>
                     <div>
                         <label>מחיר:</label>
-                        <input type="text" class="admin-input" id="productPrice" placeholder="₪29.90">
+                        <input type="text" class="admin-input" id="adminProductPrice" placeholder="₪29.90">
                     </div>
                 </div>
-                <textarea class="admin-textarea" id="productDescription" placeholder="תיאור המוצר..."></textarea>
+                <textarea class="admin-textarea" id="adminProductDescription" placeholder="תיאור המוצר..."></textarea>
                 <button class="admin-button" onclick="updateProduct()">עדכן מוצר</button>
                 <div class="admin-success" id="productSuccess">✅ המוצר עודכן בהצלחה!</div>
             </div>
@@ -1706,10 +1712,10 @@
 
         // Update Statistics
         function updateStats() {
-            const members = document.getElementById('membersCount').value || '15,847';
-            const pinukim = document.getElementById('pinukimCount').value || '95,234';
-            const inspirations = document.getElementById('inspirationsCount').value || '365';
-            const products = document.getElementById('productsCount').value || '24';
+            const members = document.getElementById('adminMembersCount').value || '15,847';
+            const pinukim = document.getElementById('adminPinukimCount').value || '95,234';
+            const inspirations = document.getElementById('adminInspirationsCount').value || '365';
+            const products = document.getElementById('adminProductsCount').value || '24';
 
             // Update all stat numbers on the page
             const statNumbers = document.querySelectorAll('.stat-number');
@@ -1728,7 +1734,7 @@
 
         // Add New Inspiration
         function addNewInspiration() {
-            const text = document.getElementById('newInspiration').value.trim();
+            const text = document.getElementById('adminNewInspiration').value.trim();
             if (!text) {
                 alert('אנא כתוב השראה חדשה');
                 return;
@@ -1746,13 +1752,13 @@
             adminData.inspirations = inspirations;
             saveAdminData(adminData);
 
-            document.getElementById('newInspiration').value = '';
+            document.getElementById('adminNewInspiration').value = '';
             showSuccess('inspirationSuccess');
         }
 
         // Update Main Title
         function updateMainTitle() {
-            const newTitle = document.getElementById('mainTitle').value.trim();
+            const newTitle = document.getElementById('adminMainTitle').value.trim();
             if (newTitle) {
                 const titleElements = document.querySelectorAll('.hero-title, .logo');
                 titleElements.forEach(el => {
@@ -1773,7 +1779,7 @@
 
         // Update Sub Title
         function updateSubTitle() {
-            const newSubTitle = document.getElementById('subTitle').value.trim();
+            const newSubTitle = document.getElementById('adminSubTitle').value.trim();
             if (newSubTitle) {
                 const subTitleElement = document.querySelector('.hero-subtitle');
                 if (subTitleElement) {
@@ -1790,9 +1796,9 @@
 
         // Update Product
         function updateProduct() {
-            const name = document.getElementById('productName').value.trim();
-            const price = document.getElementById('productPrice').value.trim();
-            const description = document.getElementById('productDescription').value.trim();
+            const name = document.getElementById('adminProductName').value.trim();
+            const price = document.getElementById('adminProductPrice').value.trim();
+            const description = document.getElementById('adminProductDescription').value.trim();
 
             if (name && price) {
                 // This is a simplified version - in a real implementation, 
@@ -1805,9 +1811,9 @@
                 saveAdminData(adminData);
 
                 // Clear form
-                document.getElementById('productName').value = '';
-                document.getElementById('productPrice').value = '';
-                document.getElementById('productDescription').value = '';
+                document.getElementById('adminProductName').value = '';
+                document.getElementById('adminProductPrice').value = '';
+                document.getElementById('adminProductDescription').value = '';
 
                 showSuccess('productSuccess');
             } else {
