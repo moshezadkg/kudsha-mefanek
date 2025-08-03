@@ -2010,24 +2010,39 @@
                         <div class="admin-grid-2">
                     <div>
                         <label>חברים בקבוצה:</label>
-                        <input type="text" class="admin-input" id="adminMembersCount" placeholder="15,847">
+                        <div style="display: flex; gap: 5px;">
+                            <input type="text" class="admin-input" id="adminMembersCount" placeholder="15,847" style="flex: 1;" onkeypress="if(event.key==='Enter') updateMembersOnly()">
+                            <button class="admin-button secondary" onclick="updateMembersOnly()" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" title="עדכן חברים">💾</button>
+                        </div>
                     </div>
                     <div>
                         <label>פינוקים שנרשמו:</label>
-                        <input type="text" class="admin-input" id="adminPinukimCount" placeholder="95,234">
+                        <div style="display: flex; gap: 5px;">
+                            <input type="text" class="admin-input" id="adminPinukimCount" placeholder="95,234" style="flex: 1;" onkeypress="if(event.key==='Enter') updatePinukimOnly()">
+                            <button class="admin-button secondary" onclick="updatePinukimOnly()" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" title="עדכן פינוקים">💾</button>
+                        </div>
                     </div>
                         </div>
                         <div class="admin-grid-2">
                     <div>
                         <label>השראות במאגר:</label>
-                        <input type="text" class="admin-input" id="adminInspirationsCount" placeholder="365">
+                        <div style="display: flex; gap: 5px;">
+                            <input type="text" class="admin-input" id="adminInspirationsCount" placeholder="365" style="flex: 1;" onkeypress="if(event.key==='Enter') updateInspirationsOnly()">
+                            <button class="admin-button secondary" onclick="updateInspirationsOnly()" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" title="עדכן השראות">💾</button>
+                        </div>
                     </div>
                     <div>
                         <label>מוצרים זמינים:</label>
-                        <input type="text" class="admin-input" id="adminProductsCount" placeholder="24">
+                        <div style="display: flex; gap: 5px;">
+                            <input type="text" class="admin-input" id="adminProductsCount" placeholder="24" style="flex: 1;" onkeypress="if(event.key==='Enter') updateProductsOnly()">
+                            <button class="admin-button secondary" onclick="updateProductsOnly()" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" title="עדכן מוצרים">💾</button>
+                        </div>
                     </div>
                 </div>
-                        <button class="admin-button success" onclick="updateStats()">🔄 עדכן כל הסטטיסטיקות</button>
+                        <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                            <button class="admin-button success" onclick="updateStats()">🔄 עדכן כל הסטטיסטיקות</button>
+                            <button class="admin-button warning" onclick="getCurrentStats()">📊 טען מספרים נוכחיים</button>
+                        </div>
                     </div>
             </div>
 
@@ -2757,14 +2772,38 @@
             const inspirationsCount = document.getElementById('adminInspirationsCount').value || '365';
             const products = document.getElementById('adminProductsCount').value || '24';
 
-            // Update all stat numbers on the page
-            const statNumbers = document.querySelectorAll('.stat-number');
-            if (statNumbers[0]) statNumbers[0].textContent = members;
-            if (statNumbers[1]) statNumbers[1].textContent = pinukim;
-            if (statNumbers[2]) statNumbers[2].textContent = inspirationsCount;
-            if (statNumbers[3]) statNumbers[3].textContent = products;
+            console.log('🔄 מעדכן סטטיסטיקות:', { members, pinukim, inspirationsCount, products });
 
-            // Update dashboard stats
+            // Update all stat numbers on the main website
+            const statNumbers = document.querySelectorAll('.stat-number');
+            console.log('📊 נמצאו אלמנטי סטטיסטיקה:', statNumbers.length);
+            
+            if (statNumbers[0]) {
+                statNumbers[0].textContent = members;
+                statNumbers[0].style.color = '#1e3c72';
+                statNumbers[0].style.fontWeight = 'bold';
+                console.log('✅ עודכן חברים:', members);
+            }
+            if (statNumbers[1]) {
+                statNumbers[1].textContent = pinukim;
+                statNumbers[1].style.color = '#1e3c72';
+                statNumbers[1].style.fontWeight = 'bold';
+                console.log('✅ עודכן פינוקים:', pinukim);
+            }
+            if (statNumbers[2]) {
+                statNumbers[2].textContent = inspirationsCount;
+                statNumbers[2].style.color = '#1e3c72';
+                statNumbers[2].style.fontWeight = 'bold';
+                console.log('✅ עודכן השראות:', inspirationsCount);
+            }
+            if (statNumbers[3]) {
+                statNumbers[3].textContent = products;
+                statNumbers[3].style.color = '#1e3c72';
+                statNumbers[3].style.fontWeight = 'bold';
+                console.log('✅ עודכן מוצרים:', products);
+            }
+
+            // Update dashboard stats with animation
             const dashMembersCount = document.getElementById('dashMembersCount');
             const dashPinukimCount = document.getElementById('dashPinukimCount');
             const dashInspirationsCount = document.getElementById('dashInspirationsCount');
@@ -2772,33 +2811,59 @@
             
             if (dashMembersCount) {
                 dashMembersCount.textContent = members;
-                // Add animation effect
-                dashMembersCount.style.transform = 'scale(1.1)';
-                setTimeout(() => dashMembersCount.style.transform = 'scale(1)', 300);
+                dashMembersCount.style.transform = 'scale(1.2)';
+                dashMembersCount.style.color = '#28a745';
+                setTimeout(() => {
+                    dashMembersCount.style.transform = 'scale(1)';
+                    dashMembersCount.style.color = '';
+                }, 500);
             }
             if (dashPinukimCount) {
                 dashPinukimCount.textContent = pinukim;
-                dashPinukimCount.style.transform = 'scale(1.1)';
-                setTimeout(() => dashPinukimCount.style.transform = 'scale(1)', 300);
+                dashPinukimCount.style.transform = 'scale(1.2)';
+                dashPinukimCount.style.color = '#28a745';
+                setTimeout(() => {
+                    dashPinukimCount.style.transform = 'scale(1)';
+                    dashPinukimCount.style.color = '';
+                }, 500);
             }
             if (dashInspirationsCount) {
                 dashInspirationsCount.textContent = inspirationsCount;
-                dashInspirationsCount.style.transform = 'scale(1.1)';
-                setTimeout(() => dashInspirationsCount.style.transform = 'scale(1)', 300);
+                dashInspirationsCount.style.transform = 'scale(1.2)';
+                dashInspirationsCount.style.color = '#28a745';
+                setTimeout(() => {
+                    dashInspirationsCount.style.transform = 'scale(1)';
+                    dashInspirationsCount.style.color = '';
+                }, 500);
             }
             if (dashProductsCount) {
                 dashProductsCount.textContent = products;
-                dashProductsCount.style.transform = 'scale(1.1)';
-                setTimeout(() => dashProductsCount.style.transform = 'scale(1)', 300);
+                dashProductsCount.style.transform = 'scale(1.2)';
+                dashProductsCount.style.color = '#28a745';
+                setTimeout(() => {
+                    dashProductsCount.style.transform = 'scale(1)';
+                    dashProductsCount.style.color = '';
+                }, 500);
+            }
+
+            // Update in subtitle if exists
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            if (heroSubtitle && heroSubtitle.textContent.includes('חברים')) {
+                const newSubtitle = heroSubtitle.textContent.replace(/[\d,]+\+?\s*חברים/, `${members}+ חברים`);
+                heroSubtitle.textContent = newSubtitle;
+                console.log('✅ עודכן תת-כותרת:', newSubtitle);
             }
 
             // Save to localStorage AND Firebase
             const adminData = getAdminData();
             adminData.stats = { members, pinukim, inspirations: inspirationsCount, products };
-            saveAdminData(adminData); // This will now auto-save to Firebase too!
+            adminData.lastUpdate = new Date().toISOString();
+            saveAdminData(adminData);
 
             // Show success message
-            showGlobalSuccess('כל הסטטיסטיקות עודכנו בהצלחה!');
+            showGlobalSuccess(`סטטיסטיקות עודכנו! חברים: ${members}, פינוקים: ${pinukim}`);
+            
+            console.log('💾 נתונים נשמרו:', adminData.stats);
         }
 
         // Add New Inspiration
@@ -3019,16 +3084,30 @@
         function updateMainTitle() {
             const newTitle = document.getElementById('adminMainTitle').value.trim();
             if (newTitle) {
-                const titleElements = document.querySelectorAll('.hero-title, .logo');
-                titleElements.forEach(el => {
-                    el.textContent = newTitle;
-                });
+                // Update hero title (preserve sticker image)
+                const heroTitle = document.querySelector('.hero-title');
+                if (heroTitle) {
+                    const img = heroTitle.querySelector('img');
+                    heroTitle.textContent = newTitle;
+                    if (img) heroTitle.prepend(img);
+                }
+                
+                // Update logo text (preserve sticker image)
+                const logoText = document.querySelector('.logo');
+                if (logoText) {
+                    const img = logoText.querySelector('img');
+                    logoText.textContent = newTitle;
+                    if (img) logoText.prepend(img);
+                }
 
                 const adminData = getAdminData();
                 adminData.mainTitle = newTitle;
                 saveAdminData(adminData);
 
-                showSuccess('messageSuccess');
+                showGlobalSuccess(`כותרת ראשית עודכנה: "${newTitle}" 📝`);
+                console.log('✅ כותרת ראשית עודכנה:', newTitle);
+            } else {
+                alert('אנא הכנס כותרת ראשית');
             }
         }
 
@@ -3045,7 +3124,120 @@
                 adminData.subTitle = newSubTitle;
                 saveAdminData(adminData);
 
-                showSuccess('messageSuccess');
+                showGlobalSuccess(`תת-כותרת עודכנה: "${newSubTitle}" 📝`);
+                console.log('✅ תת-כותרת עודכנה:', newSubTitle);
+            } else {
+                alert('אנא הכנס תת-כותרת');
+            }
+        }
+        
+        // Individual stat update functions
+        function updateMembersOnly() {
+            const members = document.getElementById('adminMembersCount').value || '15,847';
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            if (statNumbers[0]) {
+                statNumbers[0].textContent = members;
+                statNumbers[0].style.color = '#1e3c72';
+                statNumbers[0].style.fontWeight = 'bold';
+                
+                // Update in subtitle
+                const heroSubtitle = document.querySelector('.hero-subtitle');
+                if (heroSubtitle && heroSubtitle.textContent.includes('חברים')) {
+                    const newSubtitle = heroSubtitle.textContent.replace(/[\d,]+\+?\s*חברים/, `${members}+ חברים`);
+                    heroSubtitle.textContent = newSubtitle;
+                }
+                
+                // Save
+                const adminData = getAdminData();
+                if (!adminData.stats) adminData.stats = {};
+                adminData.stats.members = members;
+                saveAdminData(adminData);
+                
+                showGlobalSuccess(`מספר חברים עודכן: ${members} 👥`);
+                console.log('✅ מספר חברים עודכן:', members);
+            }
+        }
+        
+        function updatePinukimOnly() {
+            const pinukim = document.getElementById('adminPinukimCount').value || '95,234';
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            if (statNumbers[1]) {
+                statNumbers[1].textContent = pinukim;
+                statNumbers[1].style.color = '#1e3c72';
+                statNumbers[1].style.fontWeight = 'bold';
+                
+                // Save
+                const adminData = getAdminData();
+                if (!adminData.stats) adminData.stats = {};
+                adminData.stats.pinukim = pinukim;
+                saveAdminData(adminData);
+                
+                showGlobalSuccess(`מספר פינוקים עודכן: ${pinukim} ✨`);
+                console.log('✅ מספר פינוקים עודכן:', pinukim);
+            }
+        }
+        
+        function updateInspirationsOnly() {
+            const inspirations = document.getElementById('adminInspirationsCount').value || '365';
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            if (statNumbers[2]) {
+                statNumbers[2].textContent = inspirations;
+                statNumbers[2].style.color = '#1e3c72';
+                statNumbers[2].style.fontWeight = 'bold';
+                
+                // Save
+                const adminData = getAdminData();
+                if (!adminData.stats) adminData.stats = {};
+                adminData.stats.inspirations = inspirations;
+                saveAdminData(adminData);
+                
+                showGlobalSuccess(`מספר השראות עודכן: ${inspirations} 🌟`);
+                console.log('✅ מספר השראות עודכן:', inspirations);
+            }
+        }
+        
+        function updateProductsOnly() {
+            const products = document.getElementById('adminProductsCount').value || '24';
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            if (statNumbers[3]) {
+                statNumbers[3].textContent = products;
+                statNumbers[3].style.color = '#1e3c72';
+                statNumbers[3].style.fontWeight = 'bold';
+                
+                // Save
+                const adminData = getAdminData();
+                if (!adminData.stats) adminData.stats = {};
+                adminData.stats.products = products;
+                saveAdminData(adminData);
+                
+                showGlobalSuccess(`מספר מוצרים עודכן: ${products} 🛒`);
+                console.log('✅ מספר מוצרים עודכן:', products);
+            }
+        }
+        
+        // Get current stats from website
+        function getCurrentStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            if (statNumbers.length >= 4) {
+                const members = statNumbers[0]?.textContent || '15,847';
+                const pinukim = statNumbers[1]?.textContent || '95,234';
+                const inspirations = statNumbers[2]?.textContent || '365';
+                const products = statNumbers[3]?.textContent || '24';
+                
+                // Load into admin inputs
+                document.getElementById('adminMembersCount').value = members;
+                document.getElementById('adminPinukimCount').value = pinukim;
+                document.getElementById('adminInspirationsCount').value = inspirations;
+                document.getElementById('adminProductsCount').value = products;
+                
+                showGlobalSuccess(`מספרים נוכחיים נטענו: ${members} חברים, ${pinukim} פינוקים 📊`);
+            } else {
+                alert('לא ניתן לטעון מספרים מהאתר');
             }
         }
 
