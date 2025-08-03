@@ -3489,6 +3489,78 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             }
         }
         
+        // Auto-load Firebase data for all visitors (not just admin)
+        async function loadDataForAllVisitors() {
+            if (!firebaseEnabled) {
+                console.log('💻 Firebase לא פעיל - אין נתונים לטעינה');
+                return;
+            }
+
+            try {
+                console.log('🌐 טוען נתונים מ-Firebase לכל המבקרים...');
+                const snapshot = await database.ref('siteData').once('value');
+                const firebaseData = snapshot.val();
+                
+                if (firebaseData && firebaseData.stats) {
+                    // Update main website stats directly
+                    const statNumbers = document.querySelectorAll('.stat-number');
+                    if (statNumbers[0] && firebaseData.stats.members) {
+                        statNumbers[0].textContent = firebaseData.stats.members;
+                        console.log('✅ עודכן חברים למבקרים: ' + firebaseData.stats.members);
+                    }
+                    if (statNumbers[1] && firebaseData.stats.pinukim) {
+                        statNumbers[1].textContent = firebaseData.stats.pinukim;
+                        console.log('✅ עודכן פינוקים למבקרים: ' + firebaseData.stats.pinukim);
+                    }
+                    if (statNumbers[2] && firebaseData.stats.inspirations) {
+                        statNumbers[2].textContent = firebaseData.stats.inspirations;
+                        console.log('✅ עודכן השראות למבקרים: ' + firebaseData.stats.inspirations);
+                    }
+                    if (statNumbers[3] && firebaseData.stats.products) {
+                        statNumbers[3].textContent = firebaseData.stats.products;
+                        console.log('✅ עודכן מוצרים למבקרים: ' + firebaseData.stats.products);
+                    }
+                    
+                    // Update subtitle if needed
+                    const heroSubtitle = document.querySelector('.hero-subtitle');
+                    if (heroSubtitle && heroSubtitle.textContent.includes('חברים') && firebaseData.stats.members) {
+                        const newSubtitle = heroSubtitle.textContent.replace(/[\d,]+\+?\s*חברים/, `${firebaseData.stats.members}+ חברים`);
+                        heroSubtitle.textContent = newSubtitle;
+                        console.log('✅ עודכן תת-כותרת למבקרים: ' + newSubtitle);
+                    }
+                    
+                    // Update main title if exists in Firebase
+                    if (firebaseData.mainTitle) {
+                        const heroTitle = document.querySelector('.hero-title');
+                        if (heroTitle) {
+                            // Get the image element if it exists
+                            const existingImg = heroTitle.querySelector('img');
+                            heroTitle.innerHTML = '';
+                            if (existingImg) {
+                                heroTitle.appendChild(existingImg);
+                            }
+                            heroTitle.innerHTML += firebaseData.mainTitle;
+                            console.log('✅ עודכן כותרת ראשית למבקרים: ' + firebaseData.mainTitle);
+                        }
+                    }
+                    
+                    // Update contact email if exists
+                    if (firebaseData.contactEmail) {
+                        const mailtoLinks = document.querySelectorAll('a[href^="mailto:"]');
+                        mailtoLinks.forEach(link => {
+                            link.href = `mailto:${firebaseData.contactEmail}`;
+                        });
+                        console.log('✅ עודכן מייל קשר למבקרים: ' + firebaseData.contactEmail);
+                    }
+                    
+                    console.log('🎉 כל הנתונים עודכנו בהצלחה לכל המבקרים!');
+                } else {
+                    console.log('📭 אין נתונים ב-Firebase - משתמש בנתונים המקוריים');
+                }
+            } catch (error) {
+                console.log('❌ שגיאה בטעינת נתונים למבקרים:', error.message);
+            }
+        }
 
         
         // Global Success Message
@@ -3663,11 +3735,16 @@ ${firebaseEnabled ? '✅ השינויים נשמרים לכל המבקרים!' :
             console.log('📱 קודשא בריך הוא מפנק - מוכן לשימוש');
             console.log('');
             
-            // Firebase status check
+            // Firebase status check and auto-load data for all visitors
             setTimeout(() => {
                 if (firebaseEnabled) {
                     console.log('🔥 ✅ Firebase פעיל! פאנל הניהול יעבוד עם שרת אמיתי');
                     console.log('🌐 כל השינויים יישמרו לכל המבקרים באתר');
+                    
+                    // Auto-load data from Firebase for all visitors
+                    setTimeout(() => {
+                        loadDataForAllVisitors();
+                    }, 1000);
                 } else {
                     console.log('⚠️ Firebase לא פעיל - פאנל הניהול יעבוד רק מקומית');
                     console.log('💡 כדי להפעיל שרת אמיתי:');
